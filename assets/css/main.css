@@ -1509,4 +1509,7 @@ a.newer-posts:hover {
   .blog-search input {
     width: 100%;
   }
+  .article-page .wrap-content p{
+    word-break: break-all;
+  }
 }
