@@ -2,7 +2,7 @@
 layout: post
 title: 비트코인, 블록체인의 탈중앙화 그리고 걸림돌 
 date: 2017-11-20 00:00:00 +0300
-description: You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. # Add post description (optional)
+description: 마이닝의 중앙화, 노드의 중앙화 # Add post description (optional)
 img: # Add image post (optional)
 tags: [cryptocurrency] # add tag
 ---
