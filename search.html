@@ -1,0 +1,70 @@
+---
+layout: main
+title: Search
+permalink: /search/
+---
+
+<section class="blog-search">
+    <h2>컨텐츠 검색</h2>
+    <div class="form  form--search">
+        <form id="contact-form" action="">
+            <input class="input" id="search" type="search" name="search" placeholder="검색할 키워드 입력" autocomplete="off" />
+    
+            <ul class="list  list--results" id="list">
+                <!-- results go here -->
+            </ul>
+        </form>
+    </div>
+</section>
+
+<script type="text/javascript" src="{{ '/assets/scripts/fetch.js' | relative_url }}"></script>
+<script type="text/javascript">
+    const endpoint = "{{ '/assets/search.json' | relative_url }}";
+    let pages = [];
+
+    fetch(endpoint)
+        .then(function(blob) {
+            return blob.json();
+        })
+        .then(function(data) {
+            data.forEach(function(page) {
+                pages.push(page)
+            })
+        })
+
+    function findResults(termToMatch, pages) {
+        return pages.filter(item => {
+            const regex = new RegExp(termToMatch, 'gi');
+            return item.title.match(regex) || item.content.match(regex);
+        });
+    }
+
+    function displayResults() {
+        const resultsArray = findResults(this.value, pages);
+        const html = resultsArray.map(item => {
+          return `
+                <li class="item  item--result">
+                    <article class="article">
+                        <h4><a href="${item.url}">${item.title}</a></h4>
+                        <p>${item.excerpt}</p>
+                    </article>
+                </li>`;
+        }).join('');
+        if ((resultsArray.length == 0) || (this.value == '')) {
+            resultsList.innerHTML = `<p>해당 키워드 관련 검색결과가 없습니다.</p>`;
+        } else {
+            resultsList.innerHTML = html;
+        }
+    }
+
+    const field = document.querySelector('#search');
+    const resultsList = document.querySelector('#list');
+
+    field.addEventListener('keyup', displayResults);
+
+    field.addEventListener('keypress', function(event) {
+        if (event.keyCode == 13) {
+          event.preventDefault();
+        }
+    });
+</script>

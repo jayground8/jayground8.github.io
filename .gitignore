@@ -1,0 +1,4 @@
+.sass-cache
+.jekyll-metadata
+yarn.lock
+node_modules/
