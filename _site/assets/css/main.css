@@ -1513,3 +1513,18 @@ a.newer-posts:hover {
     word-break: break-all;
   }
 }
+
+.center-image {
+  margin: 0 auto;
+  display: block;
+}
+
+table th {
+  color: white;
+  background-color: black;
+}
+
+table tr {
+  color: black;
+  background-color: white;
+}
