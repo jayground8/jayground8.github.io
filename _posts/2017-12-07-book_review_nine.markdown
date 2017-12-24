@@ -2,7 +2,7 @@
 layout: post
 title: 독후감 - 나인, 더 빨라진 미래의 생존원칙
 date: 2017-12-07 00:00:00 +0300
-description: 비트코인 마이닝과 해쉬함수 설명 # Add post description (optional)
+description: 비대칭성, 불확실성, 복잡성 # Add post description (optional)
 img: # Add image post (optional)
 tags: [Book] # add tag
 ---
