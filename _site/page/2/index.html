@@ -2,23 +2,23 @@
 <html lang="ko">
 <head>
 	<meta charset="utf-8">
-	<title>Search - jayground8 블로그</title>
+	<title>jayground8 블로그</title>
 
   <!-- Edit site and author settings in `_config.yml` to make the social details your own -->
 
     <meta content="jayground8 블로그" property="og:site_name">
   
-    <meta content="Search" property="og:title">
+    <meta content="jayground8 블로그" property="og:title">
   
   
-    <meta content="article" property="og:type">
+    <meta content="website" property="og:type">
   
   
     <meta content="가상화폐, 프로그래밍
 " property="og:description">
   
   
-    <meta content="/search/" property="og:url">
+    <meta content="/page/2/" property="og:url">
   
   
   
@@ -33,10 +33,10 @@
     <meta name="twitter:site" content="@">
     <meta name="twitter:creator" content="@">
   
-    <meta name="twitter:title" content="Search">
+    <meta name="twitter:title" content="jayground8 블로그">
   
   
-    <meta name="twitter:url" content="/search/">
+    <meta name="twitter:url" content="/page/2/">
   
   
     <meta name="twitter:description" content="가상화폐, 프로그래밍
@@ -113,70 +113,35 @@
   </footer> <!-- End Footer -->
 </aside> <!-- End Sidebar -->
 <div class="content-box clearfix">
-  <section class="blog-search">
-    <h2>컨텐츠 검색</h2>
-    <div class="form  form--search">
-        <form id="contact-form" action="">
-            <input class="input" id="search" type="search" name="search" placeholder="검색할 키워드 입력" autocomplete="off" />
-    
-            <ul class="list  list--results" id="list">
-                <!-- results go here -->
-            </ul>
-        </form>
-    </div>
-</section>
+  
+<article class="post">
+  
+  
+  <div class="post-content">
+    <h2 class="post-title"><a href="/barriers-to-be-centralized/">비트코인, 블록체인의 탈중앙화 그리고 걸림돌</a></h2>
+    <p>블록체인 기술은 인터넷만큼 우리의 세상을 크게 바꿀 것이다. 탈중앙화! 블록체인 하면 내 머리 속에는 제일 먼저 ‘탈중앙화’라는 단어가 떠오른다. 나는 블록체인기술과 탈중앙화를 동일시하였다. 하지만 점점 가상화폐에 적용된 블록체인 기술에 대해서...</p>
+    <span class="post-date">2017-11-20&nbsp;&nbsp;&nbsp;—&nbsp;</span>
+    <span class="post-words">5 분 분량</span>
+  </div>
+</article>
 
-<script type="text/javascript" src="/assets/scripts/fetch.js"></script>
-<script type="text/javascript">
-    const endpoint = "/assets/search.json";
-    let pages = [];
 
-    fetch(endpoint)
-        .then(function(blob) {
-            return blob.json();
-        })
-        .then(function(data) {
-            data.forEach(function(page) {
-                pages.push(page)
-            })
-        })
+<div class="container">
+  <nav class="pagination" role="pagination">
+    <ul>
+      
+        
+        <p><a class="newer-posts" href="/"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a></p>
+        
+      
 
-    function findResults(termToMatch, pages) {
-        return pages.filter(item => {
-            const regex = new RegExp(termToMatch, 'gi');
-            return item.title.match(regex) || item.content.match(regex);
-        });
-    }
+      <p><span class="page-number">Page 2 of 2</span></p>
 
-    function displayResults() {
-        const resultsArray = findResults(this.value, pages);
-        const html = resultsArray.map(item => {
-          return `
-                <li class="item  item--result">
-                    <article class="article">
-                        <h4><a href="${item.url}">${item.title}</a></h4>
-                        <p>${item.excerpt}</p>
-                    </article>
-                </li>`;
-        }).join('');
-        if ((resultsArray.length == 0) || (this.value == '')) {
-            resultsList.innerHTML = `<p>해당 키워드 관련 검색결과가 없습니다.</p>`;
-        } else {
-            resultsList.innerHTML = html;
-        }
-    }
+      
+    </ul>
+  </nav>
+</div>
 
-    const field = document.querySelector('#search');
-    const resultsList = document.querySelector('#list');
-
-    field.addEventListener('keyup', displayResults);
-
-    field.addEventListener('keypress', function(event) {
-        if (event.keyCode == 13) {
-          event.preventDefault();
-        }
-    });
-</script>
 </div>
 
   </div>

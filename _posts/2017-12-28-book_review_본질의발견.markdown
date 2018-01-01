@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 독후감 - 본질의 발견
-date: 2017-12-27 00:00:00 +0300
+date: 2017-12-28 00:00:00 +0300
 description: 업의 본질로 정의하는 인문학적 컨셉발견 공식 # Add post description (optional)
 img: # Add image post (optional)
 tags: [Book] # add tag
