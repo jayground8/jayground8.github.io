@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://jayground8.github.io/jayground8//about</loc>
+  </url>
+
+  <url>
+    <loc>https://jayground8.github.io/jayground8//blog</loc>
+  </url>
+
+  <url>
+    <loc>https://jayground8.github.io/jayground8/</loc>
+  </url>
+
+  <url>
+    <loc>https://jayground8.github.io/jayground8//projects</loc>
+  </url>
+
+  <url>
+    <loc>https://jayground8.github.io/jayground8//tags</loc>
+  </url>
+
+  <url>
+    <loc>https://jayground8.github.io/jayground8//blog/lambda-snapshot</loc>
+  </url>
+
+  <url>
+    <loc>https://jayground8.github.io/jayground8//tags/aws</loc>
+  </url>
+
+  <url>
+    <loc>https://jayground8.github.io/jayground8//tags/lambda</loc>
+  </url>
+
+  <url>
+    <loc>https://jayground8.github.io/jayground8//tags/spring</loc>
+  </url>
+</urlset>
