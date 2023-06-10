@@ -13,7 +13,7 @@ const siteMetadata = {
   email: 'jayground8@gmail.com',
   github: 'https://github.com/jayground8',
   linkedin: 'https://kr.linkedin.com/in/jaemyun-lee-165697130?trk=people-guest_people_search-card',
-  locale: 'kr',
+  locale: 'ko-kr',
   wordcloud: '/static/images/wordcloud.png',
   analytics: {
     // If you want to use an analytics provider you have to add it to the

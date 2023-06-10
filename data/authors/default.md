@@ -1,5 +1,5 @@
 ---
 name: Jaemyun Lee
-avatar: /static/images/profile.png
+# avatar: /static/images/profile.png
 occupation: Software Engineer
 ---
