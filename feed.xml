@@ -7,9 +7,19 @@
       <language>kr</language>
       <managingEditor>jayground8@gmail.com (Jaemyun Lee)</managingEditor>
       <webMaster>jayground8@gmail.com (Jaemyun Lee)</webMaster>
-      <lastBuildDate>Sat, 24 Jun 2023 00:00:00 GMT</lastBuildDate>
+      <lastBuildDate>Sun, 25 Jun 2023 00:00:00 GMT</lastBuildDate>
       <atom:link href="https://jayground8.github.io/jayground8//feed.xml" rel="self" type="application/rss+xml"/>
       
+  <item>
+    <guid>https://jayground8.github.io/jayground8//blog/20230625-no-code-tools</guid>
+    <title>노코드 개발 체험해보기</title>
+    <link>https://jayground8.github.io/jayground8//blog/20230625-no-code-tools</link>
+    <description>노코드 개발 생태계가 궁금했는데, 마침 노코드 API 서버를 개발하는 공모전이 있어서 참가했다. SyncTree로 API를 개발하고, Airtable을 데이터베이스로 사용하였다. Front는 Weweb이나 Bubble로 작성하려고 했으나, 유료 plan에서만 deploy가 가능하여 vercel에서 간단하게 react SPA를 배포했다.</description>
+    <pubDate>Sun, 25 Jun 2023 00:00:00 GMT</pubDate>
+    <author>jayground8@gmail.com (Jaemyun Lee)</author>
+    <category>development</category><category>nocode</category>
+  </item>
+
   <item>
     <guid>https://jayground8.github.io/jayground8//blog/20230624-replacable</guid>
     <title>책 읽으면서 생각한 나의 개발자 커리어 개발</title>

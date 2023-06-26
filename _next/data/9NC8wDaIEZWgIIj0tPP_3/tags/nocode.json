@@ -1,0 +1,1 @@
+{"pageProps":{"posts":[{"title":"노코드 개발 체험해보기","date":"2023-06-25T00:00:00.000Z","tags":["development","nocode"],"summary":"노코드 개발 생태계가 궁금했는데, 마침 노코드 API 서버를 개발하는 공모전이 있어서 참가했다. SyncTree로 API를 개발하고, Airtable을 데이터베이스로 사용하였다. Front는 Weweb이나 Bubble로 작성하려고 했으나, 유료 plan에서만 deploy가 가능하여 vercel에서 간단하게 react SPA를 배포했다.","slug":"20230625-no-code-tools"}],"tag":"nocode"},"__N_SSG":true}
