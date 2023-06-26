@@ -32,6 +32,7 @@ summary: '노코드 개발 생태계가 궁금했는데, 마침 노코드 API �
 - Key나 Token같은 secret 정보를 사용할 때, 블록의 input으로 plain text로 주입하게 된다. Github action처럼 secret이 있어서, 싱크트리 App별로 secret을 등록해놓고, BizUnit에서는 그냥 이 secret을 참조할 수 있으면 좋을 것 같다.
 - Cors 문제를 해결하기 위해서 preflight request가 필요한 경우에는 OPTION API를 만들어서 Cors관련 access control header들을 내려주게 하였다. 이러한 것들은 필요하면 서버쪽에서 옵션으로 선택만 하면 CORS 옵션들을 자동으로 내려주게 해줄 수 없을까?
 - Oauth2로 social login도 더 추상화된 블록이나 설정이 있어서 쉽게 연결할 수 있으면 좋겠다. 내가 이해한 걸로는 server side에서 하면 authroization code를 받아서 그걸 secret과 함께 access token을 받고 처리해주는 것들을 블록으로 다 만들어야 되는 것 같다. 이러한 것들은 패턴들이 대부분 비슷할테니깐 더 추상화된 블록으로 쉽게 연결 할 수 있으면 좋지 않을까?
+- Protocol block을 사용할 때, path parameter나 query parameter를 넣어주기 위해서 String을 붙이는 작업을 해야 되서 불편했다. 이부분도 있었으면 좋겠다.
 
 ## Airtable
 
