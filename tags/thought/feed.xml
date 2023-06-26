@@ -8,7 +8,7 @@
       <managingEditor>jayground8@gmail.com (Jaemyun Lee)</managingEditor>
       <webMaster>jayground8@gmail.com (Jaemyun Lee)</webMaster>
       <lastBuildDate>Sat, 24 Jun 2023 00:00:00 GMT</lastBuildDate>
-      <atom:link href="https://jayground8.github.io/jayground8//feed.xml" rel="self" type="application/rss+xml"/>
+      <atom:link href="https://jayground8.github.io/jayground8//tags/thought/feed.xml" rel="self" type="application/rss+xml"/>
       
   <item>
     <guid>https://jayground8.github.io/jayground8//blog/20230624-replacable</guid>
@@ -28,16 +28,6 @@
     <pubDate>Fri, 16 Jun 2023 00:00:00 GMT</pubDate>
     <author>jayground8@gmail.com (Jaemyun Lee)</author>
     <category>thought</category><category>book</category>
-  </item>
-
-  <item>
-    <guid>https://jayground8.github.io/jayground8//blog/20230610-new-service</guid>
-    <title>내가 만들어 보고 싶은 서비스</title>
-    <link>https://jayground8.github.io/jayground8//blog/20230610-new-service</link>
-    <description>회사는 성장하고, 그 성장을 바탕으로 충분한 매출과 이익이 발행하고, 회사의 가치가 높아져서 투자자에게도 금전적인 보상을 제공할 수 있는 흐름을 가지고 있다. 나는 다른 방식으로 접근하는 회사를 만들어 보고 싶다. 이미 사회적 기업이나 협동조합 같은 형식으로 존재하고, 이는 위에서 설명한 회사와는 다른 흐름을 가진다. 이와 비슷하게 스타트업이 투자를 받아서 폭발적으로 성장해야 되는 것이 아니라, 사용자가 소수라도 충분히 가치를 제공하고 유지할 수 있는 서비스를 제공하는 회사를 만들고 싶다.</description>
-    <pubDate>Sat, 10 Jun 2023 00:00:00 GMT</pubDate>
-    <author>jayground8@gmail.com (Jaemyun Lee)</author>
-    <category>idea</category>
   </item>
 
     </channel>
