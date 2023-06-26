@@ -60,7 +60,8 @@ module.exports = withBundleAnalyzer({
   // assetPrefix: assetPrefix,
   // basePath: basePath,
   images: {
-    unoptimized: true,
+    loader: 'custom',
+    loaderFile: '',
   },
   reactStrictMode: true,
   pageExtensions: ['js', 'jsx', 'md', 'mdx'],
