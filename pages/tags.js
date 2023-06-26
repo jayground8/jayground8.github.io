@@ -6,6 +6,10 @@ import siteMetadata from '@/data/siteMetadata'
 import { getAllTags } from '@/lib/tags'
 import kebabCase from '@/lib/utils/kebabCase'
 
+const imageLoader = ({ src, width, quality }) => {
+  return `https://jayground8.github.io/static/images/${src}?w=${width}&q=${quality || 75}`
+}
+
 export async function getStaticProps() {
   const tags = await getAllTags('blog')
 
@@ -23,6 +27,7 @@ export default function Tags({ tags }) {
           width="100%"
           height="50%"
           layout="responsive"
+          loader={imageLoader}
           src={siteMetadata.wordcloud}
         />
       </div>

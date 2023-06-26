@@ -61,7 +61,7 @@ module.exports = withBundleAnalyzer({
   // basePath: basePath,
   images: {
     loader: 'custom',
-    loaderFile: '',
+    loaderFile: './loader.js',
   },
   reactStrictMode: true,
   pageExtensions: ['js', 'jsx', 'md', 'mdx'],
