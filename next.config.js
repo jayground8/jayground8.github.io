@@ -60,8 +60,7 @@ module.exports = withBundleAnalyzer({
   // assetPrefix: assetPrefix,
   // basePath: basePath,
   images: {
-    loader: 'imgix',
-    path: 'https://jayground8.imgix.net/',
+    unoptimized: true,
   },
   reactStrictMode: true,
   pageExtensions: ['js', 'jsx', 'md', 'mdx'],
