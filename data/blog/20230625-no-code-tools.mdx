@@ -15,17 +15,25 @@ summary: '노코드 개발 생태계가 궁금했는데, 마침 노코드 API �
 
 싱크트리는 블록처럼 쌓는 것처럼 원하는 구성을 할 수 있도록 UI가 되어있다. 왼쪽에 구성들이 있고 마우스로 클릭하여 드레그 하는 방식으로 코드 블럭을 쌓을 수 있다.
 
-<img src="/static/images/nocode-block.png" alt="syctree UI" />
+<img src="/static/images/nocode-block.png" alt="syctree block" />
 
 dictionary를 통해서 환경마다 원하는 값들 저장하고, Dictionary이라는 Block을 통해서 가져 올 수 있다.
 
-<img src="/static/images/nocode-dictionary1.png" alt="syctree UI - dictionary setting" />
+<img src="/static/images/nocode-dictionary1.png" alt="syctree dictionary setting" />
 
-<img src="/static/images/nocode-dictionary2.png" alt="syctree UI" - dictionary block/>
+<img src="/static/images/nocode-dictionary2.png" alt="syctree dictionary block/>
 
-gitflow의 환경들이 있다. 그런데 production에서만 public하게 API가 공개된다. Stage의 환경에 있는 API에도 외부에서 별도로 접근하여 production에 배포하기 전에 확인하고 싶은데, 싱크트리에서 제공하는 public API는 production 기준으로만 접근이 가능하다.
+그리고 gitflow의 환경들이 있다.
 
-<img src="/static/images/nocode-environment.png" alt="syctree UI" - Environment/>
+<img src="/static/images/nocode-environment.png" alt="syctree environment" />
+
+Production에 배포 되는 API는 API portal이라는 곳에서 Swagger 문서로 보여줄 수 있다.
+
+<img src="/static/images/nocode-api-document.png" alt="syctree API document" />
+
+다른 환경의 API를 외부에서 테스트 하기 위해서는 아래처럼 Header에 해당 stage의 값들을 넣어서 요청할 수 있게 되어 있다.
+
+<img src="/static/images/nocode-test-env.png" alt="syctree API on other stages" />
 
 ### 사용 후 느낀 점
 
