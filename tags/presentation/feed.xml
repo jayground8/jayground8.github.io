@@ -1,0 +1,24 @@
+
+  <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+      <title>Jayground8</title>
+      <link>https://jayground8.github.io/jayground8//blog</link>
+      <description>like playing in the playground</description>
+      <language>kr</language>
+      <managingEditor>jayground8@gmail.com (Jaemyun Lee)</managingEditor>
+      <webMaster>jayground8@gmail.com (Jaemyun Lee)</webMaster>
+      <lastBuildDate>Mon, 03 Jul 2023 00:00:00 GMT</lastBuildDate>
+      <atom:link href="https://jayground8.github.io/jayground8//tags/presentation/feed.xml" rel="self" type="application/rss+xml"/>
+      
+  <item>
+    <guid>https://jayground8.github.io/jayground8//blog/20230703-k8s-community-days</guid>
+    <title>흑역사 하나 더 만들기</title>
+    <link>https://jayground8.github.io/jayground8//blog/20230703-k8s-community-days</link>
+    <description>오늘 대왕 흑역사를 생산했다. Kubernetes Community Days에서 발표를 하게 되었는데, 30분 발표시간에 맞춰서 발표자료를 잘 준비하지 못해서 부끄러웠다. 30분에 너무 많은 내용을 담을려고 했고, 라이브코딩 형식으로 해서 시간도 많이 걸렸다. 나는 발표를 왜 할까?</description>
+    <pubDate>Mon, 03 Jul 2023 00:00:00 GMT</pubDate>
+    <author>jayground8@gmail.com (Jaemyun Lee)</author>
+    <category>kubernetes</category><category>presentation</category>
+  </item>
+
+    </channel>
+  </rss>
