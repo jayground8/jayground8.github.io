@@ -7,9 +7,19 @@
       <language>kr</language>
       <managingEditor>jayground8@gmail.com (Jaemyun Lee)</managingEditor>
       <webMaster>jayground8@gmail.com (Jaemyun Lee)</webMaster>
-      <lastBuildDate>Mon, 03 Jul 2023 00:00:00 GMT</lastBuildDate>
+      <lastBuildDate>Sat, 15 Jul 2023 00:00:00 GMT</lastBuildDate>
       <atom:link href="https://jayground8.github.io/jayground8//feed.xml" rel="self" type="application/rss+xml"/>
       
+  <item>
+    <guid>https://jayground8.github.io/jayground8//blog/20230715-k8s-controller</guid>
+    <title>Kubernetes custom controller 작성해보기</title>
+    <link>https://jayground8.github.io/jayground8//blog/20230715-k8s-controller</link>
+    <description>Programming Kubernetes 책에서 나온 예제를 따라서 custom controller를 작성해보았다. CustomResourceDefinition를 어떻게 정의하고, kubebuilder로 어떻게 나만의 business logic을 작성할 수 있는지 예제를 통해서 이해했다.</description>
+    <pubDate>Sat, 15 Jul 2023 00:00:00 GMT</pubDate>
+    <author>jayground8@gmail.com (Jaemyun Lee)</author>
+    <category>kubernetes</category>
+  </item>
+
   <item>
     <guid>https://jayground8.github.io/jayground8//blog/20230703-k8s-community-days</guid>
     <title>흑역사 하나 더 만들기</title>
