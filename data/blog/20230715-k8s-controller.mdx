@@ -35,11 +35,11 @@ type AtStatus struct {
 }
 ```
 
-`make manifest` 명령어를 실행하면 `/config/crd/bases/cnat.study.jayground8_ats.yaml` 파일이 아래처럼 생성된다. `at_types.go`에 정의한 내용대로 `CustomResourceDefinition` 정의가 되었다. 내가 참고한 `Programming Kubernetes` 책은 2019년에 발간되었고, `apiextensions.k8s.io/v1beta1` 버전을 사용하고 있다. 하지만 [Kubernetes v1.22에서 apiextensions.k8s.io/v1beta1는 제거 되었다.](https://kubernetes.io/blog/2021/07/14/upcoming-changes-in-kubernetes-1-22/) 나는 Minikube로 Local에서 Kubernetes v1.26.3으로 테스트를 해보고 있다. [v1에서 변경된 점을 문서로 확인](https://kubernetes.io/docs/reference/using-api/deprecation-guide/#customresourcedefinition-v122)하였고, 책에서 사용된 예제에서는 아래와 같은 점이 변경이 되었다.
+`make manifest` 명령어를 실행하면 `/config/crd/bases/`에 `cnat.study.jayground8_ats.yaml` 파일이 아래처럼 생성된다. `at_types.go`에 정의한 내용대로 `CustomResourceDefinition` 정의가 되었다. 내가 참고한 `Programming Kubernetes` 책은 2019년에 발간되었고, `apiextensions.k8s.io/v1beta1` 버전을 사용하고 있다. 하지만 [Kubernetes v1.22에서 apiextensions.k8s.io/v1beta1는 제거 되었다.](https://kubernetes.io/blog/2021/07/14/upcoming-changes-in-kubernetes-1-22/) 나는 Minikube로 Local에서 Kubernetes v1.26.3으로 테스트를 해보고 있다. [v1에서 변경된 점을 문서로 확인](https://kubernetes.io/docs/reference/using-api/deprecation-guide/#customresourcedefinition-v122)하였고, 책에서 사용된 예제에서는 아래와 같은 점이 변경이 되었다.
 
 - spec.version is removed in v1; use spec.versions instead
 - spec.subresources is removed in v1; use spec.versions[*].subresources instead
-- spec.versions[*].schema.openAPIV3Schema is now required when creating v1 CustomResourceDefinition objects, and must be a structural schema
+- spec.versions[*] .schema.openAPIV3Schema is now required when creating v1 CustomResourceDefinition objects, and must be a structural schema
 
 ```yaml
 ---
@@ -194,17 +194,27 @@ example-at   2023-07-14T10:12:00Z   echo YAY   DONE
     - update
 ```
 
-이제 `internal/controller/at_controller.go`에 business logic을 추가한다. At resource를 가져오고 상태값에 따라서 로직을 수행한다. CRD의 schedule의 시간이 지나면 이제 phase를 RUNNING으로 변경하고, busybox에 CRD의 command 명령어를 실행하기 위한 pod를 name과 namespace로 가져와서 없으면 이제 pod를 생성하게 된다. pod의 상태값이 failed나 succeeded이면 이제 phase는 DONE이 된다.
+이제 `internal/controller` 경로의 `at_controller.go`에 business logic을 추가한다. At resource를 가져오고 상태값에 따라서 로직을 수행한다. CRD의 schedule의 시간이 지나면 이제 phase를 RUNNING으로 변경하고, busybox에 CRD의 command 명령어를 실행하기 위한 pod를 name과 namespace로 가져와서 없으면 이제 pod를 생성하게 된다. pod의 상태값이 failed나 succeeded이면 이제 phase는 DONE이 된다.
 
 return 되는 것에 따라서 다시 reconcilation을 하게 된다.
 
 - `return reconcile.Result{}, nil` : 이제 reconcilation이 성공해서 retry를 할 필요가 없다.
 - `return reconcile.Result{}, err` : error가 발생해서 retry가 필요하다.
-- `return reconcile.Result{RequeueAfter: d}, nil` : d만큼 기다렸다가 다시 work queue에 들어가서 다시 reconcilation을 하게 된다.
+- `return reconcile.Result{RequeueAfter: d}, nil` : d만큼 기다렸다가 다시 work queue에 들어가서 다시 reconcilation을 하게 된다. Schedule 값이 아직 미래라면 그때까지 기다렸다가 다시 Reconcilation을 하도록 한다.
 
-`err := controllerutil.SetControllerReference(instance, pod, r.Scheme)`는 이제 Custom resource에 pod가 자식 관계를 맺게 되어서 custom resource가 delete되면 관계가 있는 pod도 GC되도록 하려고 설정한다.
+`SetControllerReference`는 Custom resource에 pod가 자식 관계를 가지게 한다. 그래서 custom resource가 delete되면 관계된 pod도 GC되도록 하려고 설정한다.
 
-`err = r.Status().Update(context.TODO(), instance)`는 subresource status를 enable했기 때문에 이렇게 Status만 업데이트 할 수 있다.
+```go
+err := controllerutil.SetControllerReference(instance, pod, r.Scheme)
+```
+
+subresource status를 enable했기 때문에 이렇게 Status만 업데이트 할 수 있다.
+
+```go
+err = r.Status().Update(context.TODO(), instance)
+```
+
+최종적으로 아래와 같이 작성이 되었다.
 
 ```go
 package controller
@@ -375,10 +385,14 @@ imagePullPolicy: Never
 make deploy
 ```
 
-controller business logic중에 pod에 대해서 get하고 create하는게 있기 때문에, `internal/controller/at_controller.go`에 아래처럼 설정해놨다.
+controller business logic중에 pod에 대해서 get하고 create하는게 있기 때문에, RBAC에 pod 관련 권한을 주기 위해서 `at_controller.go`에서 아래처럼 설정해놨다.
 
 ```go
 //+kubebuilder:rbac:groups="",resources=pods,verbs=get;list;create;watch;
 ```
 
-`kubectl apply -f config/crd/samples/cnat.study.jayground8_ats.yaml`으로 custom resource At을 생성하면, informer가 event를 받아서 busybox container를 생성하여 command를 수행하는 것을 확인할 수 있다.
+custom resource At을 생성하면, informer가 event를 받아서 busybox container를 생성하여 command를 수행하는 것을 확인할 수 있다.
+
+```bash
+kubectl apply -f config/crd/samples/cnat.study.jayground8_ats.yaml
+```
