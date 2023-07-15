@@ -23,6 +23,7 @@ jobs:
 
       - name: Build
         run: |
+          sed -i 's/wordcloud.png/wordcloud${{ github.sha }}.png/g' data/siteMetadata.js
           npm ci
           npm run build
           npm run export
@@ -35,7 +36,7 @@ jobs:
       - name: generate word cloud
         run: |
           pip install wordcloud
-          wordcloud_cli --text tags.txt --mode RGBA --background None --imagefile out/static/images/wordcloud.png
+          wordcloud_cli --text tags.txt --mode RGBA --background None --imagefile out/static/images/wordcloud${{ github.sha }}.png
 
       - name: Deploy
         # https://github.com/JamesIves/github-pages-deploy-action
