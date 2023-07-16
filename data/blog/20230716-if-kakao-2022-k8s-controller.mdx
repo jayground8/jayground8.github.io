@@ -1,0 +1,311 @@
+---
+title: 'if(kakao)2022 Testing Kubernetes Controller 발표 따라 만들기'
+date: '2023-07-16'
+tags: ['kubernetes']
+summary: '어제는 Programming Kubernetes에 나오는 예제를 kubebuilder로 작성해보았다. if(kakao)2022에서 controller를 테스트하는 방법에 대해서 설명한 발표가 있었다. 어제 이해한 내용을 바탕으로 이 발표에서 사용한 BlueGreen controller 예제를 따라서 작성해보았다.'
+---
+
+[if(kakao)2022 영상들 중에 Controller 관련 영상](https://youtu.be/B80-GByJFEA)이 있어서 따라서 Controller를 작성해보았다. 아래와 같이 Custom Resource BlueGreen을 만들면, `spec.routeTo`에 따라서 ClusterIP service가 blue pod에 갈지 green pod에 갈지 결정하게 된다.
+
+```yaml
+apiVersion: app.demo.kakao.com/v1
+kind: BlueGreen
+metadata:
+  name: demo
+spec:
+  routeTo: Blue
+  blueSpec:
+    containers:
+      - name: blue
+        image: demo:version-blue
+  greenSpec:
+    containers:
+      - name: green
+        image: demo:version-green
+```
+
+## kubebuilder로 API 생성
+
+발표에서 공유된 CRD를 바탕으로 kubebuilder를 통해서 api를 만들었다.
+
+```bash
+go mod init blue_green_controller
+kubebuilder init --domain demo.kakao.com
+kubebuilder create api --group app --version v1 --kind BlueGreen
+```
+
+## type 작성
+
+이제 `bluegreen_types.go`를 CRD에 맞춰서 작성을 한다. 이제 RouteTo는 Blue와 Green 값만 가질수 있다라는 가정하에 아래와 같이 Constant를 정의하였다.
+
+```go
+type BlueOrGreen string
+
+const (
+	Blue  BlueOrGreen = "Blue"
+	Green BlueOrGreen = "Green"
+)
+
+그리고 BlueGreen Kind의 spec과 status를 아래와 같이 정의하였다.
+
+type BlueGreenSpec struct {
+	RouteTo   string      `json:"routeTo"`
+	BlueSpec  *v1.PodSpec `json:"blueSpec,omitempty"`
+	GreenSpec *v1.PodSpec `json:"greenSpec,omitempty"`
+}
+
+type BlueGreenStatus struct {
+	RouteTo string `json:"routeTo"`
+}
+```
+
+## CRD 생성
+
+`make install`로 해당 type으로 생성된 CRD를 Minikube cluser에 적용한다. 하지만 `v1.PodSpec`때문에 생성된 CRD file의 size가 커졌고, 아래와 같은 에러가 발생하였다.
+
+```bash
+The CustomResourceDefinition "bluegreens.app.demo.kakao.com" is invalid: metadata.annotations: Too long: must have at most 262144 bytes
+make: *** [install] Error 1
+```
+
+`make install`은 `kustomize build config/crd | kubectl apply -f -`를 실행하게 되는데, kubectl apply는 client-side apply로 `last-applied-configuration` annotation을 추가하고 이 정보를 바탕으로 현재 resource의 state에서 어떤 것을 update할지 판단하게 된다. 그런데 client-side는 이제 kubectl apply로 하는 동안 controller나 다른 agent에 의해서 resource state가 변경되면 detect를 하지 못하고, 그냥 overwrite를 할 수 있게 된다. [Kubernetes v1.22에서 stable 상태가 된 server-side apply](https://kubernetes.io/docs/reference/using-api/server-side-apply/)를 적용하면, 이제 conflict를 detect해서 이제 update를 되는 것을 막을 수 있게 된다.
+
+`v1.PodSpec`때문에 CRD의 크기가 커졌고, `kubectl apply`를 통해서 `annotation`이 추가되니 사이즈 제한을 넘어서게 된 것이다. 따라서 `client-side apply` 대신에 `server-side apply`를 사용하여 이러한 `annotation` 생성없이 CRD를 생성하도록 해서 해결 할 수 있다. `make manifests`로 CRD file을 생성하고, 아래와 같이 별도로 CRD를 cluster에 생성하도록 하였다.
+
+```bash
+kustomize build config/crd | kubectl apply --server-side=true -f -
+```
+
+## Controller Business logic 추가
+
+그리고 이제 BlueGreen resource를 contoller하기 위해서 `bluegreen_controller.go`에 business logic을 추가한다. 발표자료에서 이 business logic을 공유해주었기 때문에 동일하게 작성을 하였다.
+
+### 메모리 할당 new vs &something{}
+
+Custom resource `At`을 control하는 business logic을 작성할 때는, 아래와 같이 instance 변수에 메모리를 할당하였다.
+
+```go
+instance := &v1.BlueGreen{} // return a pointer
+```
+
+하지만 발표자료에서는 아래처럼 new function을 사용했다.
+
+```go
+instance := new(v1.BlueGreen)
+```
+
+### struct promoted field
+
+`At Controller`에서는 아래처럼 struct type가 정의가 되었을 때, `client.Client`가 promoted field가 되어서 Client를 통해서 resource를 GET할 때 `r.Get()`으로 작성했다. 하지만 발표자료에서는 `r.Client.Get()`로 name을 명시적으로 작성하였다.
+
+```go
+type BlueGreenReconciler struct {
+	client.Client
+	Scheme *runtime.Scheme
+}
+```
+
+### initialization statement
+
+발표자료에서는 `initialization statement`을 사용했다.
+
+```go
+if err := r.Client.Get(ctx, req.NamespacedName, blueGreen); err != nil {
+  return ctrl.Result{}, client.IgnoreNotFound(err)
+}
+```
+
+### Client.IgnoreNotFound
+
+`At Controller`에서는 resource를 찾을 수 없는 에러인지 이렇게 errors package를 통해서 확인을 했다.
+
+```go
+if errors.IsNotFound(err) {
+  return reconcile.Result{}, nil
+}
+```
+
+하지만 발표자료에서는 Client의 `IgnoreNotFound`을 사용하여, NotFound Error일 때는 nil를 반환하도록 하였다.
+
+```go
+return ctrl.Result{}, client.IgnoreNotFound(err)
+```
+
+### declarative error
+
+발표자료에서 `fmt.Errorf` 함수를 사용하여 custom message를 에러에 추가하여 어떤 에러인지 알기 쉽게 하였다.
+
+```go
+fmt.Errorf("fail to set owner reference for a service: %w", err)
+```
+
+### pointer type
+
+발표자료에서 range를 통해서 for loop iteration을 하도록 작성하였다. 그런데 struct에 Spec의 Type이 `*corev1.PodSpec`으로 정의되어서 pointer를 사용하도록 하였다.
+
+```go
+for _, tgt := range []struct {
+  Phase v1.BlueOrGreen
+  Spec  *corev1.PodSpec
+}{
+  {Phase: v1.Blue, Spec: blueGreen.Spec.BlueSpec},
+  {Phase: v1.Green, Spec: blueGreen.Spec.GreenSpec},
+}
+```
+
+따라서 `BlueGreenSpec`에서도 동일하게 type을 정의하였다.
+
+```go
+type BlueGreenSpec struct {
+	RouteTo   string      `json:"routeTo"`
+	BlueSpec  *v1.PodSpec `json:"blueSpec,omitempty"`
+	GreenSpec *v1.PodSpec `json:"greenSpec,omitempty"`
+}
+```
+
+그래서 value를 가져오기 위해서 아래처럼 `*tgt.Spec`으로 작성되었다.
+
+```go
+deploy.Spec.Template = corev1.PodTemplateSpec{
+  ObjectMeta: metav1.ObjectMeta{Labels: label},
+  Spec:       *tgt.Spec,
+}
+```
+
+## 전체 business logic code
+
+Service를 CreateOrUpdate 함수로 생성하거나 업데이트를 하고, CRD에서 BlueSpec, GreenSpec에 정의된 container image로 Deployment resource를 두 개 생성하거나 업데이트하게 된다. 이제 service의 selector를 통해서 blue pod 요청할지 green pod에 요청할지 결정하게 된다.
+
+```go
+package controller
+
+import (
+	"context"
+	"fmt"
+	"strings"
+
+	appsv1 "k8s.io/api/apps/v1"
+	corev1 "k8s.io/api/core/v1"
+	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+	"k8s.io/apimachinery/pkg/runtime"
+	ctrl "sigs.k8s.io/controller-runtime"
+	"sigs.k8s.io/controller-runtime/pkg/client"
+	"sigs.k8s.io/controller-runtime/pkg/log"
+
+	v1 "blue_green_controller/api/v1"
+)
+
+// BlueGreenReconciler reconciles a BlueGreen object
+type BlueGreenReconciler struct {
+	client.Client
+	Scheme *runtime.Scheme
+}
+
+//+kubebuilder:rbac:groups=app.demo.kakao.com,resources=bluegreens,verbs=get;list;watch;create;update;patch;delete
+//+kubebuilder:rbac:groups=app.demo.kakao.com,resources=bluegreens/status,verbs=get;update;patch
+//+kubebuilder:rbac:groups=app.demo.kakao.com,resources=bluegreens/finalizers,verbs=update
+
+// Reconcile is part of the main kubernetes reconciliation loop which aims to
+// move the current state of the cluster closer to the desired state.
+// TODO(user): Modify the Reconcile function to compare the state specified by
+// the BlueGreen object against the actual cluster state, and then
+// perform operations to make the cluster state reflect the state specified by
+// the user.
+//
+// For more details, check Reconcile and its Result here:
+// - https://pkg.go.dev/sigs.k8s.io/controller-runtime@v0.15.0/pkg/reconcile
+func (r *BlueGreenReconciler) Reconcile(ctx context.Context, req ctrl.Request) (ctrl.Result, error) {
+	log := log.FromContext(ctx)
+	log.Info("=== Reconciling BlueGreen")
+
+	blueGreen := new(v1.BlueGreen)
+	if err := r.Client.Get(ctx, req.NamespacedName, blueGreen); err != nil {
+		return ctrl.Result{}, client.IgnoreNotFound(err)
+	}
+
+	svc := &corev1.Service{ObjectMeta: metav1.ObjectMeta{Namespace: req.Namespace, Name: req.Name}}
+	if _, err := ctrl.CreateOrUpdate(ctx, r.Client, svc, func() error {
+		if err := ctrl.SetControllerReference(blueGreen, svc, r.Scheme); err != nil {
+			return fmt.Errorf("fail to set owner reference for a service: %w", err)
+		}
+		svc.Spec.Ports = []corev1.ServicePort{
+			{Name: "http", Protocol: corev1.ProtocolTCP, Port: 80},
+		}
+		svc.Spec.Selector = map[string]string{
+			"app.kubernetes.io/managed-by": "app.demo.kakao.com",
+			"app.kubernetes.io/name":       req.Name,
+			"app.kubernetes.io/phase":      string(blueGreen.Spec.RouteTo),
+		}
+		return nil
+	}); err != nil {
+		return ctrl.Result{}, fmt.Errorf("fail to create (or update) service: %w", err)
+	}
+
+	for _, tgt := range []struct {
+		Phase v1.BlueOrGreen
+		Spec  *corev1.PodSpec
+	}{
+		{Phase: v1.Blue, Spec: blueGreen.Spec.BlueSpec},
+		{Phase: v1.Green, Spec: blueGreen.Spec.GreenSpec},
+	} {
+		if tgt.Spec == nil {
+			continue
+		}
+		deploy := &appsv1.Deployment{ObjectMeta: metav1.ObjectMeta{Namespace: req.Namespace, Name: req.Name + strings.ToLower(string(tgt.Phase)) + "-deployment"}}
+		if _, err := ctrl.CreateOrUpdate(ctx, r.Client, deploy, func() error {
+			if err := ctrl.SetControllerReference(blueGreen, deploy, r.Scheme); err != nil {
+				return fmt.Errorf("fail to set owner reference for a deployment: %w", err)
+			}
+			label := map[string]string{
+				"app.kubernetes.io/managed-by": "app.demo.kakao.com",
+				"app.kubernetes.io/name":       req.Name,
+				"app.kubernetes.io/phase":      string(tgt.Phase),
+			}
+			deploy.Spec.Selector = &metav1.LabelSelector{MatchLabels: label}
+			deploy.Spec.Template = corev1.PodTemplateSpec{
+				ObjectMeta: metav1.ObjectMeta{Labels: label},
+				Spec:       *tgt.Spec,
+			}
+			return nil
+		}); err != nil {
+			return ctrl.Result{}, fmt.Errorf("fail to create (or update) deployment: %w", err)
+		}
+	}
+
+	blueGreen.Status = v1.BlueGreenStatus{
+		RouteTo: blueGreen.Spec.RouteTo,
+	}
+	if err := r.Client.Status().Update(ctx, blueGreen); err != nil {
+		return ctrl.Result{}, fmt.Errorf("fail to update bluegreen status: %w", err)
+	}
+	return ctrl.Result{}, nil
+}
+
+// SetupWithManager sets up the controller with the Manager.
+func (r *BlueGreenReconciler) SetupWithManager(mgr ctrl.Manager) error {
+	return ctrl.NewControllerManagedBy(mgr).
+		For(&v1.BlueGreen{}).
+		Complete(r)
+}
+```
+
+## 로컬에서 동작 확인
+
+`make run`으로 이제 해당 controller을 local에서 실행하고, custom resource BlueGreen을 Minikube cluster에 생성한다. `routeTo`를 Blue로 선택했기 때문에 echo server가 실행되고 있는 container로 요청하게 된다. 이제 Green으로 변경하면 Terminated된 busybox container로 요청하여 정상적인 응답을 못 받게 된다.
+
+```yaml
+apiVersion: app.demo.kakao.com/v1
+kind: BlueGreen
+metadata:
+  name: demo
+spec:
+  routeTo: Blue
+  blueSpec:
+    containers:
+      - name: blue
+        image: ealen/echo-server
+  greenSpec:
+    containers:
+      - name: green
+        image: busybox
+```
