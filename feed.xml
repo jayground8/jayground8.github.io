@@ -7,9 +7,19 @@
       <language>kr</language>
       <managingEditor>jayground8@gmail.com (Jaemyun Lee)</managingEditor>
       <webMaster>jayground8@gmail.com (Jaemyun Lee)</webMaster>
-      <lastBuildDate>Sat, 15 Jul 2023 00:00:00 GMT</lastBuildDate>
+      <lastBuildDate>Sun, 16 Jul 2023 00:00:00 GMT</lastBuildDate>
       <atom:link href="https://jayground8.github.io/jayground8//feed.xml" rel="self" type="application/rss+xml"/>
       
+  <item>
+    <guid>https://jayground8.github.io/jayground8//blog/20230716-if-kakao-2022-k8s-controller</guid>
+    <title>if(kakao)2022 Testing Kubernetes Controller 발표 따라 만들기</title>
+    <link>https://jayground8.github.io/jayground8//blog/20230716-if-kakao-2022-k8s-controller</link>
+    <description>어제는 Programming Kubernetes에 나오는 예제를 kubebuilder로 작성해보았다. if(kakao)2022에서 controller를 테스트하는 방법에 대해서 설명한 발표가 있었다. 어제 이해한 내용을 바탕으로 이 발표에서 사용한 BlueGreen controller 예제를 따라서 작성해보았다.</description>
+    <pubDate>Sun, 16 Jul 2023 00:00:00 GMT</pubDate>
+    <author>jayground8@gmail.com (Jaemyun Lee)</author>
+    <category>kubernetes</category>
+  </item>
+
   <item>
     <guid>https://jayground8.github.io/jayground8//blog/20230715-k8s-controller</guid>
     <title>Kubernetes custom controller 작성해보기</title>
