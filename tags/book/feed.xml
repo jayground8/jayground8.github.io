@@ -7,9 +7,19 @@
       <language>kr</language>
       <managingEditor>jayground8@gmail.com (Jaemyun Lee)</managingEditor>
       <webMaster>jayground8@gmail.com (Jaemyun Lee)</webMaster>
-      <lastBuildDate>Sat, 24 Jun 2023 00:00:00 GMT</lastBuildDate>
+      <lastBuildDate>Mon, 17 Jul 2023 00:00:00 GMT</lastBuildDate>
       <atom:link href="https://jayground8.github.io/jayground8//tags/book/feed.xml" rel="self" type="application/rss+xml"/>
       
+  <item>
+    <guid>https://jayground8.github.io/jayground8//blog/20230717-book-review-indistractable-hooked</guid>
+    <title>책 두 권 &lt;초집중&gt;, &lt;훅&gt;</title>
+    <link>https://jayground8.github.io/jayground8//blog/20230717-book-review-indistractable-hooked</link>
+    <description>나의 집중력을 되찾고 싶은 마음에 책 &lt;초집중&gt;을 읽었다. 그리고 애 책의 저자중 한명이 과거에 쓴 &lt;훅&gt;도 읽게 되었다. &lt;흑&gt;은 2014년에 출간된 책으로 조금 오래된 책이지만, 사업모델이 슴관에 의존한다면 이 책이 도움이 될거라는 설명에 읽어보게 되었다. 계기, 행동, 가변적 보상, 투자라는 키워드를 현재 내가 일하고 있는 프로덕트와 내가 한번 쯤 만들어보고 싶은 서비스와 연관지어서 생각해보는 시간을 가졌다. 그 좌정에서 떠오른 아이디어도 PM분들과 공유해보았다.</description>
+    <pubDate>Mon, 17 Jul 2023 00:00:00 GMT</pubDate>
+    <author>jayground8@gmail.com (Jaemyun Lee)</author>
+    <category>book</category>
+  </item>
+
   <item>
     <guid>https://jayground8.github.io/jayground8//blog/20230624-replacable</guid>
     <title>책 읽으면서 생각한 나의 개발자 커리어 개발</title>
