@@ -1,0 +1,24 @@
+
+  <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+      <title>Jayground8</title>
+      <link>https://jayground8.github.io/jayground8//blog</link>
+      <description>like playing in the playground</description>
+      <language>kr</language>
+      <managingEditor>jayground8@gmail.com (Jaemyun Lee)</managingEditor>
+      <webMaster>jayground8@gmail.com (Jaemyun Lee)</webMaster>
+      <lastBuildDate>Sat, 22 Jul 2023 00:00:00 GMT</lastBuildDate>
+      <atom:link href="https://jayground8.github.io/jayground8//tags/calico/feed.xml" rel="self" type="application/rss+xml"/>
+      
+  <item>
+    <guid>https://jayground8.github.io/jayground8//blog/20230722-calico-kube-controller</guid>
+    <title>Calico kube-controller 이해하기</title>
+    <link>https://jayground8.github.io/jayground8//blog/20230722-calico-kube-controller</link>
+    <description>Calico에서 어떻게 CRD를 활용하는지 이해하기 위해서 Calico Opensource 버전의 깃헙 소스코드를 살펴보게 되었다. Calico archiecture에서 kube-controller 부분이 어떤 역할을 하는지 소스 코드를 통해서 이해할 수 있게 되었다. kube-controller들은 kubernetes native resource에 대한 변경을 calico data source와 sync해주는 역할을 하고 있었다. 그런데 projectcalico.org custom resource들을 생성/변경할 때는 calico system에서 어떻게 detect를 하고 business logic을 수행하는지는 이해할 수가 없었다.</description>
+    <pubDate>Sat, 22 Jul 2023 00:00:00 GMT</pubDate>
+    <author>jayground8@gmail.com (Jaemyun Lee)</author>
+    <category>kubernetes</category><category>calico</category>
+  </item>
+
+    </channel>
+  </rss>
