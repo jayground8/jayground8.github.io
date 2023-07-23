@@ -442,7 +442,7 @@ func (ws *watcherSyncer) run(ctx context.Context) {
 }
 ```
 
-마지막으로 `watchercache.go`를 살펴보면 `resyncAndCreateWatcher`가 호출되고, 이것은 먼저 List를 하고 그다음에 앞으로 변화는 것만 Watch로 Event를 받도록 되어 있다. 이제 felix가 Kubernetes의 custom resource를 Watch하면서 변경되었을 때 Event를 받고, Event별로 정의된 event handler 로직을 수행하게 되는 것이다.
+마지막으로 `watchercache.go`를 살펴보면 `resyncAndCreateWatcher`가 호출되고, 이것은 먼저 resync가 필요하면 List를 하고, 그 다음에 앞으로 변화는 것만 Watch로 Event를 받도록 되어 있다. 이제 felix가 Kubernetes의 custom resource를 Watch하면서 변경되었을 때 Event를 받고, Event별로 정의된 event handler 로직을 수행하게 되는 것이다.
 
 `watchercache.go`
 
