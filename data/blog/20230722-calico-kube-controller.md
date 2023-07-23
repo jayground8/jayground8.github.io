@@ -2,7 +2,7 @@
 title: 'Calico kube-controller 이해하기'
 date: '2023-07-22'
 tags: ['kubernetes', 'calico']
-summary: 'Calico에서 어떻게 CRD를 활용하는지 이해하기 위해서 Calico Opensource 버전의 깃헙 소스코드를 살펴보게 되었다. Calico archiecture에서 kube-controller 부분이 어떤 역할을 하는지 소스 코드를 통해서 이해할 수 있게 되었다. kube-controller들은 kubernetes native resource에 대한 변경을 calico data source와 sync해주는 역할을 하고 있었다. 그런데 projectcalico.org custom resource들을 생성/변경할 때는 calico system에서 어떻게 detect를 하고 business logic을 수행하는지는 이해할 수가 없었다.'
+summary: 'Calico에서 어떻게 CRD를 활용하는지 이해하기 위해서 Calico Opensource 버전의 깃헙 소스코드를 살펴보게 되었다. Calico archiecture에서 kube-controller 부분이 어떤 역할을 하는지 소스 코드를 통해서 이해할 수 있게 되었다. kube-controller들은 kubernetes native resource에 대한 변경을 calico data store와 sync해주는 역할을 하고 있다. 내가 사용하는 Minikbue Kubernetes Cluster에서는 Calico의 data store는 kubernetes로 설정되어 있기 때문에, CRD로 Calico data들이 저장되고 Felix가 이것을 watch하여 변화에 대해서 network rule을 업데이트 하게 된다.'
 ---
 
 이전에 `kubebuilder`를 통해서 `Programming Kubernetes`에서 설명한 [At resource를 watch하는 Custom controller를 직접 작성](https://jayground8.github.io/blog/20230715-k8s-controller)했다. 그다음에는 ifkakao(2022) `Testing Kubernetes Controller` 발표에서 사용된 [example인 BlueGreen resource에 대한 Custom controller를 kubebuilder로 작성](https://jayground8.github.io/blog/20230716-if-kakao-2022-k8s-controller)했다. 이번에는 Calico에서 어떻게 CRD와 Custom contoller를 활용하고 있는지 [Source code](https://github.com/projectcalico/calico)를 확인해봤다. (이 글을 작성하는 시점에는 Calico OpenSource Version 3.26을 확인하였다.)
@@ -190,7 +190,7 @@ if _, err := informer.AddEventHandler(cache.ResourceEventHandlerFuncs{
 }
 ```
 
-Informer는 cache를 통해서 매번 API server에 요청할 필요가 없고, polling 대신에 watch로 resource에 대한 변화 Event에 작동될 수 있는 Interface를 제공한다. Controller에서는 정의된 Informer에 event에 따라 실행할 로직을 event handler를 등록하여 추가하게 된다. 이렇게 `podInformer`로 Pod object가 변화될 때마다 calico data source와 sync를 맞춰준다.
+Informer는 cache를 통해서 매번 API server에 요청할 필요가 없고, polling 대신에 watch로 resource에 대한 변화 Event에 작동될 수 있는 Interface를 제공한다. Controller에서는 정의된 Informer에 event에 따라 실행할 로직을 event handler를 등록하여 추가하게 된다. 이렇게 `podInformer`로 Pod object가 변화될 때마다 calico data store와 sync를 맞춰준다.
 
 calico custom resource에 대한 Interface제공하는 clientsets은 아래처럼 WorkloadEndpoints를 처음 가져와서 cache에 담는데 사용한다.
 
@@ -236,7 +236,7 @@ informers "github.com/programming-kubernetes/cnat/cnat-client-go/pkg/generated/i
 cnatInformerFactory := informers.NewSharedInformerFactory(cnatClient, time.Minute*10)
 ```
 
-`Calico`를 Addon으로 추가한 Minikube에서 `kubectl get crds`를 실행하면 아래처럼 `crd`가 있는 것을 확인할 수 있다. `pod controller`, `network policy contoller`, `service account controller`를 보면, kubernetest의 native resource가 변화할 때 informer를 통해서 calico data source를 sync하고 있다. 그런데 아래의 CRD의 custom resource가 변경되는 거에 대해서 로직을 수행하는 코드는 controller에 없다. 그럼 그부분은 어디서 담당하고 있는 것일까?
+`Calico`를 Addon으로 추가한 Minikube에서 `kubectl get crds`를 실행하면 아래처럼 `crd`가 있는 것을 확인할 수 있다. `pod controller`, `network policy contoller`, `service account controller`를 보면, kubernetest의 native resource가 변화할 때 informer를 통해서 calico data store를 sync하고 있다. 그런데 아래의 CRD의 custom resource가 변경되는 거에 대해서 로직을 수행하는 코드는 controller에 없다. 그럼 그부분은 어디서 담당하고 있는 것일까?
 
 ```bash
 NAME                                                  CREATED AT
@@ -256,7 +256,7 @@ ippools.crd.projectcalico.org                         2023-07-03T07:55:55Z
 ipreservations.crd.projectcalico.org                  2023-07-03T07:55:55Z
 kubecontrollersconfigurations.crd.projectcalico.org   2023-07-03T07:55:55Z
 networkpolicies.crd.projectcalico.org                 2023-07-03T07:55:55Z
-networksets.crd.projectcalico.org
+networksets.crd.projectcalico.org                     2023-07-03T07:55:55Z
 ```
 
 calicoctl을 통해서 custom resource를 생성해본다. (calicoctl을 통해서 calico에서 필요한 validation과 defaulting을 수행한다. 그런데 calico apiserver를 설치하면 calicoctl없이 그냥 kubectl을 이용해서 할 수 있다.)
@@ -291,4 +291,177 @@ networkpolicies                   netpol       networking.k8s.io/v1             
 kubectl get networkpolicy.v1.crd.projectcalico.org
 ```
 
-이렇게 Custom Resource를 생성했으면 이것이 Calico의 data source와 sync가 되고, 그 데이터를 통해서 Felix가 iptables rule이나 eBPF로 해당 내용을 적용할 것이다. 그런데 Calico system에서 custom resource가 생성되고나 변경된 것을 탐지해서 그것에 따라서 로직을 수행하는 부분은 어디에서 찾을 수 있는거지? 🤔 이것에 대한 실마리가 안 찾아져서 Calico Community Slack channel에 들어가서 질문을 남겼다.
+이렇게 Custom Resource를 생성했으면 이것이 Calico의 data store와 sync가 되고, 그 데이터를 통해서 Felix가 iptables rule이나 eBPF로 해당 내용을 적용할 것이다. 그런데 Calico system에서 custom resource가 생성되고나 변경된 것을 탐지해서 그것에 따라서 로직을 수행하는 부분은 어디에서 찾을 수 있는거지? 🤔
+
+Calico는 Kubernetes말고 OpenStack이나 cluster가 아닌 환경에서도 설치해서 사용할 수 있는 것을 생각하면 Kubernetes와의 coupling을 최소한으로 했을 것이라 추측했다. 그래서 Calico node는 Kubernetes의 존재는 모르고 calico datasource의 변화에 대해서 event를 받아서 로직이 수행된다고 생각했다. Kubernetes와의 coupling을 최소한으로 하고, kubernetes native resource가 변화하는 것에 대해서는 kube-controller로 watch해서 변화된 내용을 calico datasource에 sync를 해주는 것일 것이다. 그런데 Kubernetes CRD가 `projectcalico.org` group으로 많은 것이 존재하는데, 이것이 어떻게 Calico system에 반영이 되는지 의아했다. 어제 블로그를 정리할 때는 실마리가 보이지 않았는데, 문득 calicoctl이나 calico apiserver가 하고 있을 것이라는 생각이 들었다. calicoctl로 적용을 하면 calico datasource와 kubernetes CRD를 같이 변경하는 것이다. kubernetes custom resource를 controller로 watch하여 status를 맞춰주는 것이 아니라, 그냥 client에서 custom resource를 적용할 때 작업을 해주는 것이다. calico apiserver를 사용하여 그냥 kubectl를 적용한다면, 이부분이 들어가지 않았을까? 이러한 생각을 가지고 다시 한번 소스 코드를 살펴보게 되었다.
+
+calicoctl의 코드를 보면 최종적으로 `libcalico-go/lib/clientv3`를 사용하게 된다. clientv3에서 `networkPolicies`의 method `Create`를 살펴보면 아래와 같다. calico apiserver를 사용하면 이게 대신에 defaulting과 validation을 해주는데, 여기에 그에 대한 로직이 들어가 있다. `libcalico-go`는 이제 calico에서 내부적으로 사용하기 위한 코드이고, 이걸 custom controller를 만들 때 code-generator로 만든 clientSets대신에 사용하는 이유이다. 이렇게 defaulting과 validation을 하고 custom resource를 생성해주고 있다.
+
+```go
+func (r networkPolicies) Create(ctx context.Context, res *apiv3.NetworkPolicy, opts options.SetOptions) (*apiv3.NetworkPolicy, error) {
+	if res != nil {
+		// Since we're about to default some fields, take a (shallow) copy of the input data
+		// before we do so.
+		resCopy := *res
+		res = &resCopy
+	}
+	defaultPolicyTypesField(res.Spec.Ingress, res.Spec.Egress, &res.Spec.Types)
+
+	if err := validator.Validate(res); err != nil {
+		return nil, err
+	}
+
+	// Properly prefix the name
+	res.GetObjectMeta().SetName(convertPolicyNameForStorage(res.GetObjectMeta().GetName()))
+	out, err := r.client.resources.Create(ctx, opts, apiv3.KindNetworkPolicy, res)
+	if out != nil {
+		// Remove the prefix out of the returned policy name.
+		out.GetObjectMeta().SetName(convertPolicyNameFromStorage(out.GetObjectMeta().GetName()))
+		return out.(*apiv3.NetworkPolicy), err
+	}
+
+	// Remove the prefix out of the returned policy name.
+	res.GetObjectMeta().SetName(convertPolicyNameFromStorage(res.GetObjectMeta().GetName()))
+	return nil, err
+}
+```
+
+생각해보니 나의 Minikube Kubernetes cluster환경에서 Calico datastore Kubernetes를 사용하도록 설정이 되어 있다. CRD로 존재하는 것들이 Calico datastore의 data인 것이고, 예를 들어서 custom resource인 GlobalNetworkPolicy나 NetworkPolicy를 생성하면, 그것이 Calico datastore에 저장이 된 것이다. Calico datastore를 별도의 etcdv3로 설정하지 않고, Kubernetes를 했기 때문에 이러한 CRD가 생성된 것이다. 따라서 kubectl + calico apiserver나 calicoctl로 CRD를 생성한다는 것은 Calico data store에 데이터를 저장/변경하는 것이다. 따라서 Felix는 이 CRD의 custom resource의 변화에 따라서 network rule을 정의할 것이다. 이제 Felix 소스코드에서 `daemon.go`를 보면, `flexsyncer` instance를 생성하는 것을 볼 수 있다.
+
+`daemon.go`
+
+```go
+func Run(configFile string, gitVersion string, buildDate string, gitRevision string) {
+  ...생략
+  } else {
+		// Use the syncer locally.
+		syncer = felixsyncer.New(backendClient, datastoreConfig.Spec, syncerToValidator, configParams.IsLeader())
+
+		log.Info("using resource updates where applicable")
+		configParams.SetUseNodeResourceUpdates(true)
+	}
+  ...생략
+}
+```
+
+이제 `flexsyncerv1.go`를 살펴보면 이렇게 go type으로 정의된 Kind 종류를 정의하는 부분이 생긴다. `apiv3.KindGlobalNetworkPolicy`는 GlobalNetworkPolicy Kind를 의미한다.
+
+`felixsyncerv1.go`
+
+```go
+func New(client api.Client, cfg apiconfig.CalicoAPIConfigSpec, callbacks api.SyncerCallbacks, isLeader bool) api.Syncer {
+  ...생략
+  if isLeader {
+		// These resources are only required if this is the active Felix instance on the node.
+		additionalTypes := []watchersyncer.ResourceType{
+			{
+				ListInterface:   model.ResourceListOptions{Kind: apiv3.KindGlobalNetworkPolicy},
+				UpdateProcessor: updateprocessors.NewGlobalNetworkPolicyUpdateProcessor(),
+			},
+			{
+				ListInterface:   model.ResourceListOptions{Kind: apiv3.KindGlobalNetworkSet},
+				UpdateProcessor: updateprocessors.NewGlobalNetworkSetUpdateProcessor(),
+			},
+			{
+				ListInterface:   model.ResourceListOptions{Kind: apiv3.KindIPPool},
+				UpdateProcessor: updateprocessors.NewIPPoolUpdateProcessor(),
+			},
+			{
+				ListInterface:   model.ResourceListOptions{Kind: libapiv3.KindNode},
+				UpdateProcessor: updateprocessors.NewFelixNodeUpdateProcessor(cfg.K8sUsePodCIDR),
+			},
+			{
+				ListInterface:   model.ResourceListOptions{Kind: apiv3.KindProfile},
+				UpdateProcessor: updateprocessors.NewProfileUpdateProcessor(),
+			},
+			{
+				ListInterface:   model.ResourceListOptions{Kind: libapiv3.KindWorkloadEndpoint},
+				UpdateProcessor: updateprocessors.NewWorkloadEndpointUpdateProcessor(),
+			},
+			{
+				ListInterface:   model.ResourceListOptions{Kind: apiv3.KindNetworkPolicy},
+				UpdateProcessor: updateprocessors.NewNetworkPolicyUpdateProcessor(),
+			},
+			{
+				ListInterface:   model.ResourceListOptions{Kind: apiv3.KindNetworkSet},
+				UpdateProcessor: updateprocessors.NewNetworkSetUpdateProcessor(),
+			},
+			{
+				ListInterface:   model.ResourceListOptions{Kind: apiv3.KindHostEndpoint},
+				UpdateProcessor: updateprocessors.NewHostEndpointUpdateProcessor(),
+			},
+			{
+				ListInterface: model.ResourceListOptions{Kind: apiv3.KindBGPConfiguration},
+			},
+		}
+  ...생략
+
+  return watchersyncer.New(
+		client,
+		resourceTypes,
+		callbacks,
+	)
+}
+```
+
+위에서 'GlobalNetworkPolicy', 'GlobalNetworkSet'등 필요한 resource들에 대해서 정의가 되었는데, 이제 `watchersyncer.go`에서는 그러한 resource들을 slice에 저장한다.
+
+`watchersyncer.go`
+
+```go
+func New(client api.Client, resourceTypes []ResourceType, callbacks api.SyncerCallbacks) api.Syncer {
+	rs := &watcherSyncer{
+		watcherCaches: make([]*watcherCache, len(resourceTypes)),
+		results:       make(chan interface{}, 2000),
+		callbacks:     callbacks,
+	}
+	for i, r := range resourceTypes {
+		rs.watcherCaches[i] = newWatcherCache(client, r, rs.results)
+	}
+	return rs
+}
+```
+
+이제 `run`이 호출되면 아까 slice에 저장해놨던 resource별 watcherCache의 run을 forloop을 통해서 다시 호출하게 된다.
+
+`watchersyncer.go`
+
+```go
+func (ws *watcherSyncer) run(ctx context.Context) {
+	log.Debug("Sending initial status event and starting watchers")
+	ws.sendStatusUpdate(api.WaitForDatastore)
+	for _, wc := range ws.watcherCaches {
+		// no need for ws.wgwc.Add(1), been set already
+		go func(wc *watcherCache) {
+			defer ws.wgwc.Done()
+			wc.run(ctx)
+			log.Debug("Watcher cache run completed")
+		}(wc)
+	}
+  ...생략
+}
+```
+
+마지막으로 `watchercache.go`를 살펴보면 `resyncAndCreateWatcher`가 호출되고, 이것은 먼저 List를 하고 그다음에 앞으로 변화는 것만 Watch로 Event를 받도록 되어 있다. 이제 felix가 Kubernetes의 custom resource를 Watch하면서 변경되었을 때 Event를 받고, Event별로 정의된 event handler 로직을 수행하게 되는 것이다.
+
+`watchercache.go`
+
+```go
+func (wc *watcherCache) run(ctx context.Context) {
+	wc.logger.Debug("Watcher cache starting, start initial sync processing")
+	wc.resyncAndCreateWatcher(ctx)
+  ...생략
+}
+```
+
+`watchercache.go`
+
+```go
+func (wc *watcherCache) resyncAndCreateWatcher(ctx context.Context) {
+  ...생략
+  l, err := wc.client.List(ctx, wc.resourceType.ListInterface, wc.currentWatchRevision)
+
+  ...생략
+  w, err := wc.client.Watch(ctx, wc.resourceType.ListInterface, wc.currentWatchRevision)
+}
+```
