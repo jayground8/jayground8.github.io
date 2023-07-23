@@ -7,9 +7,19 @@
       <language>kr</language>
       <managingEditor>jayground8@gmail.com (Jaemyun Lee)</managingEditor>
       <webMaster>jayground8@gmail.com (Jaemyun Lee)</webMaster>
-      <lastBuildDate>Sat, 22 Jul 2023 00:00:00 GMT</lastBuildDate>
+      <lastBuildDate>Sun, 23 Jul 2023 00:00:00 GMT</lastBuildDate>
       <atom:link href="https://jayground8.github.io/jayground8//feed.xml" rel="self" type="application/rss+xml"/>
       
+  <item>
+    <guid>https://jayground8.github.io/jayground8//blog/20230723-book-review-tiny-habit</guid>
+    <title>행동 설계 7단계를 내 실생활에 적용해보자</title>
+    <link>https://jayground8.github.io/jayground8//blog/20230723-book-review-tiny-habit</link>
+    <description>책 &quot;훅(Hooked)&quot;에서 포그 행동모델을 알게 되었다. 이번에는 포그가 쓴 책 &quot;습관의 디테일(Tiny Habits)&quot;을 읽어 보게 되었다. 내가 과거에 습관으로 잘 형성했던 행동들을 행동 모델 7단계 관점에서 생각을 해보았다. 그리고 내가 습관화 하지 못했던 행동들에 대해서도 생각해보면서 다시 한번 어떻게 꾸준히 할 수 있을까 고민해보았다. 알고리즘 꾸준히 공부하기는 내가 습관화 하고 싶었던 것 중에 하나였는데 매번 실패하는 행동이었다. 이번에 행동 모델 7단계에 내용들을 적용하여 다시 시도해본다.</description>
+    <pubDate>Sun, 23 Jul 2023 00:00:00 GMT</pubDate>
+    <author>jayground8@gmail.com (Jaemyun Lee)</author>
+    <category>book</category>
+  </item>
+
   <item>
     <guid>https://jayground8.github.io/jayground8//blog/20230722-calico-kube-controller</guid>
     <title>Calico kube-controller 이해하기</title>
