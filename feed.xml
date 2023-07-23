@@ -67,7 +67,7 @@
     <description>노코드 개발 생태계가 궁금했는데, 마침 노코드 API 서버를 개발하는 공모전이 있어서 참가했다. SyncTree로 API를 개발하고, Airtable을 데이터베이스로 사용하였다. Front는 Weweb이나 Bubble로 작성하려고 했으나, 유료 plan에서만 deploy가 가능하여 vercel에서 간단하게 react SPA를 배포했다.</description>
     <pubDate>Sun, 25 Jun 2023 00:00:00 GMT</pubDate>
     <author>jayground8@gmail.com (Jaemyun Lee)</author>
-    <category>development</category><category>nocode</category>
+    <category>nocode</category>
   </item>
 
   <item>
@@ -77,7 +77,7 @@
     <description>나는 어떻게 대체 되지 않는 개발자가 될 수 있을까? 다양한 책들을 읽으면서 나의 개발자 커리어를 회고해보고 어떻게 앞으로 살아가야할까 고민을 해보았다. 엔지니어링 기술과 인간의 상호작용을 통해서 어려운 문제들을 해결해나갈 수 있는 개발자가 되어야 한다. 어떻게 그렇게 될 수 있을까?</description>
     <pubDate>Sat, 24 Jun 2023 00:00:00 GMT</pubDate>
     <author>jayground8@gmail.com (Jaemyun Lee)</author>
-    <category>thought</category><category>book</category>
+    <category>book</category>
   </item>
 
   <item>
@@ -87,7 +87,7 @@
     <description>최근에 읽은 책들을 바탕으로 장기기억, 경제적 자유, 스토리에 대해서 생각해보았다. &quot;기억의 뇌과학&quot;, &quot;세컨드 브레인&quot; 책등을 통해서 다시 한번 나의 학습을 어떻게 장기기억화 할 것인가 고민해보았다. &quot;역행자&quot;, &quot;부의 근원&quot;, &quot;돈은 너로부터이다&quot; 책등을 통해서는 내가 어떻게 경제적 자유를 이룰 수 있을지 고민했다. 마지막으로 &quot;스토리만이 살길&quot;, &quot;프리워커스&quot; 책등을 통해서는 스토리의 힘을 깨달았다.</description>
     <pubDate>Fri, 16 Jun 2023 00:00:00 GMT</pubDate>
     <author>jayground8@gmail.com (Jaemyun Lee)</author>
-    <category>thought</category><category>book</category>
+    <category>book</category>
   </item>
 
   <item>
