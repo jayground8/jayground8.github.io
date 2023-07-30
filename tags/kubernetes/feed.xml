@@ -7,9 +7,19 @@
       <language>kr</language>
       <managingEditor>jayground8@gmail.com (Jaemyun Lee)</managingEditor>
       <webMaster>jayground8@gmail.com (Jaemyun Lee)</webMaster>
-      <lastBuildDate>Sat, 22 Jul 2023 00:00:00 GMT</lastBuildDate>
+      <lastBuildDate>Sun, 30 Jul 2023 00:00:00 GMT</lastBuildDate>
       <atom:link href="https://jayground8.github.io/jayground8//tags/kubernetes/feed.xml" rel="self" type="application/rss+xml"/>
       
+  <item>
+    <guid>https://jayground8.github.io/jayground8//blog/20230730-k8s-controller-external-secrets</guid>
+    <title>오픈소스 Kubernetes External Secrets 살펴보기</title>
+    <link>https://jayground8.github.io/jayground8//blog/20230730-k8s-controller-external-secrets</link>
+    <description>CRD와 Custom Controller를 사용하는 프로젝트에 대해서 더 알고 싶은 상황에서, External Secrets이라는 프로젝트를 발견하게 되었다. External Secrets는 Vault, AWS secret manager와 같이 secret 관리하는 Tool들과 Kubernetes secret을 CRD을 통해서 sync할 수 있게 해준다. 이 프로젝트는 kubebuilder를 사용하였는데, 소스코드를 보면서 어떻게 구현한 건지 자세히 살펴보았다.</description>
+    <pubDate>Sun, 30 Jul 2023 00:00:00 GMT</pubDate>
+    <author>jayground8@gmail.com (Jaemyun Lee)</author>
+    <category>kubernetes</category>
+  </item>
+
   <item>
     <guid>https://jayground8.github.io/jayground8//blog/20230722-calico-kube-controller</guid>
     <title>Calico kube-controller 이해하기</title>
