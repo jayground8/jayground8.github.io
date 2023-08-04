@@ -14,7 +14,7 @@
     <guid>https://jayground8.github.io/jayground8//blog/20230804-book-review-the-cold-start-problem</guid>
     <title>콜드 스타트 이론</title>
     <link>https://jayground8.github.io/jayground8//blog/20230804-book-review-the-cold-start-problem</link>
-    <description>&lt;콜드 스타트&gt; 책을 읽으면서 네트워크 상품이 어떻게 성장하고 어떠한 단계들을 거쳐나가게 될 수 있는지 생각해볼 수 있었다. 새로운 네트워크 상품은 네트워크를 처음부터 구축해야 되는 콜드 스타트 문제를 가진다. 작지만 밀도가 높은 원자적 네트워크를 구성하여 초기 콜드 스타트 문제를 해결해야 하고, 이것은 초기 생존과 연관된다. 원자적 네트워크를 바탕으로 확장하고 성장하면 네트워크 효과가 경쟁자가 동일한 기능을 모방해서 도전한다고 해도 방어막 역할을 해줄 수 있다.</description>
+    <description>&lt;콜드 스타트&gt; 책은 네트워크 상품이 어떻게 성장하고, 성장과 함께 어떠한 단계를 경험할 수 있는지 설명한다. 새로운 네트워크 상품은 네트워크를 처음부터 구축해야 되는 콜드 스타트 문제를 가진다. 작지만 밀도가 높은 원자적 네트워크를 구성하여 초기 콜드 스타트 문제를 해결해야 하고, 이것은 초기 생존과 연관된다. 원자적 네트워크를 바탕으로 확장하고 네트워크가 성장하면 네트워크 효과를 가질 수 있다. 동일한 기능을 모방하여 도전하는 경쟁자가 생긴다고 해도 네트워크 효과가 방어막이 될 수 있다.</description>
     <pubDate>Fri, 04 Aug 2023 00:00:00 GMT</pubDate>
     <author>jayground8@gmail.com (Jaemyun Lee)</author>
     <category>book</category>
