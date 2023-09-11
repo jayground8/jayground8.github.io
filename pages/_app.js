@@ -11,7 +11,6 @@ import siteMetadata from '@/data/siteMetadata'
 import Analytics from '@/components/analytics'
 import LayoutWrapper from '@/components/LayoutWrapper'
 import { ClientReload } from '@/components/ClientReload'
-import Script from 'next/script'
 
 const isDevelopment = process.env.NODE_ENV === 'development'
 const isSocket = process.env.SOCKET
@@ -24,17 +23,12 @@ export default function App({ Component, pageProps }) {
         <link rel="manifest" href="/jayground8/static/favicons/manifest.json" />
         <link rel="manifest" href="/jayground8/static/favicons/site.webmanifest" />
         <link rel="shortcut icon" href="/jayground8/static/favicons/favicon.ico" />
+        <script
+          defer
+          type="text/javascript"
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8773084925406986"
+        ></script>
       </Head>
-      <Script
-        id="Adsense-id"
-        async
-        onError={(e) => {
-          console.error('Script failed to load', e)
-        }}
-        strategy="afterInteractive"
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8773084925406986"
-        crossorigin="anonymous"
-      />
       {isDevelopment && isSocket && <ClientReload />}
       <Analytics />
       <LayoutWrapper>
