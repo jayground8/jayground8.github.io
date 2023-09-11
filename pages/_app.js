@@ -24,9 +24,9 @@ export default function App({ Component, pageProps }) {
         <link rel="manifest" href="/jayground8/static/favicons/site.webmanifest" />
         <link rel="shortcut icon" href="/jayground8/static/favicons/favicon.ico" />
         <script
-          defer
-          type="text/javascript"
+          async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8773084925406986"
+          crossOrigin="anonymous"
         ></script>
       </Head>
       {isDevelopment && isSocket && <ClientReload />}
