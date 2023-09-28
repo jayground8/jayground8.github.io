@@ -7,9 +7,19 @@
       <language>kr</language>
       <managingEditor>jayground8@gmail.com (Jaemyun Lee)</managingEditor>
       <webMaster>jayground8@gmail.com (Jaemyun Lee)</webMaster>
-      <lastBuildDate>Fri, 04 Aug 2023 00:00:00 GMT</lastBuildDate>
+      <lastBuildDate>Thu, 28 Sep 2023 00:00:00 GMT</lastBuildDate>
       <atom:link href="https://jayground8.github.io/jayground8//feed.xml" rel="self" type="application/rss+xml"/>
       
+  <item>
+    <guid>https://jayground8.github.io/jayground8//blog/20230928-ecr-credential-provider</guid>
+    <title>ECR Credential-Provider 사용해보기</title>
+    <link>https://jayground8.github.io/jayground8//blog/20230928-ecr-credential-provider</link>
+    <description>Kubeadm으로 만든 Kubernetes Cluster에서 AWS ECR를 private container image repository를 사용하고자 하였다. private repository를 접근하기 위해서 Kubernetes 1.26부터 stable feature로 제공하는 kubelet crendential provider를 사용하였다.</description>
+    <pubDate>Thu, 28 Sep 2023 00:00:00 GMT</pubDate>
+    <author>jayground8@gmail.com (Jaemyun Lee)</author>
+    <category>kubernetes</category>
+  </item>
+
   <item>
     <guid>https://jayground8.github.io/jayground8//blog/20230804-book-review-the-cold-start-problem</guid>
     <title>콜드 스타트 이론</title>
