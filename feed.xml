@@ -21,6 +21,16 @@
   </item>
 
   <item>
+    <guid>https://jayground8.github.io/jayground8//blog/20230928-s3-data-transfer-out</guid>
+    <title>S3에서 Internet으로 데이터 송신한 금액을 bucket별로 확인하기</title>
+    <link>https://jayground8.github.io/jayground8//blog/20230928-s3-data-transfer-out</link>
+    <description>인터넷에서 S3의 file을 다운로드하면 데이터 전송 비용이 발생한다. 서울 리전 기준으로는 처음 월 10TB까지는 GB당 0.126USD 요금이 발생한다. 이렇게 발생한 금액은 S3 bucket별로 나눠서 볼려면 어떻게 해야 할까? AWS Cost and Usage Report 서비스를 사용하면 세부적인 사용내역을 얻을 수 있고, 그 데이터를 분석하면 bucket별로 인터넷 데이터 전송에 의해 발생한 금액을 산출할 수 있다.</description>
+    <pubDate>Thu, 28 Sep 2023 00:00:00 GMT</pubDate>
+    <author>jayground8@gmail.com (Jaemyun Lee)</author>
+    <category>aws</category>
+  </item>
+
+  <item>
     <guid>https://jayground8.github.io/jayground8//blog/20230804-book-review-the-cold-start-problem</guid>
     <title>콜드 스타트 이론</title>
     <link>https://jayground8.github.io/jayground8//blog/20230804-book-review-the-cold-start-problem</link>
