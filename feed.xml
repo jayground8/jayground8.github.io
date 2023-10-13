@@ -7,9 +7,19 @@
       <language>kr</language>
       <managingEditor>jayground8@gmail.com (Jaemyun Lee)</managingEditor>
       <webMaster>jayground8@gmail.com (Jaemyun Lee)</webMaster>
-      <lastBuildDate>Thu, 28 Sep 2023 00:00:00 GMT</lastBuildDate>
+      <lastBuildDate>Sat, 14 Oct 2023 00:00:00 GMT</lastBuildDate>
       <atom:link href="https://jayground8.github.io/jayground8//feed.xml" rel="self" type="application/rss+xml"/>
       
+  <item>
+    <guid>https://jayground8.github.io/jayground8//blog/20231014-ncloud-certificate-manater</guid>
+    <title>네이버 클라우드 certificate manager에 Lets encrypt 인증서 등록하기</title>
+    <link>https://jayground8.github.io/jayground8//blog/20231014-ncloud-certificate-manater</link>
+    <description>Lets encrypt로 인증서를 발급하여 이것을 Naver Cloud Certificate Manager에 등록하려고 하였다. certbot을 통해서 인증서를 발급받고 해당 파일들을 Certificate manager에 등록하려고 하니 에러가 발생하였다. 이번 블로그 포스팅은 두 가지의 에러를 해결한 삽질기이다.</description>
+    <pubDate>Sat, 14 Oct 2023 00:00:00 GMT</pubDate>
+    <author>jayground8@gmail.com (Jaemyun Lee)</author>
+    <category>ncloud</category>
+  </item>
+
   <item>
     <guid>https://jayground8.github.io/jayground8//blog/20230928-ecr-credential-provider</guid>
     <title>ECR Credential-Provider 사용해보기</title>
