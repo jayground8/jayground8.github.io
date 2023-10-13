@@ -75,7 +75,7 @@ certbot certonly --manual -d *.example.com -d example.com \
   --key-type rsa
 ```
 
-이제 해당 암호는 해결이 된다.
+이제 해당 에러는 해결이 된다.
 
 ## 인증서가 유효하지 않습니다.
 
@@ -87,14 +87,54 @@ certbot certonly --manual -d *.example.com -d example.com \
 openssl x509 -in ca_from_chain.pem -text -noout
 ```
 
-Issuer가 `DST Root CA X3`으로 되어 있는 것을 확인할 수 있었다. [let's encrypt 글](https://letsencrypt.org/2023/07/10/cross-sign-expiration.html)을 보면 `DST Root CA X3`은 old version을 위해서 유지하고 있다.
+Issuer가 `DST Root CA X3`으로 되어 있는 것을 확인할 수 있었다.
 
 ```bash
 Issuer: O = Digital Signature Trust Co., CN = DST Root CA X3
+Validity
+  Not Before: Jan 20 19:14:03 2021 GMT
+  Not After : Sep 30 18:14:03 2024 GMT
+Subject: C = US, O = Internet Security Research Group, CN = ISRG Root X1
+
 ```
 
-Certificate Manager에서 해당 CA certificate으로 올릴 때는 `인증서가 유효하지 않습니다`라는 에러가 발생하였다. 그래서 chain의 마지막 Root CA 인증서를 아래와 같이 [Let's encrypt의 certificate](https://letsencrypt.org/certificates/)에서 가져와서 바꿔준다.
+[let's encrypt 글](https://letsencrypt.org/2023/07/10/cross-sign-expiration.html)을 보면 `DST Root CA X3`은 old version을 위해서 유지되고 있다. 5년 전부터 `ISRG Root X1`를 사용하고 있었고, `DST Root CA X3`에서도 사용할 수 있고 cross-signing으로 되어 있기 때문에 위에서처럼 마지막 certificate의 Issuer가 `DST Root CA X3`로 되어 있다.
+
+- website certicate
+- Let’s Encrypt R3
+- ISRG Root X1
+- DST Root CA X3
+
+이제 네이버 클라우드 Certificate manager에서는 CA certificate를 추가해줘야하는 것으로 보인다. 따라서 [Let's encrypt의 certificate](https://letsencrypt.org/certificates/)에서 아래 그림과 같이 Root certificate를 다운로드해서 `fullchain.pem`에 추가해줬다.
 
 <img src="/static/images/ncloud-certificate-manager-ca-cert.png" alt="ca certificate from lets encrypt web page" />
 
+하지만 생성된 `fullchain.pem`이 DST Root CA X3로 cross-signing으로 되어 있기 때문에, 네이버 클라우드 Certificate Manager에 올리면 `인증서가 유효하지 않습니다`라는 에러가 발생하였다. 그래서 chain의 마지막 Root CA 인증서를 추가하지 않고, 교체했다.
+
+- website certicate
+- Let’s Encrypt R3
+- ISRG Root X1
+- DST Root CA X3 => Root CA 인증서로 교체
+
 이제 정상적으로 등록이 된다.
+
+## 기타
+
+### Ubuntu CA trust store
+
+위에서 certbot을 셋팅해서 사용한 ubuntu20.04 서버에서 CA trust store에 저장되어 있는 걸 보면
+
+```bash
+awk -v cmd='openssl x509 -noout -subject' '
+    /BEGIN/{close(cmd)};{print | cmd}' < /etc/ssl/certs/ca-certificates.crt
+```
+
+아래처럼 `ISRG Root X1`가 보인다.
+
+```bash
+subject=C = US, O = Internet Security Research Group, CN = ISRG Root X1
+```
+
+### --preferred-chain Option
+
+🤔 certbot 명령어로 cross-signing이 아니라 `ISRG Root X1`를 사용하도록 설정하는 방법이 없나? `--preferred-chain 'SRG Root X1'`은 Intemediate certificate가 생성되지 않는다.
