@@ -7,9 +7,19 @@
       <language>kr</language>
       <managingEditor>jayground8@gmail.com (Jaemyun Lee)</managingEditor>
       <webMaster>jayground8@gmail.com (Jaemyun Lee)</webMaster>
-      <lastBuildDate>Sat, 21 Oct 2023 00:00:00 GMT</lastBuildDate>
+      <lastBuildDate>Sun, 29 Oct 2023 00:00:00 GMT</lastBuildDate>
       <atom:link href="https://jayground8.github.io/jayground8//tags/kubernetes/feed.xml" rel="self" type="application/rss+xml"/>
       
+  <item>
+    <guid>https://jayground8.github.io/jayground8//blog/20231029-gpu-on-k8s</guid>
+    <title>Kubernetes에서 GPU 사용하기</title>
+    <link>https://jayground8.github.io/jayground8//blog/20231029-gpu-on-k8s</link>
+    <description>Pytorch를 컨테이너로 띄우고 GPU를 사용하고 싶었다. 따라서 Docker container에서 NVIDIA GPU를 사용할 수 있도록 셋팅을 해보았다. 그리고 최종적으로 Kubernetes에서 GPU hardware를 사용할 수 있도록 nvidia device plugin을 DaemonSet으로 띄우고 Pod를 실행해보았다.</description>
+    <pubDate>Sun, 29 Oct 2023 00:00:00 GMT</pubDate>
+    <author>jayground8@gmail.com (Jaemyun Lee)</author>
+    <category>kubernetes</category>
+  </item>
+
   <item>
     <guid>https://jayground8.github.io/jayground8//blog/20231021-csi-driver</guid>
     <title>aws-ebs-csi-driver 코드로 csi driver 이해하기</title>
