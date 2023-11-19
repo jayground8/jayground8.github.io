@@ -7,9 +7,19 @@
       <language>kr</language>
       <managingEditor>jayground8@gmail.com (Jaemyun Lee)</managingEditor>
       <webMaster>jayground8@gmail.com (Jaemyun Lee)</webMaster>
-      <lastBuildDate>Sat, 11 Nov 2023 00:00:00 GMT</lastBuildDate>
+      <lastBuildDate>Sun, 19 Nov 2023 00:00:00 GMT</lastBuildDate>
       <atom:link href="https://jayground8.github.io/jayground8//feed.xml" rel="self" type="application/rss+xml"/>
       
+  <item>
+    <guid>https://jayground8.github.io/jayground8//blog/20231119-book-review</guid>
+    <title>책 &quot;유난한 도전&quot;과 &quot;무브업&quot;을 읽고나서...</title>
+    <link>https://jayground8.github.io/jayground8//blog/20231119-book-review</link>
+    <description>책 &quot;유난한 도전&quot;를 시간 가는 줄 모르고 재미있게 읽었다. 토스의 초기부터 최근까지 겪었던 우여곡절과 그 속에서 만들어낸 성공 스토리들을 읽으면서, 내 가슴에 뭔가 꿈틀꿈틀 거리는 열정과 흥분을 느꼈다. 또 다시 주도적인 변화를 만들어내고 싶다는 열정을 가지게 된 것과 동시에 나는 그러한 치열함과 멋진 커리어를 가지지 못했다는 불안감을 가지게 되었다. 책 &quot;무브업&quot;은 나의 커리어적인 불암감에 위에 양념을 살짝 더 뿌려줬다. 하지만 그래도 이제는 그러한 불안감에 압도당하지 않고, 내가 주어진 하루에서 내가 할 수 있는 최선을 고민하는 할 수 있다.</description>
+    <pubDate>Sun, 19 Nov 2023 00:00:00 GMT</pubDate>
+    <author>jayground8@gmail.com (Jaemyun Lee)</author>
+    <category>book</category>
+  </item>
+
   <item>
     <guid>https://jayground8.github.io/jayground8//blog/20231111-update-ubuntu-kernel</guid>
     <title>CVE 취약점 확인하고 Ubuntu Kernel Update 해보기</title>
