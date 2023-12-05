@@ -7,9 +7,19 @@
       <language>kr</language>
       <managingEditor>jayground8@gmail.com (Jaemyun Lee)</managingEditor>
       <webMaster>jayground8@gmail.com (Jaemyun Lee)</webMaster>
-      <lastBuildDate>Wed, 22 Nov 2023 00:00:00 GMT</lastBuildDate>
+      <lastBuildDate>Tue, 05 Dec 2023 00:00:00 GMT</lastBuildDate>
       <atom:link href="https://jayground8.github.io/jayground8//feed.xml" rel="self" type="application/rss+xml"/>
       
+  <item>
+    <guid>https://jayground8.github.io/jayground8//blog/20231205-nginx-allow-ip</guid>
+    <title>Kubernetes에서 Nginx로 IP allow list 제어</title>
+    <link>https://jayground8.github.io/jayground8//blog/20231205-nginx-allow-ip</link>
+    <description>Kubernetes cluster에서 Nginx로 허용 가능한 IP를 설정하고 싶었다. 간단하게 끝날 줄 알았던 작업은 또다른 삽질기가 되었다.😭 Kubernetes에서 SNAT이 되는 과정을 이해하고 externalTrafficPolicy를 Local로 설정했다. 그리고 External Load balancer에서는 client IP를 전달하기 위해서 Proxy Protocol와 같은 것을 설정하고, Nginx에서 그 Proxy protocol로 전달된 IP address로 Access control을 할 수 있도록 설정하였다.</description>
+    <pubDate>Tue, 05 Dec 2023 00:00:00 GMT</pubDate>
+    <author>jayground8@gmail.com (Jaemyun Lee)</author>
+    <category>Kubernetes</category><category>Nginx</category>
+  </item>
+
   <item>
     <guid>https://jayground8.github.io/jayground8//blog/20231122-cname-flattening</guid>
     <title>CNAME flattening</title>
@@ -18,16 +28,6 @@
     <pubDate>Wed, 22 Nov 2023 00:00:00 GMT</pubDate>
     <author>jayground8@gmail.com (Jaemyun Lee)</author>
     <category>DNS</category>
-  </item>
-
-  <item>
-    <guid>https://jayground8.github.io/jayground8//blog/20231205-nginx-allow-ip</guid>
-    <title>Kubernetes에서 Nginx로 IP allow list 제어</title>
-    <link>https://jayground8.github.io/jayground8//blog/20231205-nginx-allow-ip</link>
-    <description>Kubernetes cluster에서 Nginx로 허용 가능한 IP를 설정하고 싶었다. 간단하게 끝날 줄 알았던 작업은 또다른 삽질기가 되었다.😭 Kubernetes에서 SNAT이 되는 과정을 이해하고 externalTrafficPolicy를 Local로 설정했다. 그리고 External Load balancer에서는 client IP를 전달하기 위해서 Proxy Protocol와 같은 것을 설정하고, Nginx에서 그 Proxy protocol로 전달된 IP address로 Access control을 할 수 있도록 설정하였다.</description>
-    <pubDate>Wed, 22 Nov 2023 00:00:00 GMT</pubDate>
-    <author>jayground8@gmail.com (Jaemyun Lee)</author>
-    <category>Kubernetes</category><category>Nginx</category>
   </item>
 
   <item>
