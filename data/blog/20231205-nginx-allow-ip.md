@@ -94,7 +94,7 @@ metadata:
   name: nginx-clone
   annotations:
     service.beta.kubernetes.io/ncloud-load-balancer-layer-type: nplb
-    service.beta.kubernetes.io/ncloud-load-balancer-ssl-certificate-no: '8857'
+    service.beta.kubernetes.io/ncloud-load-balancer-ssl-certificate-no: '4134'
     service.beta.kubernetes.io/ncloud-load-balancer-tls-ports: '443'
     service.beta.kubernetes.io/ncloud-load-balancer-tls-min-version: TLSV10
 spec:
