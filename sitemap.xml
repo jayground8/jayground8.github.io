@@ -1,168 +1,162 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://jayground8.github.io/jayground8//about</loc>
+    <loc>https://jayground8.github.io/about</loc>
   </url>
 
   <url>
-    <loc>https://jayground8.github.io/jayground8//blog</loc>
+    <loc>https://jayground8.github.io/blog</loc>
   </url>
 
   <url>
-    <loc>https://jayground8.github.io/jayground8/</loc>
+    <loc>https://jayground8.github.io</loc>
   </url>
 
   <url>
-    <loc>https://jayground8.github.io/jayground8//projects</loc>
+    <loc>https://jayground8.github.io/projects</loc>
   </url>
 
   <url>
-    <loc>https://jayground8.github.io/jayground8//tags</loc>
+    <loc>https://jayground8.github.io/tags</loc>
   </url>
 
   <url>
-    <loc>https://jayground8.github.io/jayground8//blog/20230610-new-service</loc>
+    <loc>https://jayground8.github.io/blog/20230610-new-service</loc>
   </url>
 
   <url>
-    <loc>https://jayground8.github.io/jayground8//blog/20230616-book-review</loc>
+    <loc>https://jayground8.github.io/blog/20230616-book-review</loc>
   </url>
 
   <url>
-    <loc>https://jayground8.github.io/jayground8//blog/20230624-book-review-replacable</loc>
+    <loc>https://jayground8.github.io/blog/20230624-book-review-replacable</loc>
   </url>
 
   <url>
-    <loc>https://jayground8.github.io/jayground8//blog/20230625-no-code-tools</loc>
+    <loc>https://jayground8.github.io/blog/20230625-no-code-tools</loc>
   </url>
 
   <url>
-    <loc>https://jayground8.github.io/jayground8//blog/20230703-k8s-community-days</loc>
+    <loc>https://jayground8.github.io/blog/20230703-k8s-community-days</loc>
   </url>
 
   <url>
-    <loc>https://jayground8.github.io/jayground8//blog/20230715-k8s-controller</loc>
+    <loc>https://jayground8.github.io/blog/20230715-k8s-controller</loc>
   </url>
 
   <url>
-    <loc>https://jayground8.github.io/jayground8//blog/20230716-if-kakao-2022-k8s-controller</loc>
+    <loc>https://jayground8.github.io/blog/20230716-if-kakao-2022-k8s-controller</loc>
   </url>
 
   <url>
-    <loc
-      >https://jayground8.github.io/jayground8//blog/20230717-book-review-indistractable-hooked</loc
-    >
+    <loc>https://jayground8.github.io/blog/20230717-book-review-indistractable-hooked</loc>
   </url>
 
   <url>
-    <loc>https://jayground8.github.io/jayground8//blog/20230722-calico-kube-controller</loc>
+    <loc>https://jayground8.github.io/blog/20230722-calico-kube-controller</loc>
   </url>
 
   <url>
-    <loc>https://jayground8.github.io/jayground8//blog/20230723-book-review-tiny-habit</loc>
+    <loc>https://jayground8.github.io/blog/20230723-book-review-tiny-habit</loc>
   </url>
 
   <url>
-    <loc
-      >https://jayground8.github.io/jayground8//blog/20230730-k8s-controller-external-secrets</loc
-    >
+    <loc>https://jayground8.github.io/blog/20230730-k8s-controller-external-secrets</loc>
   </url>
 
   <url>
-    <loc>https://jayground8.github.io/jayground8//blog/20230731-what-have-you-solved</loc>
+    <loc>https://jayground8.github.io/blog/20230731-what-have-you-solved</loc>
   </url>
 
   <url>
-    <loc
-      >https://jayground8.github.io/jayground8//blog/20230804-book-review-the-cold-start-problem</loc
-    >
+    <loc>https://jayground8.github.io/blog/20230804-book-review-the-cold-start-problem</loc>
   </url>
 
   <url>
-    <loc>https://jayground8.github.io/jayground8//blog/20230928-ecr-credential-provider</loc>
+    <loc>https://jayground8.github.io/blog/20230928-ecr-credential-provider</loc>
   </url>
 
   <url>
-    <loc>https://jayground8.github.io/jayground8//blog/20230928-s3-data-transfer-out</loc>
+    <loc>https://jayground8.github.io/blog/20230928-s3-data-transfer-out</loc>
   </url>
 
   <url>
-    <loc>https://jayground8.github.io/jayground8//blog/20231014-ncloud-certificate-manater</loc>
+    <loc>https://jayground8.github.io/blog/20231014-ncloud-certificate-manater</loc>
   </url>
 
   <url>
-    <loc>https://jayground8.github.io/jayground8//blog/20231021-csi-driver</loc>
+    <loc>https://jayground8.github.io/blog/20231021-csi-driver</loc>
   </url>
 
   <url>
-    <loc>https://jayground8.github.io/jayground8//blog/20231029-gpu-on-k8s</loc>
+    <loc>https://jayground8.github.io/blog/20231029-gpu-on-k8s</loc>
   </url>
 
   <url>
-    <loc>https://jayground8.github.io/jayground8//blog/20231111-update-ubuntu-kernel</loc>
+    <loc>https://jayground8.github.io/blog/20231111-update-ubuntu-kernel</loc>
   </url>
 
   <url>
-    <loc>https://jayground8.github.io/jayground8//blog/20231119-book-review</loc>
+    <loc>https://jayground8.github.io/blog/20231119-book-review</loc>
   </url>
 
   <url>
-    <loc>https://jayground8.github.io/jayground8//blog/20231122-cname-flattening</loc>
+    <loc>https://jayground8.github.io/blog/20231122-cname-flattening</loc>
   </url>
 
   <url>
-    <loc>https://jayground8.github.io/jayground8//blog/20231205-nginx-allow-ip</loc>
+    <loc>https://jayground8.github.io/blog/20231205-nginx-allow-ip</loc>
   </url>
 
   <url>
-    <loc>https://jayground8.github.io/jayground8//tags/book</loc>
+    <loc>https://jayground8.github.io/tags/aws</loc>
   </url>
 
   <url>
-    <loc>https://jayground8.github.io/jayground8//tags/aws</loc>
+    <loc>https://jayground8.github.io/tags/book</loc>
   </url>
 
   <url>
-    <loc>https://jayground8.github.io/jayground8//tags/calico</loc>
+    <loc>https://jayground8.github.io/tags/calico</loc>
   </url>
 
   <url>
-    <loc>https://jayground8.github.io/jayground8//tags/dns</loc>
+    <loc>https://jayground8.github.io/tags/dns</loc>
   </url>
 
   <url>
-    <loc>https://jayground8.github.io/jayground8//tags/idea</loc>
+    <loc>https://jayground8.github.io/tags/idea</loc>
   </url>
 
   <url>
-    <loc>https://jayground8.github.io/jayground8//tags/kubernetes</loc>
+    <loc>https://jayground8.github.io/tags/kubernetes</loc>
   </url>
 
   <url>
-    <loc>https://jayground8.github.io/jayground8//tags/ncloud</loc>
+    <loc>https://jayground8.github.io/tags/ncloud</loc>
   </url>
 
   <url>
-    <loc>https://jayground8.github.io/jayground8//tags/nginx</loc>
+    <loc>https://jayground8.github.io/tags/nginx</loc>
   </url>
 
   <url>
-    <loc>https://jayground8.github.io/jayground8//tags/nocode</loc>
+    <loc>https://jayground8.github.io/tags/nocode</loc>
   </url>
 
   <url>
-    <loc>https://jayground8.github.io/jayground8//tags/presentation</loc>
+    <loc>https://jayground8.github.io/tags/presentation</loc>
   </url>
 
   <url>
-    <loc>https://jayground8.github.io/jayground8//tags/security</loc>
+    <loc>https://jayground8.github.io/tags/security</loc>
   </url>
 
   <url>
-    <loc>https://jayground8.github.io/jayground8//tags/self-evalutaion</loc>
+    <loc>https://jayground8.github.io/tags/self-evalutaion</loc>
   </url>
 
   <url>
-    <loc>https://jayground8.github.io/jayground8//tags/ubuntu</loc>
+    <loc>https://jayground8.github.io/tags/ubuntu</loc>
   </url>
 </urlset>
