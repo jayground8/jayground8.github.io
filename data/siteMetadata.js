@@ -5,7 +5,7 @@ const siteMetadata = {
   description: 'like playing in the playground',
   language: 'kr',
   theme: 'system', // system, dark or light
-  siteUrl: 'https://jayground8.github.io/jayground8/',
+  siteUrl: 'https://jayground8.github.io',
   siteRepo: 'https://github.com/jayground8/jayground8',
   siteLogo: 'playground.png',
   image: 'profile.png',
