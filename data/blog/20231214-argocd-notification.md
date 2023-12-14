@@ -10,7 +10,7 @@ summary: 'Argo CD Notification가 이미 있어서 쉽게 Slack 알림을 연동
 
 ## Slack Permission
 
-Bot Token Scopes에서 Bot User로 보내기 위해서 `chat:write.publi` permission도 같이 부여 한다.
+Bot Token Scopes에서 Bot User로 보내기 위해서 `chat:write.public` permission도 같이 부여 한다.
 
 <img src="/static/images/argocd-notification-slack-permission.png" alt="argocd notification slack permission" />
 
