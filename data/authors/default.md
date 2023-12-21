@@ -1,5 +1,5 @@
 ---
-name: Jaemyun Lee
+name: Jay
 avatar: profile.png
 occupation: Software Engineer
 ---
