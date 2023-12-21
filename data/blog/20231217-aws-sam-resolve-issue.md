@@ -23,9 +23,15 @@ Resources:
           SECRET: '{{resolve:secretsmanager:secretName:SecretString:keyName}}'
 ```
 
-AWS Secret manager Console에서 사용하는 secret의 version ID를 아래와 같이 확인할 수 있다. `{{resolve:secretsmanager:secretName:SecretString:keyName}}`에서 version id를 명시적으로 정의하지 않으면 AWSCURRENT가 default로 설정된다. 따라서 Secret의 value를 수정했으면, 최신의 수정된 version id가 자동으로 적용된다.
+AWS Secret manager Console에서 사용하는 secret의 version ID를 아래와 같이 확인할 수 있다.
 
 <img src="/static/images/resolve-secret-manager.png" alt="aws secret manager version id" />
+
+아래와 같이 version id를 명시적으로 정의하지 않으면 AWSCURRENT가 default로 설정된다. 따라서 Secret의 value를 수정했으면, 최신의 수정된 version id가 자동으로 적용된다.
+
+```
+{{resolve:secretsmanager:secretName:SecretString:keyName}}
+```
 
 예를 들어서 Secret `secretName`의 `keyName` 값을 변경하고, SAM Template을 적용하면 Lambda의 Environment Variable이 변경된 값으로 반영될 거라 기대를 했다. 그런데 Lambda가 Update 되었는데도, 변경된 Secret 값이 반영되지 않고 이전 값과 동일하게 유지되었다.
 
