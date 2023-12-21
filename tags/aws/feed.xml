@@ -5,18 +5,28 @@
       <link>https://jayground8.github.io/blog</link>
       <description>like playing in the playground</description>
       <language>kr</language>
-      <managingEditor>jayground8@gmail.com (Jaemyun Lee)</managingEditor>
-      <webMaster>jayground8@gmail.com (Jaemyun Lee)</webMaster>
-      <lastBuildDate>Thu, 28 Sep 2023 00:00:00 GMT</lastBuildDate>
+      <managingEditor>jayground8@gmail.com (Jay)</managingEditor>
+      <webMaster>jayground8@gmail.com (Jay)</webMaster>
+      <lastBuildDate>Sun, 17 Dec 2023 00:00:00 GMT</lastBuildDate>
       <atom:link href="https://jayground8.github.io/tags/aws/feed.xml" rel="self" type="application/rss+xml"/>
       
+  <item>
+    <guid>https://jayground8.github.io/blog/20231217-aws-sam-resolve-issue</guid>
+    <title>AWS SAM으로 배포한 Lambda의 환경변수가 변경된 Secret Manager 값으로 반영이 안되는 문제</title>
+    <link>https://jayground8.github.io/blog/20231217-aws-sam-resolve-issue</link>
+    <description>AWS Cloudformation에서 Secret Manager의 값을 참조하도록 할 수 있다. AWS SAM을 사용하여 배포된 Lambda의 환경변수가 Secret Manager의 값을 참조하는 경우가 있었다. 그런데 Secret manager의 값을 변경하여 다시 배포하여도 변경된 값이 Lambda 환경변수에 반영이 되지 않았다.🧐 AWS SAM의 리포에 관련된 Issue가 있었고, 제안한 해결방법을 적용하였다. 살짝 삽질을 했기 때문에 기록을 남겨 본다.🤪</description>
+    <pubDate>Sun, 17 Dec 2023 00:00:00 GMT</pubDate>
+    <author>jayground8@gmail.com (Jay)</author>
+    <category>AWS</category>
+  </item>
+
   <item>
     <guid>https://jayground8.github.io/blog/20230928-s3-data-transfer-out</guid>
     <title>S3에서 Internet으로 데이터 송신한 금액을 bucket별로 확인하기</title>
     <link>https://jayground8.github.io/blog/20230928-s3-data-transfer-out</link>
     <description>인터넷에서 S3의 file을 다운로드하면 데이터 전송 비용이 발생한다. 서울 리전 기준으로는 처음 월 10TB까지는 GB당 0.126USD 요금이 발생한다. 이렇게 발생한 금액을 S3 bucket별로 나눠서 볼려면 어떻게 해야 할까? AWS Cost and Usage Report 서비스를 사용하면 세부적인 사용내역을 얻을 수 있고, 그 데이터를 분석하면 bucket별로 인터넷 데이터 전송에 의해 발생한 금액을 산출할 수 있다.</description>
     <pubDate>Thu, 28 Sep 2023 00:00:00 GMT</pubDate>
-    <author>jayground8@gmail.com (Jaemyun Lee)</author>
+    <author>jayground8@gmail.com (Jay)</author>
     <category>aws</category>
   </item>
 

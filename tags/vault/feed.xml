@@ -1,0 +1,24 @@
+
+  <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+      <title>Jayground8</title>
+      <link>https://jayground8.github.io/blog</link>
+      <description>like playing in the playground</description>
+      <language>kr</language>
+      <managingEditor>jayground8@gmail.com (Jay)</managingEditor>
+      <webMaster>jayground8@gmail.com (Jay)</webMaster>
+      <lastBuildDate>Fri, 22 Dec 2023 00:00:00 GMT</lastBuildDate>
+      <atom:link href="https://jayground8.github.io/tags/vault/feed.xml" rel="self" type="application/rss+xml"/>
+      
+  <item>
+    <guid>https://jayground8.github.io/blog/20231222-vault-on-k8s</guid>
+    <title>vault secrets operator 사용해보기</title>
+    <link>https://jayground8.github.io/blog/20231222-vault-on-k8s</link>
+    <description>GitOps에서 Secret을 어떻게 관리할지 고민을 하였고, 개발자들의 인지부하를 줄이기 위해서 Vault UI로 자신의 앱의 비밀값을 관리하는 것이 제일 효율적이라는 판단을 했다. Vault secrets operator가 GA로 공유가 되었고, Secrets Store CSI나 External secrets 프로젝트보다 깔금한 방식이라는 생각이 들었다. Vault secrets operator의 CRD로 vault secret과 kubernetes secret의 sync를 맞추고, reloader로 secret이 변경되었을 때 다시 pod를 배포하는 것을 테스트해보았다.</description>
+    <pubDate>Fri, 22 Dec 2023 00:00:00 GMT</pubDate>
+    <author>jayground8@gmail.com (Jay)</author>
+    <category>Kubernetes</category><category>vault</category>
+  </item>
+
+    </channel>
+  </rss>

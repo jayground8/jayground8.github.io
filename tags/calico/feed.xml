@@ -5,8 +5,8 @@
       <link>https://jayground8.github.io/blog</link>
       <description>like playing in the playground</description>
       <language>kr</language>
-      <managingEditor>jayground8@gmail.com (Jaemyun Lee)</managingEditor>
-      <webMaster>jayground8@gmail.com (Jaemyun Lee)</webMaster>
+      <managingEditor>jayground8@gmail.com (Jay)</managingEditor>
+      <webMaster>jayground8@gmail.com (Jay)</webMaster>
       <lastBuildDate>Sat, 22 Jul 2023 00:00:00 GMT</lastBuildDate>
       <atom:link href="https://jayground8.github.io/tags/calico/feed.xml" rel="self" type="application/rss+xml"/>
       
@@ -16,7 +16,7 @@
     <link>https://jayground8.github.io/blog/20230722-calico-kube-controller</link>
     <description>Calico에서 어떻게 CRD를 활용하는지 이해하기 위해서 Calico Opensource 버전의 깃헙 소스코드를 살펴보게 되었다. Calico archiecture에서 kube-controller 부분이 어떤 역할을 하는지 소스 코드를 통해서 이해할 수 있게 되었다. kube-controller들은 kubernetes native resource에 대한 변경을 calico data store와 sync해주는 역할을 하고 있다. 내가 사용하는 Minikbue Kubernetes Cluster에서는 Calico의 data store는 kubernetes로 설정되어 있기 때문에, CRD로 Calico data들이 저장되고 Felix가 이것을 watch하여 변화에 대해서 network rule을 업데이트 하게 된다.</description>
     <pubDate>Sat, 22 Jul 2023 00:00:00 GMT</pubDate>
-    <author>jayground8@gmail.com (Jaemyun Lee)</author>
+    <author>jayground8@gmail.com (Jay)</author>
     <category>kubernetes</category><category>calico</category>
   </item>
 

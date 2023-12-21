@@ -113,11 +113,19 @@
   </url>
 
   <url>
-    <loc>https://jayground8.github.io/tags/aws</loc>
+    <loc>https://jayground8.github.io/blog/20231217-aws-sam-resolve-issue</loc>
+  </url>
+
+  <url>
+    <loc>https://jayground8.github.io/blog/20231222-vault-on-k8s</loc>
   </url>
 
   <url>
     <loc>https://jayground8.github.io/tags/argocd</loc>
+  </url>
+
+  <url>
+    <loc>https://jayground8.github.io/tags/aws</loc>
   </url>
 
   <url>
@@ -166,5 +174,9 @@
 
   <url>
     <loc>https://jayground8.github.io/tags/ubuntu</loc>
+  </url>
+
+  <url>
+    <loc>https://jayground8.github.io/tags/vault</loc>
   </url>
 </urlset>

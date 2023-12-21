@@ -5,8 +5,8 @@
       <link>https://jayground8.github.io/blog</link>
       <description>like playing in the playground</description>
       <language>kr</language>
-      <managingEditor>jayground8@gmail.com (Jaemyun Lee)</managingEditor>
-      <webMaster>jayground8@gmail.com (Jaemyun Lee)</webMaster>
+      <managingEditor>jayground8@gmail.com (Jay)</managingEditor>
+      <webMaster>jayground8@gmail.com (Jay)</webMaster>
       <lastBuildDate>Thu, 14 Dec 2023 00:00:00 GMT</lastBuildDate>
       <atom:link href="https://jayground8.github.io/tags/argocd/feed.xml" rel="self" type="application/rss+xml"/>
       
@@ -16,7 +16,7 @@
     <link>https://jayground8.github.io/blog/20231214-argocd-notification</link>
     <description>Argo CD Notification가 이미 있어서 쉽게 Slack 알림을 연동할 수 있다. 메뉴얼에서 친절하게 셋팅 방법을 설명하고 있지만, 처음 보고 셋팅할 때 놓칠 수 있는 부분을 기록으로 남긴다.</description>
     <pubDate>Thu, 14 Dec 2023 00:00:00 GMT</pubDate>
-    <author>jayground8@gmail.com (Jaemyun Lee)</author>
+    <author>jayground8@gmail.com (Jay)</author>
     <category>Kubernetes</category><category>ArgoCD</category>
   </item>
 

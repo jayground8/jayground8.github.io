@@ -5,8 +5,8 @@
       <link>https://jayground8.github.io/blog</link>
       <description>like playing in the playground</description>
       <language>kr</language>
-      <managingEditor>jayground8@gmail.com (Jaemyun Lee)</managingEditor>
-      <webMaster>jayground8@gmail.com (Jaemyun Lee)</webMaster>
+      <managingEditor>jayground8@gmail.com (Jay)</managingEditor>
+      <webMaster>jayground8@gmail.com (Jay)</webMaster>
       <lastBuildDate>Wed, 22 Nov 2023 00:00:00 GMT</lastBuildDate>
       <atom:link href="https://jayground8.github.io/tags/dns/feed.xml" rel="self" type="application/rss+xml"/>
       
@@ -16,7 +16,7 @@
     <link>https://jayground8.github.io/blog/20231122-cname-flattening</link>
     <description>CNAME flattening이 어떻게 작동하고, 왜 사용하게 되었는지 이해하게 되었다.</description>
     <pubDate>Wed, 22 Nov 2023 00:00:00 GMT</pubDate>
-    <author>jayground8@gmail.com (Jaemyun Lee)</author>
+    <author>jayground8@gmail.com (Jay)</author>
     <category>DNS</category>
   </item>
 
