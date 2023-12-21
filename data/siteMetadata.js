@@ -1,6 +1,6 @@
 const siteMetadata = {
   title: 'Jayground8',
-  author: 'Jaemyun Lee',
+  author: 'Jay',
   headerTitle: 'Jayground8',
   description: 'like playing in the playground',
   language: 'kr',
@@ -12,7 +12,6 @@ const siteMetadata = {
   socialBanner: 'social-banner.png',
   email: 'jayground8@gmail.com',
   github: 'https://github.com/jayground8',
-  linkedin: 'https://kr.linkedin.com/in/jaemyun-lee-165697130?trk=people-guest_people_search-card',
   locale: 'ko-kr',
   wordcloud: 'wordcloud.png',
   analytics: {
