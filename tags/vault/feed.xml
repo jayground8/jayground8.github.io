@@ -17,7 +17,7 @@
     <description>Vault의 secret engine을 사용하여 네이버 클라우드의 임시 인증키를 발행하고 싶었다. 네이버클라우드는 AWS, Azure처럼 builtin plugin으로 제공하지 않는다. 하지만 custom secret engine을 vault framework SDK를 통해서 쉽게 만들 수 있다. 네이버 클라우드에서 STS API를 제공하기 때문에, custom secret engine을 통해서 임시 인증키를 발행하는 것을 테스트 해보게 되었다. 처음에 구조를 이해하는데 좀 시간이 걸렸지만, Vault Tutorial에서 친절하게 설명하고 있어서 비교적 쉽게 만들 수 있었다.</description>
     <pubDate>Thu, 28 Dec 2023 00:00:00 GMT</pubDate>
     <author>jayground8@gmail.com (Jay)</author>
-    <category>vault</category>
+    <category>vault</category><category>ncloud</category>
   </item>
 
   <item>
