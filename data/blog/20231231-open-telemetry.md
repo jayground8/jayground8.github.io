@@ -335,6 +335,21 @@ kubectl apply -f k8s/my-python-app/deployment.yml
 kubectl apply -f k8s/my-python-app/service.yml
 ```
 
+### 서비스간의 통신
+
+client -> nodejs app -> python app으로 호출하는 것을 실행해본다.
+
+nodejs app Service에 Port Fowarding을 하고 `/something`에 요청하면 nodejs app이 python app 요청하여 받아온 응답값을 전달하게 된다.
+
+```bash
+kubectl port-forward svc/my-node-app-svc 3000:3000
+curl localhost:3000/something
+```
+
+tempo에서 아래와 같이 확인 할 수 있다.
+
+<img src="/static/images/otel-trace-for-inter-service-communication.png" alt="trace for inter service communication" />
+
 ## 결론
 
 많은 OpenSource Contributor들 덕분에 Tracing과 Logging을 쉽게 구성할 수 있었다. Loki에서 Regex로 Trace ID를 추출하고, 그것을 Tempo에서 바로 볼 수 있도록 링크를 달아줄 수 있는 것은 너무나 좋았다. 그리고 OpenTelemetry Collector를 사용하는 상황에서 FluentBit 때신에 Firelog receiver를 이용하는 것도 괜찮겠다는 생각이 들었다. 다양한 Instrumentation library도 체크해봐야겠다. 아직 Production Ready를 위해서는 Loki, Tempo, Open Collector의 가용성을 생각해서 배포도 다시 구성해야하고, 통신간에 TLS와 인증 부분도 추가해야 한다.
