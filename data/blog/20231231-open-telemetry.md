@@ -194,14 +194,6 @@ helm install opentelemetry-collector open-telemetry/opentelemetry-collector \
 Nestjs를 사용하고 잇는데, `@opentelemetry/instrumentation-nestjs-core`처럼 imstumentation library를 제공하고 있어서 사용할 수 있다.
 
 ```ts
-import { HttpInstrumentation } from '@opentelemetry/instrumentation-http'
-import { ExpressInstrumentation } from '@opentelemetry/instrumentation-express'
-import { NestInstrumentation } from '@opentelemetry/instrumentation-nestjs-core'
-```
-
-🧐 `@opentelemetry/instrumentation-winston`에서 log를 남길 때, trace_id를 넣어 줄거라 기대했는데 남지 않아서 확인 필요하다.
-
-```ts
 import { NodeSDK } from '@opentelemetry/sdk-node'
 import { OTLPTraceExporter } from '@opentelemetry/exporter-trace-otlp-http'
 import { HttpInstrumentation } from '@opentelemetry/instrumentation-http'
@@ -236,6 +228,48 @@ process.on('SIGTERM', () => {
     )
     .finally(() => process.exit(0))
 })
+```
+
+[Github에 winston instrumentation libary가 Nestjs에서 의도한대로 작동하지 않는 것에 대한 이슈](https://github.com/open-telemetry/opentelemetry-js-contrib/issues/1745)가 존재하였고, 여기서 추천하는 방식으로 해결을 하게 되었다. Nestjs application을 bootstrap하는 로직에서 WinstonModule로 logger를 설정할 때, printf라는 함수에서 직접 trace정보를 가져와서 주입해주는 방식을 사용했다.
+
+`main.ts`
+
+```js
+import { trace } from '@opentelemetry/api'
+
+async function bootstrap() {
+  otelSDK.start()
+  const app = await NestFactory.create(AppModule, {
+    logger: WinstonModule.createLogger({
+      transports: [
+        new winston.transports.Console({
+          format: winston.format.combine(
+            winston.format.timestamp(),
+            winston.format.ms(),
+            // winston instrumentation library doesn't work in Nestjs.
+            // https://github.com/open-telemetry/opentelemetry-js-contrib/issues/1745
+            // followed the idea from the issue to fix the problem.
+            winston.format.printf((info) => {
+              const activeSpan = trace.getActiveSpan()
+              const metaData: { span_id?: string, trace_id?: string } = {}
+              if (activeSpan) {
+                metaData.span_id = activeSpan.spanContext().spanId
+                metaData.trace_id = activeSpan.spanContext().traceId
+              }
+              return `[${info.level.toUpperCase()}] [trace_id=${metaData.trace_id} span_id=${
+                metaData.span_id
+              }] ${info.message} ${JSON.stringify({
+                ...info,
+              })}`
+            })
+          ),
+        }),
+      ],
+    }),
+  })
+  await app.listen(3000)
+}
+bootstrap()
 ```
 
 Docker로 build한 Image를 minikube 명령어를 사용해서 cluster에 load한다.
