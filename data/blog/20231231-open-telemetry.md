@@ -499,7 +499,7 @@ export const otelSDK = new NodeSDK({
 
 <img src="/static/images/otel-trace-to-log.png" alt="log query relating to traceId" />
 
-`Sample query`를 클릭하면 마찬가지로 설정에서 정의한 `"sum(rate(http_server_duration_milliseconds_bucket{$$__tags}[5m]))"`로 쿼리해서 보여주게 된다.
+`Sample query`를 클릭하면 마찬가지로 설정에서 정의한 쿼리로 보여주게 된다.
 
 <img src="/static/images/otel-trace-to-metric.png" alt="metric query" />
 
