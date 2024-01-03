@@ -384,6 +384,144 @@ tempo에서 아래와 같이 확인 할 수 있다.
 
 <img src="/static/images/otel-trace-for-inter-service-communication.png" alt="trace for inter service communication" />
 
+## Metric
+
+Metric을 수집하는 방법은 아래와 같이 생각해볼 수 있다.
+
+1. `@opentelemetry/exporter-prometheus`로 Prometheus에서 Pull 방식으로 수집
+
+```js
+export const otelSDK = new NodeSDK({
+  metricReader: new PrometheusExporter({
+    port: 9464,
+  }),
+})
+```
+
+2. OpenTelemetry collector가 receiver로 받아서 prometheus exporter로 Pull 방식으로 수집
+
+```js
+export const otelSDK = new NodeSDK({
+  metricReader: new PeriodicExportingMetricReader({
+    exporter: new OTLPMetricExporter({
+      url: `http://${process.env.NODE_IP}:4318/v1/metrics`,
+    }),
+  }),
+})
+```
+
+3. Prometheus의 OLTP protocol로 바로 받을 수 있는 endpoint로 Push 방식으로 수집
+
+3번째 방법은 올해 여름 [Prometheus에서 바로 OLTP protocol로 받을 수 있는 endpoint를 추가](https://horovits.medium.com/prometheus-now-supports-opentelemetry-metrics-83f85878e46a)가 되어서 사용할 수 있다. 현재 Experimental feature로 제공되고 있다. 이 기능을 사용하기 위해서 아래처럼 `otlp-write-receiver`를 enable하도록 설정해준다.
+
+`values.yml`
+
+```yaml
+server:
+  extraFlags:
+    - enable-feature=otlp-write-receiver
+```
+
+```bash
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+helm install prometheus prometheus-community/prometheus --values helm/prometheus/values.yml
+```
+
+prometheus-server의 로그를 확인하면 아래처럼 해당 feature가 enable되었다는 log를 확인 할 수 있다.
+
+```log
+ts=2024-01-03T01:41:21.711Z caller=main.go:175 level=info msg="Experimental OTLP write receiver enabled"
+```
+
+이제 `OTLPMetricExporter`를 사용하고, url를 promethues 서버로 설정할 수 있다. URL 설정이 좀 헛갈렸는데, otlp의 path를 따라서 `/api/v1/otlp/v1/metrics`로 지정하면 된다. [Github issue에서 해당 feature를 사용하는 Python 예제를 작성하는 것](https://github.com/prometheus/docs/pull/2382)이 있어서 참고할 수 있었다.
+
+```js
+export const otelSDK = new NodeSDK({
+  serviceName: `api-node`,
+  metricReader: new PeriodicExportingMetricReader({
+    exporter: new OTLPMetricExporter({
+      url: `http://prometheus-server/api/v1/otlp/v1/metrics`,
+    }),
+  }),
+  traceExporter: new OTLPTraceExporter({
+    url: `http://${process.env.NODE_IP}:4318/v1/traces`,
+  }),
+  instrumentations: [
+    new HttpInstrumentation(),
+    new ExpressInstrumentation(),
+    new NestInstrumentation(),
+    new WinstonInstrumentation(),
+  ],
+})
+```
+
+이제 정상적으로 Metric이 Prometheus에 수집되고, Grafana로 확인할 수 있다.
+
+위에서 Grafana values.yml에 Tempo를 추가하였는데, `traceToLogsV2`와 `traceToMetrics` 설정을 이용하면 추가적으로 Trace에서 설정된 페이지로 이동할 수가 있다.
+
+```yaml
+- name: Tempo
+  type: tempo
+  access: proxy
+  orgId: 1
+  url: http://tempo:3100
+  basicAuth: false
+  isDefault: false
+  version: 1
+  editable: false
+  apiVersion: 1
+  uid: tempo
+  jsonData:
+    tracesToLogsV2:
+      datasourceUid: 'Loki'
+      spanStartTimeShift: '1h'
+      spanEndTimeShift: '-1h'
+      tags: [{ key: 'service.name', value: 'container' }]
+      filterByTraceID: false
+      filterBySpanID: false
+      customQuery: true
+      query: '{$${__tags}} |="$${__span.traceId}"'
+    tracesToMetrics:
+      datasourceUid: 'Prometheus'
+      spanStartTimeShift: '1h'
+      spanEndTimeShift: '-1h'
+      tags: [{ key: 'service.name', value: 'job' }]
+      queries:
+        - name: 'Sample query'
+          query: 'sum(rate(http_server_duration_milliseconds_bucket{$$__tags}[5m]))'
+```
+
+아래 그림처럼 Tempo Trace정보에서 `related log`와 `Sample query`라는 메뉴를 펼쳐 볼수가 있게 된다.
+
+<img src="/static/images/otel-trace-log-and-metric.png" alt="link to move log page and trace page" />
+
+`related log`를 클릭하면 아래와 같이 설정에서 정의한 `'{$${__tags}} |="$${__span.traceId}"'` 형식대로 바로 쿼리해서 보여주게 된다.
+
+<img src="/static/images/otel-trace-to-log.png" alt="log query relating to traceId" />
+
+`Sample query`를 클릭하면 마찬가지로 설정에서 정의한 `"sum(rate(http_server_duration_milliseconds_bucket{$$__tags}[5m]))"`로 쿼리해서 보여주게 된다.
+
+<img src="/static/images/otel-trace-to-metric.png" alt="metric query" />
+
+그리고 nodeGraph를 enable하여 아래처럼 어떻게 호출되고 있는지 Graph로 볼 수도 있다.
+
+```yaml
+- name: Tempo
+  # ...생략
+  nodeGraph:
+    enabled: true
+```
+
+<img src="/static/images/otel-node-graph.png" alt="node graph" />
+
+### 아직 개발되지 않은 기능들
+
+Node runtime의 metric을 Instrumentation library로 쉽게 받으면 좋겠다 싶어서 찾아봤지만, 아직 [Github issue에 요청](https://github.com/open-telemetry/opentelemetry-js-contrib/issues/1106)으로 남아 있는 상태이다.
+
+그리고 [Grafana에서 Exemplar](https://grafana.com/docs/grafana/latest/fundamentals/exemplars/)를 통해서 Metric과 관련된 Trace 정보를 바로 찾아 볼 수 있게 하고 싶었다. 하지만 이것도 [Github Issue에 요청되어 있는 상태로 남아 있다.](https://github.com/open-telemetry/opentelemetry-js/issues/2594)
+
+🤓 아직 이해도가 부족하지만 앞으로 오픈소스 프로젝트를 고민할 때 만들어보면 재미있을 것 같다.
+
 ## 결론
 
 많은 OpenSource Contributor들 덕분에 Tracing과 Logging을 쉽게 구성할 수 있었다. Loki에서 Regex로 Trace ID를 추출하고, 그것을 Tempo에서 바로 볼 수 있도록 링크를 달아줄 수 있는 것은 너무나 좋았다. 그리고 OpenTelemetry Collector를 사용하는 상황에서 FluentBit 때신에 Firelog receiver를 이용하는 것도 괜찮겠다는 생각이 들었다. 다양한 Instrumentation library도 체크해봐야겠다. 아직 Production Ready를 위해서는 Loki, Tempo, Open Collector의 가용성을 생각해서 배포도 다시 구성해야하고, 통신간에 TLS와 인증 부분도 추가해야 한다.
