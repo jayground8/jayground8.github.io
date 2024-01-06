@@ -516,7 +516,49 @@ export const otelSDK = new NodeSDK({
 
 ### 아직 개발되지 않은 기능들
 
-Node runtime의 metric을 Instrumentation library로 쉽게 받으면 좋겠다 싶어서 찾아봤지만, 아직 [Github issue에 요청](https://github.com/open-telemetry/opentelemetry-js-contrib/issues/1106)으로 남아 있는 상태이다.
+Node runtime의 metric을 Instrumentation library로 쉽게 받으면 좋겠다 싶어서 찾아봤지만, 아직 [Github issue에 요청](https://github.com/open-telemetry/opentelemetry-js-contrib/issues/1106)으로 남아 있는 상태이다. 대안으로 [prom-client](https://github.com/siimon/prom-client) defaultMetric을 수집하도록 하여 별도록 Prometheus 포멧으로 따로 가져올 수 있겠다. Nodejs eventloop lag이나 GC관련 metric을 default로 쉽게 가져올 수 있다. 아래처럼 Nestjs에 추가하고, Prometheus scrape config로 PULL 방식으로 가져오도록 할 수 있겠다.
+
+`service.ts`
+
+```js
+import { Injectable, OnModuleInit } from '@nestjs/common';
+import * as client from 'prom-client';
+
+@Injectable()
+export class PrometheusService implements OnModuleInit {
+  private register: client.Registry;
+
+  onModuleInit() {
+    const defaultLabels = { service: 'node-api' };
+    const collectDefaultMetric = client.collectDefaultMetrics;
+    const Registry = client.Registry;
+    const register = new Registry();
+    register.setDefaultLabels(defaultLabels);
+    collectDefaultMetric({ register });
+    this.register = register;
+  }
+
+  getRegister() {
+    return this.register;
+  }
+}
+```
+
+`controller.ts`
+
+```js
+@Controller('prometheus')
+export class PrometheusController {
+  constructor(private readonly prometheusService: PrometheusService) {}
+
+  @Get('metrics')
+  getMetrics(@Res() res: Response) {
+    const register = this.prometheusService.getRegister();
+    res.setHeader('Content-Type', register.contentType);
+    register.metrics().then((data) => res.status(200).send(data));
+  }
+}
+```
 
 그리고 [Grafana에서 Exemplar](https://grafana.com/docs/grafana/latest/fundamentals/exemplars/)를 통해서 Metric과 관련된 Trace 정보를 바로 찾아 볼 수 있게 하고 싶었다. 하지만 이것도 [Github Issue에 요청되어 있는 상태로 남아 있다.](https://github.com/open-telemetry/opentelemetry-js/issues/2594)
 
