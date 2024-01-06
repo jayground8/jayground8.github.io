@@ -7,9 +7,19 @@
       <language>kr</language>
       <managingEditor>jayground8@gmail.com (Jay)</managingEditor>
       <webMaster>jayground8@gmail.com (Jay)</webMaster>
-      <lastBuildDate>Sun, 31 Dec 2023 00:00:00 GMT</lastBuildDate>
+      <lastBuildDate>Sat, 06 Jan 2024 00:00:00 GMT</lastBuildDate>
       <atom:link href="https://jayground8.github.io/feed.xml" rel="self" type="application/rss+xml"/>
       
+  <item>
+    <guid>https://jayground8.github.io/blog/20240106-gptcache</guid>
+    <title>GPTCache</title>
+    <link>https://jayground8.github.io/blog/20240106-gptcache</link>
+    
+    <pubDate>Sat, 06 Jan 2024 00:00:00 GMT</pubDate>
+    <author>jayground8@gmail.com (Jay)</author>
+    <category>GPTCache</category><category>ai</category>
+  </item>
+
   <item>
     <guid>https://jayground8.github.io/blog/20231231-open-telemetry</guid>
     <title>OpenTelemetry with Minikube</title>

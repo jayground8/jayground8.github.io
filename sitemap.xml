@@ -129,11 +129,19 @@
   </url>
 
   <url>
-    <loc>https://jayground8.github.io/tags/aws</loc>
+    <loc>https://jayground8.github.io/blog/20240106-gptcache</loc>
   </url>
 
   <url>
     <loc>https://jayground8.github.io/tags/argocd</loc>
+  </url>
+
+  <url>
+    <loc>https://jayground8.github.io/tags/ai</loc>
+  </url>
+
+  <url>
+    <loc>https://jayground8.github.io/tags/aws</loc>
   </url>
 
   <url>
@@ -146,6 +154,10 @@
 
   <url>
     <loc>https://jayground8.github.io/tags/dns</loc>
+  </url>
+
+  <url>
+    <loc>https://jayground8.github.io/tags/gptcache</loc>
   </url>
 
   <url>
