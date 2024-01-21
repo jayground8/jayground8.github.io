@@ -7,9 +7,19 @@
       <language>kr</language>
       <managingEditor>jayground8@gmail.com (Jay)</managingEditor>
       <webMaster>jayground8@gmail.com (Jay)</webMaster>
-      <lastBuildDate>Sat, 06 Jan 2024 00:00:00 GMT</lastBuildDate>
+      <lastBuildDate>Sun, 21 Jan 2024 00:00:00 GMT</lastBuildDate>
       <atom:link href="https://jayground8.github.io/feed.xml" rel="self" type="application/rss+xml"/>
       
+  <item>
+    <guid>https://jayground8.github.io/blog/20240121-book-review-hidden-potential</guid>
+    <title>Adam Grant의 책 Hidden Potential을 읽고</title>
+    <link>https://jayground8.github.io/blog/20240121-book-review-hidden-potential</link>
+    <description>내가 좋아하는 저자 Adam Grant의 새 책이 나와서 읽게 되었다. 성장 마인드셋을 믿지만, 성장이 정체되고 있다라는 불안감에 있는 나에게 큰 용기를 주는 책이었다. 다시 한번 나의 목표에 도달하기 위해서 내가 할 수 있는 시도들을 생각해보고, 조금씩이라도 어제보다 더 나아지는 오늘에 집중하자고 다짐했다. 지금까지 나의 성장들이 가파르게 우상향 한 것은 아니였다. 때로는 역석장 하는 것 같아서 불안하고 좌절했다. 하지만 전체 과정에서 컴포트 존을 나와 계속 도전을 해온 점과 성장하기 위해서 포기하지 않고 계속 노력해 온 점에 대해서 스스로 칭찬해주었다. 그리고 이 책을 통해서 아들의 성장과정에서 어떠한 것을 중요하게 생각하고 가르쳐줘야할지 고민해볼 수 있었다. 주도적으로 계속해서 배울 수 있는 힘을 배우고, 그 과정에서 재미도 느낄 수 있었으면 좋겠다</description>
+    <pubDate>Sun, 21 Jan 2024 00:00:00 GMT</pubDate>
+    <author>jayground8@gmail.com (Jay)</author>
+    <category>Book</category>
+  </item>
+
   <item>
     <guid>https://jayground8.github.io/blog/20240106-gptcache</guid>
     <title>GPTCache</title>
