@@ -1,5 +1,5 @@
 ---
-title: 'Cert Manager Webhook 작성하여 Naver Cloud에서 DNS-01 challeng로 Let's Encrypt 인증서 발급하기'
+title: 'Cert Manager Webhook 작성하여 Naver Cloud에서 DNS-01 challeng로 Lets Encrypt 인증서 발급하기'
 date: '2024-01-24'
 tags: ['kubernetes', 'ncloud']
 images: ['/static/images/social-banner.png']
