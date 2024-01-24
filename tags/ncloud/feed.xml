@@ -7,9 +7,19 @@
       <language>kr</language>
       <managingEditor>jayground8@gmail.com (Jay)</managingEditor>
       <webMaster>jayground8@gmail.com (Jay)</webMaster>
-      <lastBuildDate>Thu, 28 Dec 2023 00:00:00 GMT</lastBuildDate>
+      <lastBuildDate>Wed, 24 Jan 2024 00:00:00 GMT</lastBuildDate>
       <atom:link href="https://jayground8.github.io/tags/ncloud/feed.xml" rel="self" type="application/rss+xml"/>
       
+  <item>
+    <guid>https://jayground8.github.io/blog/20240124-cert-manager-webhook</guid>
+    <title>Cert Manager Webhook 작성하여 Naver Cloud에서 DNS-01 challeng로 Lets Encrypt 인증서 발급하기</title>
+    <link>https://jayground8.github.io/blog/20240124-cert-manager-webhook</link>
+    <description>Cert Manager의 DNS provider 목록에 Naver Cloud DNS는 없었다. 하지만 Cert Manager에서 새로운 DNS provider를 직접 연결해서 사용할 수 있도록 webhook solver라는 것을 제공한다. 따라서 Naver Cloud API를 사용하여 webhook 코드를 작성하고, Github Action을 통해서 Image와 Helm chart를 배포해서 사용했다. Cert Manager에서 Boilerplate code와 test framework를 제공하여 비교적 쉽게 작성해서 사용할 수 있었다.</description>
+    <pubDate>Wed, 24 Jan 2024 00:00:00 GMT</pubDate>
+    <author>jayground8@gmail.com (Jay)</author>
+    <category>kubernetes</category><category>ncloud</category>
+  </item>
+
   <item>
     <guid>https://jayground8.github.io/blog/20231228-vault-custom-secret-engine</guid>
     <title>Vault custom secret engine 작성해보기</title>
