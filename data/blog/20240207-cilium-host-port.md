@@ -76,7 +76,7 @@ spec:
 
 Cilium을 CNI로 사용할 때 Linux Kernel의 버전에 따라서 Iptable를 이용하는 kube-proxy를 대체할 수 있는 부분이 있고, 없는 부분이 있다. [문서](https://docs.cilium.io/en/stable/operations/system_requirements/#required-kernel-versions-for-advanced-features)를 보면 아래와 같이 설명이 되어 있다. `BPF-based host routing`을 기능을 사용하기 위해서는 Kernel 버전이 최소 `5.19` 이상이어야 하는 것을 알 수 있다.
 
-<img src="/static/images/cilium-required-kernel-version" alt="cilium required kernel version" />
+<img src="/static/images/cilium-required-kernel-version.png" alt="cilium required kernel version" />
 
 Helm chart로 Cilium을 설치하면 `cilium-config`가 ConfigMap object로 생성되는데, [ConfigMap의 값으로 Cilium의 설정이 결정된다.](https://github.com/cilium/cilium/blob/v1.10.16/install/kubernetes/cilium/templates/cilium-configmap.yaml). [Cilium eBPF kube-proxy가 HostPort도 대체할 수 있는데,](https://docs.cilium.io/en/stable/network/kubernetes/kubeproxy-free/#container-hostport-support) HostPort와 관련된 설정값은 아래와 같다.
 
