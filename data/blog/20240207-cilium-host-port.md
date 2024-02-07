@@ -122,7 +122,9 @@ KubeProxyReplacement Details:
 그래서 `cilium agent`의 log을 확인해보니 아래와 같이 남아 있었다. HostPort를 eBPF로 대체하기 위한 시스템 requirement가 맞지 않으면 자동으로 기존 kube-proxy를 사용하도록 설정이 된다. 위에서 설명한 것처럼 Linux Kernel 버전이 낮아서 `cilium-config`로 HostPort를 Cilium의 eBPF로 대체하려고 설정해도 자동으로 disable 되었던 것이다.
 
 ```bash
-level=info msg="Auto-disabling \"enable-node-port\", \"enable-external-ips\", \"enable-host-reachable-services\", \"enable-host-port\", \"enable-session-affinity\" features and falling back to \"enable-host-legacy-routing\"" subsys=daemon
+level=info
+msg="Auto-disabling \"enable-node-port\", \"enable-external-ips\", \"enable-host-reachable-services\", \"enable-host-port\", \"enable-session-affinity\" features and falling back to \"enable-host-legacy-routing\""
+subsys=daemon
 ```
 
 ## HostPort with portmap plugin
@@ -187,7 +189,9 @@ spec:
 이번에는 아래와 같이 cni plugin `portmap` binary 파일이 없어서 Pod가 정상적으로 실행되지 못 했다.
 
 ```log
-error killing pod: failed to "KillPodSandbox" for "1055faa0-7449-49ba-9e25-b6e46de342b1" with KillPodSandboxError: "rpc error: code = Unknown desc = failed to destroy network for sandbox \"79eade222dddaff28fcb79d001a47e581acfc501fe4b1c220c9f99b1415cfae3\": plugin type=\"portmap\" failed (delete): failed to find plugin \"portmap\" in path [/opt/cni/bin]"
+error killing pod: failed to "KillPodSandbox" for "1055faa0-7449-49ba-9e25-b6e46de342b1" with KillPodSandboxError:
+"rpc error: code = Unknown desc = failed to destroy network for sandbox \"79eade222dddaff28fcb79d001a47e581acfc501fe4b1c220c9f99b1415cfae3\":
+plugin type=\"portmap\" failed (delete): failed to find plugin \"portmap\" in path [/opt/cni/bin]"
 ```
 
 Worker Node에 들어가서 cni plugin binary를 확인하니 아래처럼 두 개만 존재하였다.
