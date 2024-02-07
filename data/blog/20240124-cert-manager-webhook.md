@@ -865,6 +865,8 @@ jobs:
 
 ## Kubernetes에서 사용
 
+먼저 Kubernetes Worker Node에 Server Role를 연결하여 DNS service에 Record를 등록/삭제할 수 있는 권한을 부여한다.
+
 이제 Helm Chart가 정상적으로 Publish되었기 때문에 아래처럼 Helm chart를 등록할 수 있다.
 
 ```bash
