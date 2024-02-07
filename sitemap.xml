@@ -141,6 +141,10 @@
   </url>
 
   <url>
+    <loc>https://jayground8.github.io/blog/20240207-cilium-host-port</loc>
+  </url>
+
+  <url>
     <loc>https://jayground8.github.io/tags/argocd</loc>
   </url>
 
@@ -158,6 +162,10 @@
 
   <url>
     <loc>https://jayground8.github.io/tags/calico</loc>
+  </url>
+
+  <url>
+    <loc>https://jayground8.github.io/tags/cilium</loc>
   </url>
 
   <url>
