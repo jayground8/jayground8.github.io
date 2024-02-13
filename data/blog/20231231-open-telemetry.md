@@ -564,6 +564,260 @@ export class PrometheusController {
 
 🤓 아직 이해도가 부족하지만 앞으로 오픈소스 프로젝트를 고민할 때 만들어보면 재미있을 것 같다.
 
+### Update된 기능
+
+작성할 당시에 grafana Helm chart 버전 7.0.19을 사용했고, 해당 Chart로 Grafana `10.2.2`가 설치가 되었다. Loki에서 trace_id가 있는 경우에 바로 Tempo로 이동할 수 있는 버튼을 보여주기 위해서 datasource 설정을 아래와 같이 작성하였다.
+
+```yaml
+datasources:
+  - name: Loki
+    type: loki
+    access: proxy
+    url: http://loki:3100
+    basicAuth: false
+    jsonData:
+      maxLines: 1000
+      derivedFields:
+        - datasourceName: Tempo
+          datasourceUid: tempo
+          matcherRegex: trace_id=(\w+)
+          name: traceID
+          url: $${__value.raw}
+```
+
+그리고 regex로 `trace_id=(\w+)`을 추출하기 위해서 application에서 로그를 남길 때 해당 format으로 아래처럼 남기도록 했었다.
+
+```js
+import { trace } from '@opentelemetry/api'
+
+async function bootstrap() {
+  otelSDK.start()
+  const app = await NestFactory.create(AppModule, {
+    logger: WinstonModule.createLogger({
+      transports: [
+        new winston.transports.Console({
+          format: winston.format.combine(
+            winston.format.timestamp(),
+            winston.format.ms(),
+            // winston instrumentation library doesn't work in Nestjs.
+            // https://github.com/open-telemetry/opentelemetry-js-contrib/issues/1745
+            // followed the idea from the issue to fix the problem.
+            winston.format.printf((info) => {
+              const activeSpan = trace.getActiveSpan()
+              const metaData: { span_id?: string, trace_id?: string } = {}
+              if (activeSpan) {
+                metaData.span_id = activeSpan.spanContext().spanId
+                metaData.trace_id = activeSpan.spanContext().traceId
+              }
+              return `[${info.level.toUpperCase()}] [trace_id=${metaData.trace_id} span_id=${
+                metaData.span_id
+              }] ${info.message} ${JSON.stringify({
+                ...info,
+              })}`
+            })
+          ),
+        }),
+      ],
+    }),
+  })
+  await app.listen(3000)
+}
+bootstrap()
+```
+
+[Grafana 10.3.1에 Label에서 TraceID를 가져올 수 있는 기능이 추가된 Commit이 반영](https://github.com/grafana/grafana/commit/53758ad7642e9d3646bbad3698e55774bdf0623c)된 것을 확인하였다. [소스코드](https://github.com/grafana/grafana/blob/v10.3.1/public/app/plugins/datasource/loki/types.ts)를 확인하면 `matcherType`이라는 것이 추가된 것을 확인할 수 있다. 그래서 아래와 같이 `matcherType`을 `label`로 설정하고, `MatcherRegex`를 label key인 `traceID`로 정의하면 label에 있는 `traceID`로 보여줄 수 있다.
+
+```yaml
+derivedFields:
+  - datasourceName: Tempo
+    datasourceUid: tempo
+    name: traceID
+    matcherType: label
+    matcherRegex: traceID
+    url: $${__value.raw}
+```
+
+Application Code에서는 traceID, spanID를 JSON 형식으로 같이 남겼다.
+
+```js
+async function bootstrap() {
+  otelSDK.start()
+  const app = await NestFactory.create(AppModule, {
+    logger: WinstonModule.createLogger({
+      transports: [
+        new winston.transports.Console({
+          format: winston.format.combine(
+            winston.format.timestamp(),
+            winston.format.ms(),
+            // winston instrumentation library doesn't work in Nestjs.
+            // https://github.com/open-telemetry/opentelemetry-js-contrib/issues/1745
+            // followed the idea from the issue to fix the problem.
+            winston.format.printf((info) => {
+              const log = info
+              const activeSpan = trace.getActiveSpan()
+              if (activeSpan) {
+                log['spanID'] = activeSpan.spanContext().spanId
+                log['traceID'] = activeSpan.spanContext().traceId
+              }
+              return JSON.stringify(log)
+            })
+          ),
+        }),
+      ],
+    }),
+  })
+  await app.listen(3000)
+}
+bootstrap()
+```
+
+그리고 OpenTelemetry Collect Helm chart의 value에서 loki label을 아래와 같이 추가하도록 변경하였다. `operators` 마지막에 `jsonParser`를 통해서 Application이 남긴 JSON 형식의 string log값을 parsing한다. 이렇게 parsing된 JSON 값들은 attributes에 저장되는데, attributes processor를 통해서 loki label값으로 설정해주었다.
+
+```yaml
+config:
+  receivers:
+    jaeger: null
+    prometheus: null
+    zipkin: null
+    filelog:
+      exclude: []
+      include:
+        - /var/log/pods/dev_aidt-test*/*/*.log
+      include_file_name: false
+      include_file_path: true
+      operators:
+        - id: get-format
+          routes:
+            - expr: body matches "^\\{"
+              output: parser-docker
+            - expr: body matches "^[^ Z]+ "
+              output: parser-crio
+            - expr: body matches "^[^ Z]+Z"
+              output: parser-containerd
+          type: router
+        - id: parser-crio
+          regex: ^(?P<time>[^ Z]+) (?P<stream>stdout|stderr) (?P<logtag>[^ ]*) ?(?P<log>.*)$
+          timestamp:
+            layout: 2006-01-02T15:04:05.999999999Z07:00
+            layout_type: gotime
+            parse_from: attributes.time
+          type: regex_parser
+        - combine_field: attributes.log
+          combine_with: ''
+          id: crio-recombine
+          is_last_entry: attributes.logtag == 'F'
+          max_log_size: 102400
+          output: extract_metadata_from_filepath
+          source_identifier: attributes["log.file.path"]
+          type: recombine
+        - id: parser-containerd
+          regex: ^(?P<time>[^ ^Z]+Z) (?P<stream>stdout|stderr) (?P<logtag>[^ ]*) ?(?P<log>.*)$
+          timestamp:
+            layout: '%Y-%m-%dT%H:%M:%S.%LZ'
+            parse_from: attributes.time
+          type: regex_parser
+        - combine_field: attributes.log
+          combine_with: ''
+          id: containerd-recombine
+          is_last_entry: attributes.logtag == 'F'
+          max_log_size: 102400
+          output: extract_metadata_from_filepath
+          source_identifier: attributes["log.file.path"]
+          type: recombine
+        - id: parser-docker
+          output: extract_metadata_from_filepath
+          timestamp:
+            layout: '%Y-%m-%dT%H:%M:%S.%LZ'
+            parse_from: attributes.time
+          type: json_parser
+        - id: extract_metadata_from_filepath
+          parse_from: attributes["log.file.path"]
+          regex: ^.*\/(?P<namespace>[^_]+)_(?P<pod_name>[^_]+)_(?P<uid>[a-f0-9\-]+)\/(?P<container_name>[^\._]+)\/(?P<restart_count>\d+)\.log$
+          type: regex_parser
+        - from: attributes.stream
+          to: attributes["log.iostream"]
+          type: move
+        - from: attributes.container_name
+          to: resource["container"]
+          type: move
+        - from: attributes.namespace
+          to: resource["namespace"]
+          type: move
+        - from: attributes.pod_name
+          to: resource["pod"]
+          type: move
+        - from: attributes.log
+          to: body
+          type: move
+        - type: json_parser
+          if: 'body matches "^{.*}$"'
+      poll_interval: 5s
+      start_at: end
+  service:
+    telemetry:
+      logs:
+        level: debug
+    pipelines:
+      traces:
+        receivers:
+          - otlp
+        exporters:
+          - otlp
+      metrics:
+        receivers:
+          - otlp
+      logs:
+        receivers:
+          - filelog
+        processors:
+          - resource
+          - attributes
+        exporters:
+          - debug
+          - loki
+  processors:
+    attributes:
+      actions:
+        - action: insert
+          key: loki.attribute.labels
+          value: level, context, traceID
+    resource:
+      attributes:
+        - action: insert
+          key: loki.format
+          value: json
+        - action: insert
+          key: loki.resource.labels
+          value: pod, namespace, container
+  exporters:
+    loki:
+      endpoint: http://loki-gateway/loki/api/v1/push
+    otlp:
+      endpoint: tempo:4317
+      tls:
+        insecure: true
+    debug:
+      verbosity: detailed
+ports:
+  jaeger-compact:
+    enabled: false
+  jaeger-thrift:
+    enabled: false
+  jaeger-grpc:
+    enabled: false
+  zipkin:
+    enabled: false
+mode: daemonset
+presets:
+  logsCollection:
+    enabled: true
+    includeCollectorLogs: true
+```
+
+이제 Grafana Loki datasource의 설정값을 보면 아래와 같이 설정된 것을 확인할 수 있다. Regex는 항상 정확히 작성하는데 어려움이 있는데, Label을 통해서 가져오는 것이 실수를 방지하고 간단하게 Tempo link를 연결할 수 있다.
+
+<img src="/static/images/otel-datasource-new-version.png" alt="datasource derived fields on grafana" />
+
 ## 결론
 
 많은 OpenSource Contributor들 덕분에 Tracing과 Logging을 쉽게 구성할 수 있었다. Loki에서 Regex로 Trace ID를 추출하고, 그것을 Tempo에서 바로 볼 수 있도록 링크를 달아줄 수 있는 것은 너무나 좋았다. 그리고 OpenTelemetry Collector를 사용하는 상황에서 FluentBit 때신에 Firelog receiver를 이용하는 것도 괜찮겠다는 생각이 들었다. 다양한 Instrumentation library도 체크해봐야겠다. 아직 Production Ready를 위해서는 Loki, Tempo, Open Collector의 가용성을 생각해서 배포도 다시 구성해야하고, 통신간에 TLS와 인증 부분도 추가해야 한다.
