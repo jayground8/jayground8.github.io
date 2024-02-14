@@ -14,7 +14,7 @@
     <guid>https://jayground8.github.io/blog/20240207-cilium-host-port</guid>
     <title>Cilium CNI와 HostPort</title>
     <link>https://jayground8.github.io/blog/20240207-cilium-host-port</link>
-    <description>네이버 클라우드 쿠버네티스 서비스에서 HostPort를 설정하였는데, 정상적으로 Node Port를 통해서 Container에 접근할 수가 없었다. Cilium의 기본 설정으로는 HostPort를 지원하지 않았다. Cilium은 eBPF로 HostPort가 동작하도록 지원하는데, 이 기능을 사용하도록 Cilium 설정을 변경했다. 하지만 Worker Node의 커널 버전이 필수 버전보다 낮아서 이 기능을 사용할 수 없었다. 그래서 최종적으로 chainMode를 통해서 portmap CNI plugin을 사용하도록 설정을 하였다. 이번에는 portmap binary file이 Worker Node에 기본적으로 없어서 소스코드로 build해서 집어 넣었다. 최종적으로 Iptable Rule을 통해서 Port binding이 적용된 것을 확인하였다.</description>
+    <description>네이버 클라우드 쿠버네티스 서비스에서 HostPort를 설정하였는데, 정상적으로 Node Port를 통해서 Container에 접근할 수가 없었다. 처음에는 CNI plugin portmap을 설정하여 HostPort를 Iptables Rule로 적용하도록 하였다. 하지만 현재 운영하는 Kernel 버전이 kube proxy를 대체할 수 있는 것을 파악하였고, default로 설정된 KubeProxyReplacement=disabled을 KubeProxyReplacement=strict으로 설정하여 Cilium eBPF로 대체하여 사용하였다.</description>
     <pubDate>Wed, 07 Feb 2024 00:00:00 GMT</pubDate>
     <author>jayground8@gmail.com (Jay)</author>
     <category>kubernetes</category><category>cilium</category>
