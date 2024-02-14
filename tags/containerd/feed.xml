@@ -1,0 +1,24 @@
+
+  <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+      <title>Jayground8</title>
+      <link>https://jayground8.github.io/blog</link>
+      <description>like playing in the playground</description>
+      <language>kr</language>
+      <managingEditor>jayground8@gmail.com (Jay)</managingEditor>
+      <webMaster>jayground8@gmail.com (Jay)</webMaster>
+      <lastBuildDate>Wed, 14 Feb 2024 00:00:00 GMT</lastBuildDate>
+      <atom:link href="https://jayground8.github.io/tags/containerd/feed.xml" rel="self" type="application/rss+xml"/>
+      
+  <item>
+    <guid>https://jayground8.github.io/blog/20240214-containerd-LimitNOFILE</guid>
+    <title>containerd nofile default 설정값</title>
+    <link>https://jayground8.github.io/blog/20240214-containerd-LimitNOFILE</link>
+    <description>Kubernetes에서 pod가 실행될 때, 해당 process의 open file 갯수 limit이 어떻게 되는지 궁금하였다. Containerd가 systemd service로 동작하는 상황에서 systemd에서 LimitNOFILE이 inifinity로 설정되어 있는 것을 확인하였다. infinity가 Ubuntu systemd 240 버전 이상에서는 process에 최대로 할당할 수 있는 File 갯수인 fs.nr_open 값으로 설정된다. 실제로 test용 pod를 띄어서 containerd에 의해서 실행되는 process의 nofile limit이 LimitNOFILE에 설정된 값으로 동일하게 설정되는 것을 확인하였다.</description>
+    <pubDate>Wed, 14 Feb 2024 00:00:00 GMT</pubDate>
+    <author>jayground8@gmail.com (Jay)</author>
+    <category>kubernetes</category><category>containerd</category>
+  </item>
+
+    </channel>
+  </rss>
