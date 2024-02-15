@@ -1,0 +1,24 @@
+
+  <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+      <title>Jayground8</title>
+      <link>https://jayground8.github.io/blog</link>
+      <description>like playing in the playground</description>
+      <language>kr</language>
+      <managingEditor>jayground8@gmail.com (Jay)</managingEditor>
+      <webMaster>jayground8@gmail.com (Jay)</webMaster>
+      <lastBuildDate>Sun, 11 Feb 2024 00:00:00 GMT</lastBuildDate>
+      <atom:link href="https://jayground8.github.io/tags/tekton/feed.xml" rel="self" type="application/rss+xml"/>
+      
+  <item>
+    <guid>https://jayground8.github.io/blog/20240208-tekton-chain</guid>
+    <title>Tekton Chain</title>
+    <link>https://jayground8.github.io/blog/20240208-tekton-chain</link>
+    <description>Kubernetes에서 Tekton Chain을 통해서 어떻게 Software Supply Chain Security를 구성할 수 있는지 확인했다. Tekton Pipeline으로 git clone을 하고, container image를 build하고, 최종적으로 OCI registry에 push하도록 구성했다. 그리고 Tekton Chain이 어떻게 in-toto spec의 Attestation 정보를 남기는지 확인하였다.</description>
+    <pubDate>Sun, 11 Feb 2024 00:00:00 GMT</pubDate>
+    <author>jayground8@gmail.com (Jay)</author>
+    <category>kubernetes</category><category>tekton</category><category>devsecops</category>
+  </item>
+
+    </channel>
+  </rss>

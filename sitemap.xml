@@ -145,6 +145,10 @@
   </url>
 
   <url>
+    <loc>https://jayground8.github.io/blog/20240208-tekton-chain</loc>
+  </url>
+
+  <url>
     <loc>https://jayground8.github.io/blog/20240214-containerd-LimitNOFILE</loc>
   </url>
 
@@ -174,6 +178,10 @@
 
   <url>
     <loc>https://jayground8.github.io/tags/containerd</loc>
+  </url>
+
+  <url>
+    <loc>https://jayground8.github.io/tags/devsecops</loc>
   </url>
 
   <url>
@@ -218,6 +226,10 @@
 
   <url>
     <loc>https://jayground8.github.io/tags/self-evalutaion</loc>
+  </url>
+
+  <url>
+    <loc>https://jayground8.github.io/tags/tekton</loc>
   </url>
 
   <url>
