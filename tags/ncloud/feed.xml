@@ -7,9 +7,19 @@
       <language>kr</language>
       <managingEditor>jayground8@gmail.com (Jay)</managingEditor>
       <webMaster>jayground8@gmail.com (Jay)</webMaster>
-      <lastBuildDate>Wed, 24 Jan 2024 00:00:00 GMT</lastBuildDate>
+      <lastBuildDate>Sun, 24 Mar 2024 00:00:00 GMT</lastBuildDate>
       <atom:link href="https://jayground8.github.io/tags/ncloud/feed.xml" rel="self" type="application/rss+xml"/>
       
+  <item>
+    <guid>https://jayground8.github.io/blog/20240324-k8s-device-plugin</guid>
+    <title>k8s-device-plugin으로 NVIDIA GPU Multi-Process Service 사용하기</title>
+    <link>https://jayground8.github.io/blog/20240324-k8s-device-plugin</link>
+    <description>Kubernetes에서 k8s-device-plugin을 통해서 NVIDIA GPU 자원을 쉽게 사용할 수 있다. 하나의 어플리케이션에서 GPU 자원을 온전히 사용하지 못하고 낭비될 때, Time slicing, MPS, MIG 등을 사용하여 여러 프로세스가 GPU 자원을 공유하도록 설정할 수 있다. 네이버 공공 클라우드에서 Tesla T4와 Telsa V100을 제공한다. 해당 GPU 아키텍쳐가 MIG을 지원히지 않기 때문에, MPS를 적용하여 GPU 자원을 공유하는 것을 고려하였다. 최근에 release된 k8s-device-plugin v0.15.0-rc.1부터 MPS가 지원되기 시작되어 해당 버전으로 MPS를 설정해보았다.</description>
+    <pubDate>Sun, 24 Mar 2024 00:00:00 GMT</pubDate>
+    <author>jayground8@gmail.com (Jay)</author>
+    <category>kubernetes</category><category>ncloud</category>
+  </item>
+
   <item>
     <guid>https://jayground8.github.io/blog/20240124-cert-manager-webhook</guid>
     <title>Cert Manager Webhook 작성하여 Naver Cloud에서 DNS-01 challeng로 Lets Encrypt 인증서 발급하기</title>
