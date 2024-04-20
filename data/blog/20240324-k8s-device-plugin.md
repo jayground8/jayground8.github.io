@@ -103,3 +103,18 @@ Allocatable:
 
 해당 노드에 `nvida.com/gpu` resource request가 1인 Pod 하나만 스케쥴링이 될 수 있었는데, 이제 10으로 늘어나서 다수의 Pod를 해당 노드에서 실행할 수 있게 되었다.
 
+## 궁금증
+
+MPS를 통해서 GPU core 1을 10개로 나누면, 예를 들어서 하나의 Container는 8개로 요청하여 GPU 자원을 80%를 사용하고, 다른 하나는 2개로 요청하여 20%를 사용하도록 하고 싶었다. 하지만 [v0.15.0-rc.2 release note](https://github.com/NVIDIA/k8s-device-plugin/releases/tag/v0.15.0-rc.2)를 보면 아래와 같이 `failRequestsGreaterThanOne`가 `true`로 설정되어 있는 것을 확인할 수 있다. 그래서 1를 초과하여 요청할 수가 없다.
+
+> Explicitly set sharing.mps.failRequestsGreaterThanOne = true
+
+이제 MPS로 10개로 나눴을 때 GPU와 Memory 자원을 1/10만큼 사용할 수 있기 때문에, container가 1/10보다 더 사용하도록 설정할 수가 없다.
+
+> Furthermore, each of these resources -- either nvidia.com/gpu or nvidia.com/gpu.shared -- would have access to the same fraction (1/10) of the total memory and compute resources of the GPU.
+
+[이 글을 작성하는 시점으로 3일전에 v0.15.0이 release 되었는데,](https://github.com/NVIDIA/k8s-device-plugin/releases/tag/v0.15.0) 아래와 같은 내용이 설명되어 있다.
+
+> It is not possible to "combine" MPS GPU requests to allow for access to more memory by a single container.
+
+따라서 GPU 자원을 계속 사용하지 않아서 두 개의 Container가 GPU 자원을 공유하고, 가능하면 Full로 GPU 자원을 사용하고 싶다면, MPS 방법은 적합하지 않다. 이럴때는 Context switch가 문제가 되지 않는 범위에서 time slicing으로 자원을 공유해야 하는 것인가?🤔
