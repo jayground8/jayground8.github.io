@@ -7,9 +7,19 @@
       <language>kr</language>
       <managingEditor>jayground8@gmail.com (Jay)</managingEditor>
       <webMaster>jayground8@gmail.com (Jay)</webMaster>
-      <lastBuildDate>Sun, 24 Mar 2024 00:00:00 GMT</lastBuildDate>
+      <lastBuildDate>Sat, 20 Apr 2024 00:00:00 GMT</lastBuildDate>
       <atom:link href="https://jayground8.github.io/tags/ncloud/feed.xml" rel="self" type="application/rss+xml"/>
       
+  <item>
+    <guid>https://jayground8.github.io/blog/20240420-kubelet-imagegc</guid>
+    <title>Kubelet imageGC</title>
+    <link>https://jayground8.github.io/blog/20240420-kubelet-imagegc</link>
+    <description>사이즈가 큰 컨테이너 이미지를 내려받기 위해서 Containerd의 설정값 root을 새로운 스토리지를 추가한 경로로 수정하였다. Kubelet은 imageGCHighThresholdPercent로 설정된 임계치보다 disk 사용량이 많으면, 컨테이너 이미지를 정리하여 disk 공간을 확보하려고 한다. imageGCHighThresholdPercent이 기본값으로 85로 설정되어 있고, disk의 85 퍼센트 이상 사용했을 때 정리 프로세스가 실행된다. 문제는 Containerd root 경로의 volume이 거의 꽉 차더라도, 전체 volume의 사용량은 85 퍼센트가 되지 않을 수 있다는 것이다. Containerd root 경로의 volume에 여유가 없어서 새로 스케쥴된 Pod의 컨테이너 이미지를 내려 받지 못하는 문제가 발생할 수 있다. imageGCHighThresholdPercent 설정값을 조절하여 이 문제를 해결할 수 있다.</description>
+    <pubDate>Sat, 20 Apr 2024 00:00:00 GMT</pubDate>
+    <author>jayground8@gmail.com (Jay)</author>
+    <category>kubernetes</category><category>ncloud</category>
+  </item>
+
   <item>
     <guid>https://jayground8.github.io/blog/20240324-k8s-device-plugin</guid>
     <title>k8s-device-plugin으로 NVIDIA GPU Multi-Process Service 사용하기</title>
