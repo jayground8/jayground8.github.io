@@ -9,6 +9,7 @@ summary: 'Kubernetes에서 k8s-device-plugin을 통해서 NVIDIA GPU 자원을 �
 ## 네이버 공공 클라우드에서 사용할 수 있는 옵션
 
 NVIDIA GPU는 자원을 공유하기 위한 방법으로 아래와 같은 방법들을 제공한다.
+
 - Time slicing
 - Multi-Process Service
 - Multi-instance GPU
@@ -19,7 +20,6 @@ NVIDIA GPU는 자원을 공유하기 위한 방법으로 아래와 같은 방법
 
 Kubernetes에서 GPU를 kubelet이 인지하고 사용할 수 있도록, [NVIDIA에서 공식적으로 device plugin](https://www.youtube.com/watch?v=Q2GuTUO170w&t=922s)을 제공하고 있다. 그리고 Helm chart를 같이 제공한다. 따라서 Helm으로 `k8s-device-plugin`을 설치를 했다.
 
-
 ```bash
 helm repo add nvdp https://nvidia.github.io/k8s-device-plugin
 ```
@@ -27,16 +27,17 @@ helm repo add nvdp https://nvidia.github.io/k8s-device-plugin
 원하는 Worker node에 Daemonset이 실행될 수 있도록 `affinity`와 `tolerations` 설정을 추가하였다.
 
 `values.yml`
+
 ```yaml
 affinity:
   nodeAffinity:
     requiredDuringSchedulingIgnoredDuringExecution:
       nodeSelectorTerms:
         - matchExpressions:
-          - key: serverType
-            operator: In
-            values:
-              - gpu
+            - key: serverType
+              operator: In
+              values:
+                - gpu
 tolerations:
   - key: nvidia.com/gpu
     operator: Exists
@@ -46,13 +47,14 @@ tolerations:
 그리고 device plugin 설정파일에 MPS 설정을 추가하였다.
 
 `config.yaml`
+
 ```yaml
 version: v1
 sharing:
   mps:
     resources:
-    - name: nvidia.com/gpu
-      replicas: 10
+      - name: nvidia.com/gpu
+        replicas: 10
 ```
 
 NVIDIA의 k8s-device-plugin에서 `v0.15.0`부터 MPS를 지원하기 시작했다. 지금 이 글을 쓰는 시점에 `v0.15.0-rc.2`가 최신 버전이고, 아직 `rc` 환경으로 제공되고 있다. 따라서 Helm으로 설치를 할 때 아래와 같이 version flag를 통해서 0.15.0-rc.2를 설정해준다.
@@ -105,9 +107,7 @@ Allocatable:
 
 ## 궁금증
 
-MPS를 통해서 GPU core 1을 10개로 나누면, 예를 들어서 하나의 Container는 8개로 요청하여 GPU 자원을 80%를 사용하고, 다른 하나는 2개로 요청하여 20%를 사용하도록 하고 싶었다. 하지만 [v0.15.0-rc.2 release note](https://github.com/NVIDIA/k8s-device-plugin/releases/tag/v0.15.0-rc.2)를 보면 아래와 같이 `failRequestsGreaterThanOne`가 `true`로 설정되어 있는 것을 확인할 수 있다. 그래서 1를 초과하여 요청할 수가 없다.
-
-> Explicitly set sharing.mps.failRequestsGreaterThanOne = true
+MPS를 통해서 GPU core 1을 10개로 나누면, 예를 들어서 하나의 Container는 8개로 요청하여 GPU 자원을 80%를 사용하고, 다른 하나는 2개로 요청하여 20%를 사용하도록 하고 싶었다. 하지만 [v0.15.0-rc.2 release note](https://github.com/NVIDIA/k8s-device-plugin/releases/tag/v0.15.0-rc.2)를 보면 `failRequestsGreaterThanOne`가 `true`로 설정되어 있는 것을 확인할 수 있다. 그래서 1를 초과하여 요청할 수가 없다.
 
 이제 MPS로 10개로 나눴을 때 GPU와 Memory 자원을 1/10만큼 사용할 수 있기 때문에, container가 1/10보다 더 사용하도록 설정할 수가 없다.
 
