@@ -169,11 +169,15 @@
   </url>
 
   <url>
-    <loc>https://jayground8.github.io/tags/argocd</loc>
+    <loc>https://jayground8.github.io/blog/20240427-metastore-catalog-default</loc>
   </url>
 
   <url>
     <loc>https://jayground8.github.io/tags/ai</loc>
+  </url>
+
+  <url>
+    <loc>https://jayground8.github.io/tags/argocd</loc>
   </url>
 
   <url>
@@ -242,6 +246,10 @@
 
   <url>
     <loc>https://jayground8.github.io/tags/self-evalutaion</loc>
+  </url>
+
+  <url>
+    <loc>https://jayground8.github.io/tags/spark</loc>
   </url>
 
   <url>
