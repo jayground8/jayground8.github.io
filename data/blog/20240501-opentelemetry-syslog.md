@@ -296,13 +296,7 @@ presets:
 		includeCollectorLogs: true
 ```
 
-`syslog receiver`를 사용하기 위해서 `image.repository`를 `otel/opentelemetry-collector-contrib`로 설정하였다. 그리고 `listen_address`를 `localhost:54527`로 설정했는데, rsyslog가 host에서 해당 `54527` 포트로 접근할 수 있도록 `hostNetwork`를 사용하도록 설정하였다.
-
-netstat을 통해서 host에서 54527번 포트로 listening하는 것을 확인할 수 있다.
-
-```bash
-netstat -tulpn | grep LISTEN
-```
+`syslog receiver`를 사용하기 위해서 `image.repository`를 `otel/opentelemetry-collector-contrib`로 설정하였다. 그리고 `listen_address`를 `localhost:54527`로 설정했는데, rsyslog가 host에서 해당 `54527` 포트로 접근할 수 있도록 `hostNetwork`를 사용하도록 설정하였다. (hostNetwork사용하는 대신에 HostPort로 노출 시킬 수 있는 설정이 보이지 않음🧐)
 
 이제 [SigNoz의 문서에서 rsyslog 설정하는 방법](https://signoz.io/docs/userguide/collecting_syslogs/)에 나온 것처럼 rsyslog 설정을 아래와 같이 추가한다.
 
