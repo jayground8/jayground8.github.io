@@ -7,9 +7,19 @@
       <language>kr</language>
       <managingEditor>jayground8@gmail.com (Jay)</managingEditor>
       <webMaster>jayground8@gmail.com (Jay)</webMaster>
-      <lastBuildDate>Sun, 31 Dec 2023 00:00:00 GMT</lastBuildDate>
+      <lastBuildDate>Wed, 01 May 2024 00:00:00 GMT</lastBuildDate>
       <atom:link href="https://jayground8.github.io/tags/opentelemetry/feed.xml" rel="self" type="application/rss+xml"/>
       
+  <item>
+    <guid>https://jayground8.github.io/blog/20240501-opentelemetry-syslog</guid>
+    <title>OpenTelmetry로 auth.log와 syslog 수집하기</title>
+    <link>https://jayground8.github.io/blog/20240501-opentelemetry-syslog</link>
+    <description>Ubuntu 20.04 서버의 auth.log, syslog 로그 값들을 OpenTelemetry를 통해서 수집하고 싶었다. 처음에는 Filelog Receiver를 통해서 수집하려고 하였고, rsyslog의 설정값을 변경하여 Filelog로 수집하도록 구성했다. 그런데 이후에 Syslog Receiver가 존재하는 것을 확인하게 되었고, 훨씬 간단하게 syslog를 수집할 수 있었다.</description>
+    <pubDate>Wed, 01 May 2024 00:00:00 GMT</pubDate>
+    <author>jayground8@gmail.com (Jay)</author>
+    <category>kubernetes</category><category>opentelemetry</category><category>devsecops</category>
+  </item>
+
   <item>
     <guid>https://jayground8.github.io/blog/20231231-open-telemetry</guid>
     <title>OpenTelemetry with Minikube</title>
