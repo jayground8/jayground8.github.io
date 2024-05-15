@@ -6,7 +6,32 @@ images: ['/static/images/social-banner.png']
 summary: 'Argo CD Notification가 이미 있어서 쉽게 Slack 알림을 연동할 수 있다. 메뉴얼에서 친절하게 셋팅 방법을 설명하고 있지만, 처음 보고 셋팅할 때 놓칠 수 있는 부분을 기록으로 남긴다.'
 ---
 
-[argo CD notification](https://argocd-notifications.readthedocs.io/en/stable/)에서 친절하게 설명이 되어 있지만, 메뉴얼을 따라하면서 실수 할 수 있는 부분을 기록으로 남긴다.
+## 2024.05.15 Updated
+
+[Argo CD Notification](https://github.com/argoproj-labs/argocd-notifications?tab=readme-ov-file)프로젝트가 `ArgoCD`에 merge되었다. 따라서 ArgoCD를 설치하면 Notification Controller가 같이 실행된다. cli도 아같이 통합되었다. 따라서 template을 통해서 Slack message를 보낼 때, 아래와 같이 실행할 수 있다.
+
+```bash
+argocd admin notifications \
+template notify app-deployed-custom ${argocd_app_name} \
+--recipient slack:${channel_name}
+```
+
+[ArgoCD Image Updater](https://argocd-image-updater.readthedocs.io/en/stable/)를 통해서 Container Repository에 새로운 Image가 추가되었을 때, 자동으로 Argocd Application를 Sync하여 배포 할 수 있다. ArgoCD를 Kustomize와 `ArgoCD Image Updater`를 같이 사용할 때는 `ArgoCD CD Notification`의 trigger 기본 조건의 `revision` 값을 사용할 수 없다. `ArgoCD Image Updater`를 사용하면 `revision`은 유지되고, Kustomize로 Image만 변경된다.
+
+```yaml
+trigger.on-deployed: |
+  - description: Application is synced and healthy. Triggered once per commit.
+    oncePer: app.status.sync.revision
+    send:
+    - app-deployed-custom
+    when: app.status.operationState.phase in ['Succeeded'] and app.status.health.status == 'Healthy'
+```
+
+따라서 oncePer 조건을 아래와 같이 Kustomize의 값을 참조하여 작성할 수 있다. `ArgoCD Image Updater`가 업데이트하는 값을 참조하여 알림을 보내게 된다.
+
+```bash
+oncePer: app.status.operationState?.syncResult?.source?.kustomize?.images
+```
 
 ## Slack Permission
 
@@ -80,9 +105,9 @@ Slack에 오는 message의 내용과 format을 변경하고 싶으면, 아래와
 
 ```yaml
 template.app-deployed-custom: |
-  slack:
-    message: |
+  message: |
       {{if eq .app.metadata.name "sample"}}[test]{{end}}{{.app.metadata.name}} 정상적으로 배포가 완료되엇습니다.
+  slack:
     attachments: |
       [{
         "title": "{{ .app.metadata.name}}",
