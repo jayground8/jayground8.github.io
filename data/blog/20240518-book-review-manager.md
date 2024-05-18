@@ -67,9 +67,11 @@ If given enough time, is able to understand the technology. But seems a little s
 책에서 아래와 같은 예시가 나온다. 매니저가 된다면 우리의 팀이 `좋은 예`처럼 할 수 있도록 고민하자.
 
 나쁜 예
-A: "그쪽 팀은 X, Y, Z를 하세요"
+
+A: "그쪽 팀은 X, Y, Z를 하세요" \
 B: "네"
 
 좋은 예
-A: "지금 A, B, C가 문제에요"
+
+A: "지금 A, B, C가 문제에요" \
 B: "그럼 우리 팀은 X, Y, Z를 할게요"
