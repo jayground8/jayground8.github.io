@@ -7,9 +7,19 @@
       <language>kr</language>
       <managingEditor>jayground8@gmail.com (Jay)</managingEditor>
       <webMaster>jayground8@gmail.com (Jay)</webMaster>
-      <lastBuildDate>Sun, 05 May 2024 00:00:00 GMT</lastBuildDate>
+      <lastBuildDate>Sun, 19 May 2024 00:00:00 GMT</lastBuildDate>
       <atom:link href="https://jayground8.github.io/tags/devsecops/feed.xml" rel="self" type="application/rss+xml"/>
       
+  <item>
+    <guid>https://jayground8.github.io/blog/20240519-zap</guid>
+    <title>ZAP을 사용하여 동적 검사 해보기</title>
+    <link>https://jayground8.github.io/blog/20240519-zap</link>
+    <description>Google Oauth2를 프로덕션 단계로 사용할 때, Gmail 권한을 사용하려면 CASA(클라우드 어플리케이션 보안 평가)를 수행해야 한다. 관련 문서에서 동적 검사를 할 때,ZAP을 활용하는 방법을 설명하고 있다. 따라서 기본적인 ZAP 사용법을 확인하였다. Docker Container로 Sciprt를 실행하여 API 스캐닝을 해봤고, Automation Framework와 ZAP Desktop Application을 활용하여 React Router에 의해서 이동되는 페이지들을 크롤링하는 것을 테스트해봤다.</description>
+    <pubDate>Sun, 19 May 2024 00:00:00 GMT</pubDate>
+    <author>jayground8@gmail.com (Jay)</author>
+    <category>devsecops</category><category>zap</category>
+  </item>
+
   <item>
     <guid>https://jayground8.github.io/blog/20240505-falco</guid>
     <title>Falco를 활용하여 Terminal Shell 명령어 로그 수집하기</title>
