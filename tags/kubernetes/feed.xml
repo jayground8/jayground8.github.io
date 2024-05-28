@@ -7,9 +7,19 @@
       <language>kr</language>
       <managingEditor>jayground8@gmail.com (Jay)</managingEditor>
       <webMaster>jayground8@gmail.com (Jay)</webMaster>
-      <lastBuildDate>Sun, 05 May 2024 00:00:00 GMT</lastBuildDate>
+      <lastBuildDate>Sun, 26 May 2024 00:00:00 GMT</lastBuildDate>
       <atom:link href="https://jayground8.github.io/tags/kubernetes/feed.xml" rel="self" type="application/rss+xml"/>
       
+  <item>
+    <guid>https://jayground8.github.io/blog/20240526-otel-operator</guid>
+    <title>opentelemetry-operator 사용해보기</title>
+    <link>https://jayground8.github.io/blog/20240526-otel-operator</link>
+    <description>소스코드를 변경하지 않고 opentelemetry-operator의 Instrumentation CRD를 통해서 Python Application을 자동으로 Instrumentation을 해봤다. 이 과정에서 OpenTelemetry Logging의 경우에는 기존 Logging Libarary에 Bridge API로 연동하는 구조로 설계된 것을 알게 되었고, Python opentelemetry sdk가 logger에 handler를 추가하는 것을 알게 되었다. 또한 sitecustomize.py을 통해서 Python Application이 실행되기 전에 Instrumentation library를 셋팅하는 것을 이해하게 되었다. Gunicorn으로 Flask를 실행할 때와 Uvicorn으로 FastAPI를 실행할 때, Auto Instrumentation이 잘 되는 것을 확인하였다.</description>
+    <pubDate>Sun, 26 May 2024 00:00:00 GMT</pubDate>
+    <author>jayground8@gmail.com (Jay)</author>
+    <category>kubernetes</category><category>opentelemetry</category>
+  </item>
+
   <item>
     <guid>https://jayground8.github.io/blog/20240505-falco</guid>
     <title>Falco를 활용하여 Terminal Shell 명령어 로그 수집하기</title>
