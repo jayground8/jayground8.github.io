@@ -148,7 +148,10 @@ spec:
 
 따라서 logs는 기본적으로 사용하지 않게 되어 있는데, 사용하려면 아래와 같이 `환경변수를 꼭 설정해줘야 한다`. `OTEL_LOGS_EXPORTER`를 `console`로 설정하여 OpenTelemetry Collector에 보내기 전에 로그가 잘 남고 있는지 확인하고자 한다.
 
-> By default, Python logs auto-instrumentation is disabled. If you would like to enable this feature, you must to set the OTEL_LOGS_EXPORTER and OTEL_PYTHON_LOGGING_AUTO_INSTRUMENTATION_ENABLED environment variables as follows
+```bash
+By default, Python logs auto-instrumentation is disabled.
+If you would like to enable this feature, you must to set the OTEL_LOGS_EXPORTER and OTEL_PYTHON_LOGGING_AUTO_INSTRUMENTATION_ENABLED environment variables as follows
+```
 
 ```yaml
 python:
