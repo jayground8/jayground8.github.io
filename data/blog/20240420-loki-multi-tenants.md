@@ -1,7 +1,7 @@
 ---
 title: 'Loki multi-tenants'
 date: '2024-04-20'
-tags: ['kubernetes']
+tags: ['kubernetes', 'loki']
 images: ['/static/images/social-banner.png']
 summary: 'Loki로 Log를 수집하고, Grafana로 Log를 보여줄 때 Grafana user별로 볼 수 있는 Log를 제한하고 싶었다. Grafana Enterpirse의 경우에는 Label-based access control을 제공하여, Loki label별로 Query할 수 있는 권한을 제한할 수 있는 것처럼 보인다. 하지만 아쉽게 오픈소스에서는 해당 기능을 제공하지 않는다. 그래서 Loki multi tenant를 통해서 Log를 tenent별로 그룹핑하고, tenant별로 query하는 방법을 사용했다. 그리고 Loki는 인증 layer가 존재하지 않기 때문에 Nginx를 통해서 인증을 하여 query할 수 있도록 하였다. 마지막으로 Network Policy로 Nginx 인증을 통해서 Loki에 접근하도록 강제하여 원하는 구성을 할 수 있었다.'
 ---
@@ -20,9 +20,10 @@ Grafana Enterprise의 경우에는 [Label-based access control](https://grafana.
 
 `helm chart 5.42.2 버전 기준`
 
-Loki를 Monolithic Mode로 설치하여 테스트한다. 
+Loki를 Monolithic Mode로 설치하여 테스트한다.
 
 `values.yaml`
+
 ```yaml
 global:
 	dnsService: "coredns"
@@ -64,14 +65,14 @@ ls /var/loki/chunks
 
 OpenTelemetry Collector의 Exporter로 Loki에 Log 데이터를 전달할 경우, [Loki Exporter 문서](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/lokiexporter/README.md)에 설명된 것처럼 tenant 정보를 보낼 수 있다.
 
-고정 tenant 값을 사용할 때는 아래와 같이 전달할 수 있고, 
+고정 tenant 값을 사용할 때는 아래와 같이 전달할 수 있고,
 
 ```yaml
 exporters:
   loki:
     endpoint: http://localhost:3100/loki/api/v1/push
     headers:
-      "X-Scope-OrgID": staticTenant
+      'X-Scope-OrgID': staticTenant
 ```
 
 변수값을 보내야 하면 아래와 같이 `loki.tenant` 속성값을 정의할 수 있다. 이렇게 `loki.tenant`를 설정하면, `X-Scope-OrgID` header로 해당 값을 전달하게 된다.
@@ -80,9 +81,9 @@ exporters:
 processors:
   resource:
     attributes:
-    - action: insert
-      key: loki.tenant
-      value: host.name
+      - action: insert
+        key: loki.tenant
+        value: host.name
 ```
 
 `opentelemetry-collector Helm chart 0.77.0 버전 기준`
@@ -137,7 +138,7 @@ exporters:
 
 ## Grafana Datasource 설정
 
-이제 Loki에서 multi tenant를 사용하도록 설정하였고, Loki에게 log data를 전달하는 OpenTelemetry Collector에서 Tenant 정보를 보내도록 설정하였다. 이제 로그 데이터를 Query 요청을 하는 Grafana의 설정도 변경이 필요하다. 
+이제 Loki에서 multi tenant를 사용하도록 설정하였고, Loki에게 log data를 전달하는 OpenTelemetry Collector에서 Tenant 정보를 보내도록 설정하였다. 이제 로그 데이터를 Query 요청을 하는 Grafana의 설정도 변경이 필요하다.
 
 Log data를 Push하는 것 뿐만 아니라, Query 요청할 때도 `X-Scope-OrgID` 해더 정보를 같이 보내야 한다. 해당 값을 보내지 않으면 Grafana에서 로그를 검색하려고 할 때, `no org id` 에러 메세지가 뜬다.
 
@@ -176,10 +177,10 @@ Loki를 Helm chart을 이용해 Monolithic mode로 배포를 하면, `loki-gatew
 ```yaml
 Containers:
   nginx:
-    Container ID:   containerd://0bea78d416e7138fe1e6037b5bfc728191c3951a254d21b4f5a278c381708198
-    Image:          docker.io/nginxinc/nginx-unprivileged:1.24-alpine
-    Image ID:       docker.io/nginxinc/nginx-unprivileged@sha256:7bef7e4c99edc6b53e55396fd181288320cfc422c8e3d0beb588c715f7bdc1b0
-    Port:           8080/TCP
+    Container ID: containerd://0bea78d416e7138fe1e6037b5bfc728191c3951a254d21b4f5a278c381708198
+    Image: docker.io/nginxinc/nginx-unprivileged:1.24-alpine
+    Image ID: docker.io/nginxinc/nginx-unprivileged@sha256:7bef7e4c99edc6b53e55396fd181288320cfc422c8e3d0beb588c715f7bdc1b0
+    Port: 8080/TCP
 ```
 
 그리고 `kubectl get configmap loki-gateway -o yaml`를 확인해보면 configmap에 nginx 설정값이 정의된 것을 확인할 수 있다.
@@ -191,7 +192,7 @@ global:
 	dnsService: "coredns"
 loki:
 	auth_enabled: true
-	tenants: 
+	tenants:
 	- name: containerName
 	  password: somethingPassword
 	commonConfig:
@@ -205,7 +206,7 @@ singleBinary:
 	replicas: 1
 ```
 
-이렇게 설정하면 `loki-gateway` ConfigMap data가 아래와 같이 설정된다. `auth_basic_user_file`이 설정되어서 Basic Authentication으로 인증을 하게 되고, `proxy_set_header X-Scope-OrgID $remote_user;` 자동으로 Header값에 Basic Authentication을 하는 user명을 넣어서 보내게 된다. 우리는 위에서 `containerName` username과 `somethingPassword`로 password를 정의했고, 그것이 `/etc/nginx/secrets/.htpasswd	`에 설정된다.
+이렇게 설정하면 `loki-gateway` ConfigMap data가 아래와 같이 설정된다. `auth_basic_user_file`이 설정되어서 Basic Authentication으로 인증을 하게 되고, `proxy_set_header X-Scope-OrgID $remote_user;` 자동으로 Header값에 Basic Authentication을 하는 user명을 넣어서 보내게 된다. 우리는 위에서 `containerName` username과 `somethingPassword`로 password를 정의했고, 그것이 `/etc/nginx/secrets/.htpasswd `에 설정된다.
 
 ```bash
 nginx.conf: |
@@ -260,4 +261,4 @@ nginx.conf: |
 
 ## 결론
 
-Loki를 통해서 Log 데이터를 수집하고 Query할 때, 사용자에 따라서 어떤 로그에 접근할 수 있는지 제한하고 싶었다. Grafana의 Label-based access control를 통해서 그 목적을 달성할 수 있을 것 같았지만, 해당 기능은 Grafana Enterprise 버전에서만 제공한다. 따라서 Loki의 multi tenant mode를 통해서 log group를 분리하고, Query할 때 해당 log group만 할 수 있도록 하였다. 그리고 Nginx에서 인증을 하여 해당 tenant의 log group에 접근할 수 있도록 하였다. 
+Loki를 통해서 Log 데이터를 수집하고 Query할 때, 사용자에 따라서 어떤 로그에 접근할 수 있는지 제한하고 싶었다. Grafana의 Label-based access control를 통해서 그 목적을 달성할 수 있을 것 같았지만, 해당 기능은 Grafana Enterprise 버전에서만 제공한다. 따라서 Loki의 multi tenant mode를 통해서 log group를 분리하고, Query할 때 해당 log group만 할 수 있도록 하였다. 그리고 Nginx에서 인증을 하여 해당 tenant의 log group에 접근할 수 있도록 하였다.

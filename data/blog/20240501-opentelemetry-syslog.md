@@ -251,13 +251,16 @@ config:
 		zipkin: null
 		syslog:
 			tcp:
-				listen_address: "localhost:54527"
+				listen_address: "localhost:4319"
 			protocol: rfc3164
 			location: UTC
 			operators:
 				- type: move
 					from: attributes.message
 					to: body
+				- type: add
+                  field: attributes.source
+                  value: syslog
 	service:
 		telemetry:
 			logs:
@@ -286,6 +289,11 @@ ports:
 		enabled: false
 	zipkin:
 		enabled: false
+	syslog:
+		enabled: true
+		containerPort: 4319
+		hostPort: 4319
+		protocol: TCP
 mode: daemonset
 image:
 	repository: otel/opentelemetry-collector-contrib
@@ -296,7 +304,29 @@ presets:
 		includeCollectorLogs: true
 ```
 
-`syslog receiver`를 사용하기 위해서 `image.repository`를 `otel/opentelemetry-collector-contrib`로 설정하였다. 그리고 `listen_address`를 `localhost:54527`로 설정했는데, rsyslog가 host에서 해당 `54527` 포트로 접근할 수 있도록 `hostNetwork`를 사용하도록 설정하였다. (hostNetwork사용하는 대신에 HostPort로 노출 시킬 수 있는 설정이 보이지 않음🧐)
+`syslog receiver`를 사용하기 위해서 `image.repository`를 `otel/opentelemetry-collector-contrib`로 설정하였다. 그리고 `listen_address`를 `0.0.0.0:4319`로 설정했는데, rsyslog가 host에서 해당 `4319` 포트로 접근할 수 있도록 `hostPort`를 사용하도록 설정하였다.
+
+`hostPort`를 설정하였기 때문에, opentelemetry collector의 설정을 보면 `4319/TCP`가 설정된 것을 확인할 수 있다.
+
+```bash
+$ kubectl describe pod opentelemetry-collector-agent-b7g2j
+...생략
+Ports:         4317/TCP, 4318/TCP, 4319/TCP
+Host Ports:    4317/TCP, 4318/TCP, 4319/TCP
+```
+
+그리고 Cilium을 CNI로 사용할 때, 아래와 같이 service의 목록을 보면 HostPort가 설정된 것을 확인할 수 있다.
+
+```bash
+$ kubectl exec -it cilium-gxdr7 -n kube-system -- cilium service list
+...생략
+196   10.50.3.14:4317         HostPort       1 => 198.18.4.92:4317 (active)
+197   0.0.0.0:4317           HostPort       1 => 198.18.4.92:4317 (active)
+198   10.50.3.14:4318         HostPort       1 => 198.18.4.92:4318 (active)
+199   0.0.0.0:4318           HostPort       1 => 198.18.4.92:4318 (active)
+200   10.50.3.14:4319        HostPort       1 => 198.18.4.92:4319 (active)
+201   0.0.0.0:4319          HostPort       1 => 198.18.4.92:4319 (active)
+```
 
 이제 [SigNoz의 문서에서 rsyslog 설정하는 방법](https://signoz.io/docs/userguide/collecting_syslogs/)에 나온 것처럼 rsyslog 설정을 아래와 같이 추가한다.
 
@@ -309,7 +339,7 @@ template(
   string="<%PRI%>%TIMESTAMP:::date-utc% %HOSTNAME% %syslogtag:1:32%%msg:::sp-if-no-1st-sp%%msg%"
 )
 
-*.* action(type="omfwd" target="0.0.0.0" port="54527" protocol="tcp" template="UTCTraditionalForwardFormat")
+*.* action(type="omfwd" target="127.0.0.1" port="4319" protocol="tcp" template="UTCTraditionalForwardFormat")
 ```
 
 이제 rsyslog를 재시작하고 나면 Syslog Receiver로 로그를 받은 것을 확인할 수 있다.
