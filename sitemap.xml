@@ -201,11 +201,11 @@
   </url>
 
   <url>
-    <loc>https://jayground8.github.io/tags/ai</loc>
+    <loc>https://jayground8.github.io/tags/argocd</loc>
   </url>
 
   <url>
-    <loc>https://jayground8.github.io/tags/argocd</loc>
+    <loc>https://jayground8.github.io/tags/ai</loc>
   </url>
 
   <url>
@@ -250,6 +250,10 @@
 
   <url>
     <loc>https://jayground8.github.io/tags/kubernetes</loc>
+  </url>
+
+  <url>
+    <loc>https://jayground8.github.io/tags/loki</loc>
   </url>
 
   <url>
