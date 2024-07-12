@@ -7,9 +7,19 @@
       <language>kr</language>
       <managingEditor>jayground8@gmail.com (Jay)</managingEditor>
       <webMaster>jayground8@gmail.com (Jay)</webMaster>
-      <lastBuildDate>Thu, 28 Dec 2023 00:00:00 GMT</lastBuildDate>
+      <lastBuildDate>Sat, 13 Jul 2024 00:00:00 GMT</lastBuildDate>
       <atom:link href="https://jayground8.github.io/tags/vault/feed.xml" rel="self" type="application/rss+xml"/>
       
+  <item>
+    <guid>https://jayground8.github.io/blog/20240713-vault-audit</guid>
+    <title>Vault Audit Log를 남기기</title>
+    <link>https://jayground8.github.io/blog/20240713-vault-audit</link>
+    <description>Vault에서 다양한 credentials를 보관하게 된다. 따라서 어떤 접근들이 있었는지 Audit Log들을 남겨서 관리하고 싶었다. Vault에서 Audit Device 기능을 제공하여서 file, syslog, socket등으로 Vault API 요청과 응답을 로그로 남길 수 있다. socket은 log 손실의 위험이 있고, syslog는 Vault Pod에서 추가적인 package설치와 설정이 필요하다. 따라서 Kubernetes에서 Vault를 운영하는 과정에서 file 방식으로 Audit log를 남겨보았다.</description>
+    <pubDate>Sat, 13 Jul 2024 00:00:00 GMT</pubDate>
+    <author>jayground8@gmail.com (Jay)</author>
+    <category>vault</category><category>devsecops</category>
+  </item>
+
   <item>
     <guid>https://jayground8.github.io/blog/20231228-vault-custom-secret-engine</guid>
     <title>Vault custom secret engine 작성해보기</title>
