@@ -201,15 +201,19 @@
   </url>
 
   <url>
+    <loc>https://jayground8.github.io/blog/20240713-add-package-to-distroless-image</loc>
+  </url>
+
+  <url>
     <loc>https://jayground8.github.io/blog/20240713-vault-audit</loc>
   </url>
 
   <url>
-    <loc>https://jayground8.github.io/tags/argocd</loc>
+    <loc>https://jayground8.github.io/tags/ai</loc>
   </url>
 
   <url>
-    <loc>https://jayground8.github.io/tags/ai</loc>
+    <loc>https://jayground8.github.io/tags/argocd</loc>
   </url>
 
   <url>
@@ -234,6 +238,10 @@
 
   <url>
     <loc>https://jayground8.github.io/tags/devsecops</loc>
+  </url>
+
+  <url>
+    <loc>https://jayground8.github.io/tags/distroless</loc>
   </url>
 
   <url>

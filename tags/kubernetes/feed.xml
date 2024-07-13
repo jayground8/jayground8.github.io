@@ -7,9 +7,19 @@
       <language>kr</language>
       <managingEditor>jayground8@gmail.com (Jay)</managingEditor>
       <webMaster>jayground8@gmail.com (Jay)</webMaster>
-      <lastBuildDate>Sat, 15 Jun 2024 00:00:00 GMT</lastBuildDate>
+      <lastBuildDate>Sat, 13 Jul 2024 00:00:00 GMT</lastBuildDate>
       <atom:link href="https://jayground8.github.io/tags/kubernetes/feed.xml" rel="self" type="application/rss+xml"/>
       
+  <item>
+    <guid>https://jayground8.github.io/blog/20240713-add-package-to-distroless-image</guid>
+    <title>Distroless Image에 Package 추가하기</title>
+    <link>https://jayground8.github.io/blog/20240713-add-package-to-distroless-image</link>
+    <description>컨테이너 이미지에 최소한으로 필요한 software만 포함하는 것이 보안적으로 모범사례이다. 이러한 모범사례를 따르는 가장 쉽고 합리적인 방법은 구글에서 제공하는 Distroless Image를 활용하는 것이다. Distroless Image는 nonroot, debug, debug-nonroot Tag를 가지고 있다. nonroot은 conatiner에게 root 권한을 주지않고, shell도 없어서 Terminal로 접속이 불가능하다. 그런데 Distroless Image에 추가로 필요한 debian package를 설치하면 어떻게 해야할까? 이번 글에서는 bazel로 빌드할 때 원하는 debian package를 추가하는 방법을 알아 본다.</description>
+    <pubDate>Sat, 13 Jul 2024 00:00:00 GMT</pubDate>
+    <author>jayground8@gmail.com (Jay)</author>
+    <category>kubernetes</category><category>distroless</category><category>devsecops</category>
+  </item>
+
   <item>
     <guid>https://jayground8.github.io/blog/20240615-modsecurity</guid>
     <title>ModSecurity를 Nginx Ingress Controller에 연동하여 WAF 설정하기</title>
