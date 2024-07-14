@@ -141,7 +141,7 @@ vault write auth/oidc/role/sample -<<EOF
   "allowed_redirect_uris": "http://localhost:8000/ui/vault/auth/oidc/oidc/callback,http://localhost:8000/oidc/callback",
   "oidc_scopes": [
     "openid",
-    "email",
+    "email"
   ],
   "user_claim": "email",
   "groups_claim": "groups",
@@ -158,7 +158,7 @@ EOF
 
 <img src="/static/images/vault-oidc-ui.png" alt="vault oidc login page" />
 
-## 방법 2
+## 방법 1
 
 ### Service Account key 파일 사용
 
