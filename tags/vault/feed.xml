@@ -7,9 +7,19 @@
       <language>kr</language>
       <managingEditor>jayground8@gmail.com (Jay)</managingEditor>
       <webMaster>jayground8@gmail.com (Jay)</webMaster>
-      <lastBuildDate>Sat, 13 Jul 2024 00:00:00 GMT</lastBuildDate>
+      <lastBuildDate>Sun, 14 Jul 2024 00:00:00 GMT</lastBuildDate>
       <atom:link href="https://jayground8.github.io/tags/vault/feed.xml" rel="self" type="application/rss+xml"/>
       
+  <item>
+    <guid>https://jayground8.github.io/blog/20240714-vault-oidc</guid>
+    <title>구글 계정으로 Vault 로그인하기</title>
+    <link>https://jayground8.github.io/blog/20240714-vault-oidc</link>
+    <description>Vault를 구글 인증을 통해서 로그인하도록 설정해본다. Admin Directory API를 통해서 workspace의 user와 group의 정보를 가져올 수 있고, 해당 정보를 통해서 인증 조건을 추가할 수 있다. 예로 특정 workspace group에 속한 계정만 인증에 성공할 수 있도록 조건을 추가할 수 있다. Admin Directory API에 요청하기 위해서 필요한 권한을 설정할 수 있는데, Service Account의 key 파일을 생성하는 대신에, Application Default Credentials를 활용해보았다. Application Default Credentials를 사용하는 과정에서 삽질을 많이 했는데, 혹시나 동일한 작업을 하는 분들은 나처럼 시간을 허비하지 않기를 바라며 글을 작성한다.🥹</description>
+    <pubDate>Sun, 14 Jul 2024 00:00:00 GMT</pubDate>
+    <author>jayground8@gmail.com (Jay)</author>
+    <category>vault</category><category>devsecops</category>
+  </item>
+
   <item>
     <guid>https://jayground8.github.io/blog/20240713-vault-audit</guid>
     <title>Vault Audit Log를 남기기</title>
