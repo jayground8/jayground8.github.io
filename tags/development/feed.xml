@@ -1,0 +1,24 @@
+
+  <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+      <title>Jayground8</title>
+      <link>https://jayground8.github.io/blog</link>
+      <description>like playing in the playground</description>
+      <language>kr</language>
+      <managingEditor>jayground8@gmail.com (Jay)</managingEditor>
+      <webMaster>jayground8@gmail.com (Jay)</webMaster>
+      <lastBuildDate>Sun, 25 Aug 2024 00:00:00 GMT</lastBuildDate>
+      <atom:link href="https://jayground8.github.io/tags/development/feed.xml" rel="self" type="application/rss+xml"/>
+      
+  <item>
+    <guid>https://jayground8.github.io/blog/20240825-gcalendar-repeated-events</guid>
+    <title>구글 켈린더 반복 일정을 API 생성/수정/삭제 하는 법</title>
+    <link>https://jayground8.github.io/blog/20240825-gcalendar-repeated-events</link>
+    <description>구글 켈린더에서 RFC 5545로 정의된 값으로 반복일정을 생성할 수 있다. 그런데 구글 켈린더의 반복 일정을 API로 생성/수정/삭제 하는 과정에서 삽질을 하게 되었다.😂 혹시나 누군가 구글 켈린더 반복일정을 API로 수정/변경/삭제 해야하는 경우, 이 블로그 글을 통해서 불필요하게 삽질을 하지 않기 바라며 작성했다. 반복일정을 수정/삭제 할 때 선택하는 세 가지 옵션(이 일정, 모든 일정, 이 일정 및 향후 일정)에 따라서 이벤트 id를 다르게 설정하여 요청해야 한다.</description>
+    <pubDate>Sun, 25 Aug 2024 00:00:00 GMT</pubDate>
+    <author>jayground8@gmail.com (Jay)</author>
+    <category>development</category>
+  </item>
+
+    </channel>
+  </rss>

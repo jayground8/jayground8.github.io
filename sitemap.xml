@@ -213,11 +213,15 @@
   </url>
 
   <url>
-    <loc>https://jayground8.github.io/tags/argocd</loc>
+    <loc>https://jayground8.github.io/blog/20240825-gcalendar-repeated-events</loc>
   </url>
 
   <url>
-    <loc>https://jayground8.github.io/tags/aws</loc>
+    <loc>https://jayground8.github.io/tags/book</loc>
+  </url>
+
+  <url>
+    <loc>https://jayground8.github.io/tags/argocd</loc>
   </url>
 
   <url>
@@ -225,7 +229,7 @@
   </url>
 
   <url>
-    <loc>https://jayground8.github.io/tags/book</loc>
+    <loc>https://jayground8.github.io/tags/aws</loc>
   </url>
 
   <url>
@@ -238,6 +242,10 @@
 
   <url>
     <loc>https://jayground8.github.io/tags/containerd</loc>
+  </url>
+
+  <url>
+    <loc>https://jayground8.github.io/tags/development</loc>
   </url>
 
   <url>
