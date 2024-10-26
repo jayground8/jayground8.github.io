@@ -217,7 +217,7 @@
   </url>
 
   <url>
-    <loc>https://jayground8.github.io/tags/book</loc>
+    <loc>https://jayground8.github.io/blog/20241026-thanos-prometheus-remote-write</loc>
   </url>
 
   <url>
@@ -230,6 +230,10 @@
 
   <url>
     <loc>https://jayground8.github.io/tags/aws</loc>
+  </url>
+
+  <url>
+    <loc>https://jayground8.github.io/tags/book</loc>
   </url>
 
   <url>
@@ -318,6 +322,10 @@
 
   <url>
     <loc>https://jayground8.github.io/tags/tekton</loc>
+  </url>
+
+  <url>
+    <loc>https://jayground8.github.io/tags/thanos</loc>
   </url>
 
   <url>

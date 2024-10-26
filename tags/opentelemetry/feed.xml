@@ -7,9 +7,19 @@
       <language>kr</language>
       <managingEditor>jayground8@gmail.com (Jay)</managingEditor>
       <webMaster>jayground8@gmail.com (Jay)</webMaster>
-      <lastBuildDate>Sun, 26 May 2024 00:00:00 GMT</lastBuildDate>
+      <lastBuildDate>Sat, 26 Oct 2024 00:00:00 GMT</lastBuildDate>
       <atom:link href="https://jayground8.github.io/tags/opentelemetry/feed.xml" rel="self" type="application/rss+xml"/>
       
+  <item>
+    <guid>https://jayground8.github.io/blog/20241026-thanos-prometheus-remote-write</guid>
+    <title>Thanos Receiver의 empty attribute value 문제</title>
+    <link>https://jayground8.github.io/blog/20241026-thanos-prometheus-remote-write</link>
+    <description>Opentelemetry Instrumentation 라이브러리 중에서 Str(), Empty()로 attribute value를 설정하여 Metric을 보내는 경우가 있었다. 문제는 Thanos Receiver를 통해서 Metric을 저장하려고 할 때, Attribute value 값이 빈문자열이면 에러가 발생하였다. Otel 1.38.0 규격 문서를 확인했을 때 Attribute value는 빈문자열도 의미를 가질 수 있고 정상적으로 저장되어야 하는 것으로 정의되어 있었다. 따라서 Attribute value가 빈문자열이 때도 정상적으로 저장될 수 있도록 Thanos 소스코드를 수정하여 Container Image 빌드하여 사용하였다.</description>
+    <pubDate>Sat, 26 Oct 2024 00:00:00 GMT</pubDate>
+    <author>jayground8@gmail.com (Jay)</author>
+    <category>Thanos</category><category>opentelemetry</category>
+  </item>
+
   <item>
     <guid>https://jayground8.github.io/blog/20240526-otel-operator</guid>
     <title>opentelemetry-operator 사용해보기</title>
