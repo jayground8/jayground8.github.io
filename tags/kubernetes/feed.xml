@@ -7,9 +7,19 @@
       <language>kr</language>
       <managingEditor>jayground8@gmail.com (Jay)</managingEditor>
       <webMaster>jayground8@gmail.com (Jay)</webMaster>
-      <lastBuildDate>Sat, 13 Jul 2024 00:00:00 GMT</lastBuildDate>
+      <lastBuildDate>Sun, 05 Jan 2025 00:00:00 GMT</lastBuildDate>
       <atom:link href="https://jayground8.github.io/tags/kubernetes/feed.xml" rel="self" type="application/rss+xml"/>
       
+  <item>
+    <guid>https://jayground8.github.io/blog/20250105-secrets-store-csi-driver-provider-gcp</guid>
+    <title>secrets-store-csi-driver-provider-gcp 사용해보기</title>
+    <link>https://jayground8.github.io/blog/20250105-secrets-store-csi-driver-provider-gcp</link>
+    <description>GKE에서 add-on 기능으로 관리형 서비스인 Google Secret Manager을 Kubernetes Secrets Store CSI Driver로 쉽게 사용할 수 있다. 하지만 add-on 버전에서는 Sync as Kubernetes Secret 기능을 제공하지 않기 때문에, Kubernetes Secret을 환경변수로 설정하는데 제약사항이 있다. 직접 Kubernetes Secrets Store CSI driver와 GCP provider driver를 설치하여 Sync as Kubernetes Secret 기능을 사용할 수 있다. 이렇게 Sync된 Kubernetes Secret을 환경변수로 주입하도록 설정할 수 있다. Google Secret Manager는 아쉽게도 하나의 Secret에 복수의 key value를 제공하지 않는다. 이번 글에서는 Google Secret Manager를 Kubernetes Secret Object와 Sync해서 사용하는 것이 바람직할지 고민해본다.</description>
+    <pubDate>Sun, 05 Jan 2025 00:00:00 GMT</pubDate>
+    <author>jayground8@gmail.com (Jay)</author>
+    <category>gcp</category><category>kubernetes</category>
+  </item>
+
   <item>
     <guid>https://jayground8.github.io/blog/20240713-add-package-to-distroless-image</guid>
     <title>Distroless Image에 Package 추가하기</title>

@@ -225,15 +225,19 @@
   </url>
 
   <url>
+    <loc>https://jayground8.github.io/blog/20250105-secrets-store-csi-driver-provider-gcp</loc>
+  </url>
+
+  <url>
+    <loc>https://jayground8.github.io/tags/ai</loc>
+  </url>
+
+  <url>
     <loc>https://jayground8.github.io/tags/argocd</loc>
   </url>
 
   <url>
     <loc>https://jayground8.github.io/tags/aws</loc>
-  </url>
-
-  <url>
-    <loc>https://jayground8.github.io/tags/ai</loc>
   </url>
 
   <url>
@@ -270,6 +274,10 @@
 
   <url>
     <loc>https://jayground8.github.io/tags/falco</loc>
+  </url>
+
+  <url>
+    <loc>https://jayground8.github.io/tags/gcp</loc>
   </url>
 
   <url>
