@@ -7,9 +7,19 @@
       <language>kr</language>
       <managingEditor>jayground8@gmail.com (Jay)</managingEditor>
       <webMaster>jayground8@gmail.com (Jay)</webMaster>
-      <lastBuildDate>Sat, 26 Oct 2024 00:00:00 GMT</lastBuildDate>
+      <lastBuildDate>Sun, 05 Jan 2025 00:00:00 GMT</lastBuildDate>
       <atom:link href="https://jayground8.github.io/feed.xml" rel="self" type="application/rss+xml"/>
       
+  <item>
+    <guid>https://jayground8.github.io/blog/20250105-opentofu</guid>
+    <title>GCP Secret Manager에서 비밀값을 OpenTofu로 관리하기</title>
+    <link>https://jayground8.github.io/blog/20250105-opentofu</link>
+    <description>GCP Secret Manager를 IaS로 관리할 때, 저장하는 Secret 값을 Key Management Service의 비대칭키와 Terraform의 google_kms_secret_asymmetric data source로 관리할 수 있다. 공개키로 암호화한 비밀 값을 Terraform resource definition에 정의하고, 런타임 과정에서 복호화하여 Secret Manager의 비밀값으로 설정할 수 있다. 따라서 Git에 평서문 대신에 공개키로 암호화한 비밀 값으로 정의한 Terraform 파일을 저장하여 관리할 수 있다. 하지만 해당 비밀 값은 State output 같은 곳에 평서문으로 그대로 노출 될 수 있기 때문에, remote state로 관리할 때는 해당 state 파일이 노출되지 않도록 관리를 잘해야 한다. OpenTofu를 이용할 때는 State 파일을 암호화 하는 옵션을 사용하여 State 파일 자체를 암호화해서 관리할 수도 있다.</description>
+    <pubDate>Sun, 05 Jan 2025 00:00:00 GMT</pubDate>
+    <author>jayground8@gmail.com (Jay)</author>
+    <category>terraform</category><category>opentofu</category>
+  </item>
+
   <item>
     <guid>https://jayground8.github.io/blog/20241026-thanos-prometheus-remote-write</guid>
     <title>Thanos Receiver의 empty attribute value 문제</title>

@@ -221,15 +221,19 @@
   </url>
 
   <url>
+    <loc>https://jayground8.github.io/blog/20250105-opentofu</loc>
+  </url>
+
+  <url>
     <loc>https://jayground8.github.io/tags/argocd</loc>
   </url>
 
   <url>
-    <loc>https://jayground8.github.io/tags/ai</loc>
+    <loc>https://jayground8.github.io/tags/aws</loc>
   </url>
 
   <url>
-    <loc>https://jayground8.github.io/tags/aws</loc>
+    <loc>https://jayground8.github.io/tags/ai</loc>
   </url>
 
   <url>
@@ -305,6 +309,10 @@
   </url>
 
   <url>
+    <loc>https://jayground8.github.io/tags/opentofu</loc>
+  </url>
+
+  <url>
     <loc>https://jayground8.github.io/tags/presentation</loc>
   </url>
 
@@ -322,6 +330,10 @@
 
   <url>
     <loc>https://jayground8.github.io/tags/tekton</loc>
+  </url>
+
+  <url>
+    <loc>https://jayground8.github.io/tags/terraform</loc>
   </url>
 
   <url>
