@@ -52,6 +52,14 @@ Domain wide delegation 방식으로 권한을 부여하기 위해서 아래와 �
 
 <img src="/static/images/vault-oidc-domain-wide-delegation.png" alt="Domain Wide Delegation" />
 
+생성할 때 Client ID를 Vault OIDC 인증 설정의 impersonate_principal에 사용되는 service account를 사용해야 한다.
+
+<img src="/static/images/domain-wide-delegation-add.png" alt="Add Scopes with Domain Wide Delegation" />
+
+Service Account의 Advanced Settings에 들어가면 아래처럼 Domain-wide Delegation 영역에 Client ID가 나와있다. 이 ClientID를 통해서 Directory API에 접근할 수 있는 scope을 부여한다.
+
+<img src="/static/images/domain-wide-delegation-config.png" alt="Service Account Advanced Settings" />
+
 ### 필요한 Service 사용하도록 설정
 
 ADC(Application Default Credentials)에서 사용할 서비스를 `enable` 해준다.
@@ -115,6 +123,7 @@ vi ~/.config/gcloud/application_default_credentials.json
 oidc 설정값을 아래와 같이 설정한다.
 
 ```bash
+vault auth enable oidc
 vault write auth/oidc/config -<<EOF
 {
     "oidc_discovery_url": "https://accounts.google.com",

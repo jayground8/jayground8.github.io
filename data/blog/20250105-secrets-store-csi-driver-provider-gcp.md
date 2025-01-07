@@ -74,7 +74,7 @@ gcloud secrets create testsecret \
 그리고 해당 Secret에 접근 권한을 준 service account를 생성한다.
 
 ```bash
-gcloud iam service-accounts tutorial-workload
+gcloud iam service-accounts create tutorial-workload
 
 gcloud iam service-accounts add-iam-policy-binding \
 --role roles/iam.workloadIdentityUser \
