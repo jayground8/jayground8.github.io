@@ -1,0 +1,24 @@
+
+  <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+      <title>Jayground8</title>
+      <link>https://jayground8.github.io/blog</link>
+      <description>like playing in the playground</description>
+      <language>kr</language>
+      <managingEditor>jayground8@gmail.com (Jay)</managingEditor>
+      <webMaster>jayground8@gmail.com (Jay)</webMaster>
+      <lastBuildDate>Fri, 17 Jan 2025 00:00:00 GMT</lastBuildDate>
+      <atom:link href="https://jayground8.github.io/tags/bitbucket/feed.xml" rel="self" type="application/rss+xml"/>
+      
+  <item>
+    <guid>https://jayground8.github.io/blog/20250117-google-oidc-bitbucket</guid>
+    <title>Bitbucket OIDC with GCP</title>
+    <link>https://jayground8.github.io/blog/20250117-google-oidc-bitbucket</link>
+    <description>Bitbucket OIDC를 이용하여 GCP 리소스를 접근하는 방법을 설명한다. Bitbucket Pipeline으로 GCP 리소스를 배포/변경할 때 OIDC를 통해서 임시 Credential를 발급할 수 있다. 다른 사람이 동일한 작업을 할 때, 삽질하지 않도록 완전한 예제를 공유하고자 작성한다.</description>
+    <pubDate>Fri, 17 Jan 2025 00:00:00 GMT</pubDate>
+    <author>jayground8@gmail.com (Jay)</author>
+    <category>gcp</category><category>oidc</category><category>bitbucket</category>
+  </item>
+
+    </channel>
+  </rss>
