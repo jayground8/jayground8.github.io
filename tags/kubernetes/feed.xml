@@ -7,9 +7,19 @@
       <language>kr</language>
       <managingEditor>jayground8@gmail.com (Jay)</managingEditor>
       <webMaster>jayground8@gmail.com (Jay)</webMaster>
-      <lastBuildDate>Sun, 05 Jan 2025 00:00:00 GMT</lastBuildDate>
+      <lastBuildDate>Sun, 19 Jan 2025 00:00:00 GMT</lastBuildDate>
       <atom:link href="https://jayground8.github.io/tags/kubernetes/feed.xml" rel="self" type="application/rss+xml"/>
       
+  <item>
+    <guid>https://jayground8.github.io/blog/20250119-otel-gcp-detector</guid>
+    <title>OpenTelemetry GcpDetector를 이해하기</title>
+    <link>https://jayground8.github.io/blog/20250119-otel-gcp-detector</link>
+    <description>OpenTelemetry Operator로 Auto-Instrumentation을 주입할 수 있다. 그런데 환경변수 설정을 올바르게 하지 않거나 OpenTelemetry Collector에서 proccessor 설정을 제대로 해주지 않으면, Resource attribute중 k8s.namespace.name가 빈문자열로 보내질 수 있다. 이러한 경우에 Auto-Instrumentation에서 Resource attribute가 어떻게 자동으로 설정되는지 resourceDetector들을 이해하면 쉽게 해결할 수 있다. 따라서 이번 글에서는 Resource Detector들에 대해서 자세히 살펴본다.</description>
+    <pubDate>Sun, 19 Jan 2025 00:00:00 GMT</pubDate>
+    <author>jayground8@gmail.com (Jay)</author>
+    <category>gcp</category><category>kubernetes</category><category>opentelemetry</category>
+  </item>
+
   <item>
     <guid>https://jayground8.github.io/blog/20250105-secrets-store-csi-driver-provider-gcp</guid>
     <title>secrets-store-csi-driver-provider-gcp 사용해보기</title>
