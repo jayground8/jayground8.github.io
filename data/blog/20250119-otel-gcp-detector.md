@@ -3,7 +3,7 @@ title: 'OpenTelemetry GcpDetector를 이해하기'
 date: '2025-01-19'
 tags: ['gcp', 'kubernetes', 'opentelemetry']
 images: ['/static/images/social-banner.png']
-summary: 'OpenTelemetry Operator로 Auto-Instrumentation을 주입할 수 있다. 그런데 환경변수 설정을 올바르게 하지 않거나 OpenTelemetry Collector에서 proccessor 설정을 제대로 해주지 않으면, Resource attribute중 k8s.namespace.name가 빈문자열로 보내질 수 있다. 이러한 경우에 Auto-Instrumentation에서 Resource attribute가 어떻게 자동으로 설정되는지 resourceDetector들을 이해하면 쉽게 해결할 수 있다. 따라서 이번 글에서는 Resource Detector들에 대해서 자세히 살펴본다.
+summary: 'OpenTelemetry Operator로 Auto-Instrumentation을 주입할 수 있다. 그런데 환경변수 설정을 올바르게 하지 않거나 OpenTelemetry Collector에서 proccessor 설정을 제대로 해주지 않으면, Resource attribute중 k8s.namespace.name가 빈문자열로 보내질 수 있다. 이러한 경우에 Auto-Instrumentation에서 Resource attribute가 어떻게 자동으로 설정되는지 resourceDetector들을 이해하면 쉽게 해결할 수 있다. 따라서 이번 글에서는 Resource Detector들에 대해서 자세히 살펴본다.'
 ---
 
 아래와 같은 환경에서 운영할 때, 어떻게 Resource attribute들이 설정되는지 세부적으로 이해하지 못하면 `k8s.namespace.name`이나 `container.name`이 빈 문자열로 나오는 것에 대한 해결책을 찾는데 시간을 낭비할 수 있다. 따라서 이번 글에서는 어떻게 구성되어 있는 자세한 설명을 하고자 한다.
