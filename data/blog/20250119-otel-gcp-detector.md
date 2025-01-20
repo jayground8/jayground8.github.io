@@ -286,7 +286,30 @@ GKE에서는 현재 버전에서는 cgroup V2으로 기본 운영된다. V1은 d
 
 > For versions 1.26 or later, cgroupv2 is the default for new nodes.
 
-결론적으로 OpenTelemetry Operator로 Auto-Insturmentation을 주입할 때, k8s.container.name은 자동으로 채워진다. 그리고 NAMESPACE 환경변수를 통해서 GcpDetector가 k8s.namespace.name을 설정하도록 하지 않아도, k8s Attribute Processor를 통해서 해당 attribute를 채워 넣을 수 있다.
+지금까지 설명으로 봤을 때는 k8s Attribute Processor가 k8s.namespace.name을 채워줄 것으로 기대된다. 하지만 k8s Attribute Processor는 telemetry data에 이미 존재하는 resource atrribute에 대해서 덮어쓰기를 하지 않는다. 이미 Auto-Instrumentation을 통해서 k8s.namespace.name가 빈문자열로 설정이 되었고, k8s Attribute Processor는 이 빈문자열을 유지한다.
+
+Resource Processor에서 k8s.namespace.name을 삭제하고,
+
+```yaml
+processors:
+  resource/tester:
+    attributes:
+      - action: delete
+        key: k8s.namespace.name
+```
+
+그다음에 k8s Attribute Processor가 처리하게 하면 정상적으로 k8s.namespace.name가 채워지는 것을 확인할 수 있다.
+
+```yaml
+logs:
+  exporters:
+    - debug
+  processors:
+    - resource/tester
+    - k8sattributes
+```
+
+결론적으로 OpenTelemetry Operator로 Auto-Insturmentation을 주입할 때, k8s.container.name은 자동으로 채워진다. 그리고 NAMESPACE 환경변수를 통해서 GcpDetector가 k8s.namespace.name을 설정하지 않으면, 해당 Resource Attribute는 빈문자열로 설정이 된다. k8s Attribute Processor는 telemetry data의 기존 Resource Attribute에 대해서 덮어쓰기를 하지 않기 때문에, 최종적으로 exporter에는 빈문자열로 전달된다. 추가적으로 Resource Processor에서 삭제를 하고 k8s Attribute Processor가 채워넣게 할수도 있지만, GcpDetector에서 처음부터 제대로 채워넣도록 NAMESPACE 환경변수를 설정하는 것이 실수를 줄일 수 있을 것이다.
 
 ## 결론
 
