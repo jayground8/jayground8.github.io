@@ -7,9 +7,19 @@
       <language>kr</language>
       <managingEditor>jayground8@gmail.com (Jay)</managingEditor>
       <webMaster>jayground8@gmail.com (Jay)</webMaster>
-      <lastBuildDate>Sun, 14 Jul 2024 00:00:00 GMT</lastBuildDate>
+      <lastBuildDate>Sun, 26 Jan 2025 00:00:00 GMT</lastBuildDate>
       <atom:link href="https://jayground8.github.io/tags/devsecops/feed.xml" rel="self" type="application/rss+xml"/>
       
+  <item>
+    <guid>https://jayground8.github.io/blog/20250126-gcp-sql-iam-auth</guid>
+    <title>GCP IAM으로 MySQL 접속하기</title>
+    <link>https://jayground8.github.io/blog/20250126-gcp-sql-iam-auth</link>
+    <description>GCP의 관리형 데이터베이스 서비스인 SQL의 User를 관리할 때, 제약사항이 없다면 IAM 인증을 활용하는 것을 고려하자. Google Workspace를 사용하고 있다면, 이미 생성된 구글 이메일 계정과 Group을 통해서 데이터베이스 접속 권한을 제어할 수 있다. 데이터베이스 User를 비밀번호 인증으로 생성하여 관리하는 대신에, 구글 계정으로 인증하여 데이터베이스를 접속할 수 있도록 관리하자. 이번 글에서는 IAM 인증을 위한 설정 방법을 설명한다.</description>
+    <pubDate>Sun, 26 Jan 2025 00:00:00 GMT</pubDate>
+    <author>jayground8@gmail.com (Jay)</author>
+    <category>gcp</category><category>devsecops</category>
+  </item>
+
   <item>
     <guid>https://jayground8.github.io/blog/20240714-vault-oidc</guid>
     <title>구글 계정으로 Vault 로그인하기</title>
