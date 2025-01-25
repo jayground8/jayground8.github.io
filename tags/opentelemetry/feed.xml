@@ -7,9 +7,19 @@
       <language>kr</language>
       <managingEditor>jayground8@gmail.com (Jay)</managingEditor>
       <webMaster>jayground8@gmail.com (Jay)</webMaster>
-      <lastBuildDate>Sun, 19 Jan 2025 00:00:00 GMT</lastBuildDate>
+      <lastBuildDate>Sat, 25 Jan 2025 00:00:00 GMT</lastBuildDate>
       <atom:link href="https://jayground8.github.io/tags/opentelemetry/feed.xml" rel="self" type="application/rss+xml"/>
       
+  <item>
+    <guid>https://jayground8.github.io/blog/20250125-google-cloud-exporter</guid>
+    <title>Google Cloud Exporter가 Log의 Resource Attribute를 Cloud Logging Label로 어떻게 변환할까?</title>
+    <link>https://jayground8.github.io/blog/20250125-google-cloud-exporter</link>
+    <description>OpenTelemetry Collector를 사용할 때, 다양한 exporter를 통해서 Telemetry data를 저장할 수 있다. GCP를 사용하는 경우에는 Google Cloud Exporter를 사용해서 Telemetry data를 쉽게 저장할 수 있다. 그런데 Log의 경우에는 내가 설정한 Resource attribute가 기대한 것처럼 Google Cloud Logging의 Label에 등록되지 않는 경우를 경험할 수도 있다. 따라서 오늘은 Google Cloud Exporter를 사용할 때, Resource Attribute들이 Cloud Logging Label로 어떻게 변환되는지 자세히 설명한다.</description>
+    <pubDate>Sat, 25 Jan 2025 00:00:00 GMT</pubDate>
+    <author>jayground8@gmail.com (Jay)</author>
+    <category>gcp</category><category>kubernetes</category><category>opentelemetry</category>
+  </item>
+
   <item>
     <guid>https://jayground8.github.io/blog/20250119-otel-gcp-detector</guid>
     <title>OpenTelemetry GcpDetector를 이해하기</title>
