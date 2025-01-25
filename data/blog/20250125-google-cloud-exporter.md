@@ -196,7 +196,7 @@ Application에서 OpenTelemetry SDK를 통해서 Resource Attribute를 아래와
 
 ### Resource Detector 설정
 
-위에서 namespace, container, service 이름들이 Cloud Logging label에 남지 않는 것을 확인하였다. `main.py` 샘플 코드에 아래와 같이 GoogleCloudResourceDetector를 통해서 Resource를 초기화하도록 변경한다.
+위에서 namespace, container 이름들이 Cloud Logging label에 남지 않는 것을 확인하였다. `main.py` 샘플 코드에 아래와 같이 GoogleCloudResourceDetector를 통해서 Resource를 초기화하도록 변경한다.
 
 ```python
 from opentelemetry.resourcedetector.gcp_resource_detector import (
@@ -520,15 +520,15 @@ processors:
 service:
   pipelines:
     logs:
-			exporters:
-			- googlecloud
-			processors:
-			- k8sattributes
-			- memory_limiter
-			- resourcedetection
-			- batch
-			receivers:
-			- otlp
+		exporters:
+		- googlecloud
+		processors:
+		- k8sattributes
+		- memory_limiter
+		- resourcedetection
+		- batch
+		receivers:
+		- otlp
 ```
 
 아니면 환경변수 `OTEL_RESOURCE_ATTRIBUTES`를 통해서 `k8s.cluster.name`과 더불어 필요한 Kubernetes Resource Attribute 정보들을 추가해도 동일한 결과를 얻을 수 있다. 물론 여러 Cluster에서 사용될 수 있는 경우라면, `k8s.cluster.name`을 수동으로 설정하는 것보다는 GCP Resource Detector로 설정하는 것이 더 바람직하다.
@@ -554,4 +554,4 @@ googlecloud:
 
 ## 결론
 
-GKE에서 Google Cloud Export를 통해서 OpenTelemetry Log Data를 저장할 때, Resource Attribute `k8s.cluster.name`가 올바르게 설정되어야 하는 것을 알게 되었다. Resource Attribute `k8s.cluster.name`이 있을 때, Kubernetes관련 정보들이 기대하는 것처럼 Label들도 남게 된다. 수동으로 `k8s.cluster.name` 대신에 GCP Resource Detector로 자동으로 설정할 수 있다.
+GKE에서 Google Cloud Export를 통해서 OpenTelemetry Log Data를 저장할 때, Resource Attribute `k8s.cluster.name`가 올바르게 설정되어야 하는 것을 알게 되었다. Resource Attribute `k8s.cluster.name`이 있을 때, Kubernetes관련 정보들이 기대하는 것처럼 Label들로 남게 된다. 수동으로 `k8s.cluster.name` 대신에 GCP Resource Detector로 자동으로 설정할 수 있다.
