@@ -7,9 +7,19 @@
       <language>kr</language>
       <managingEditor>jayground8@gmail.com (Jay)</managingEditor>
       <webMaster>jayground8@gmail.com (Jay)</webMaster>
-      <lastBuildDate>Sun, 26 Jan 2025 00:00:00 GMT</lastBuildDate>
+      <lastBuildDate>Thu, 30 Jan 2025 00:00:00 GMT</lastBuildDate>
       <atom:link href="https://jayground8.github.io/tags/devsecops/feed.xml" rel="self" type="application/rss+xml"/>
       
+  <item>
+    <guid>https://jayground8.github.io/blog/20250130-hsts</guid>
+    <title>Strict Transport Security Header</title>
+    <link>https://jayground8.github.io/blog/20250130-hsts</link>
+    <description>HTTP 요청은 서버에서 Location Header를 통해서 HTTPS를 Redirection을 하고 있다. 그런데 방화벽에 의해서 80번 포트는 막혀있어서 http 요청은 timeout이 발생하고 있다. 그런 상황에서 브라우저에서 http로 요청을 하면 정상적으로 https redirection이 되어서 해당 도메인으로 정상적으로 접속이 가능하다. 방화벽에 막혀서 80번 포트에 대해서 정상적으로 응답을 못 받는데, 어떻게 브라우저에서는 http로 접근이 가능한 것이지? 이에 대한 질문에 대해서 HSTS의 존재와 역할을 이해하면 답을 할 수 있다. 이번 글에서는 간단하게 HSTS를 살펴본다.</description>
+    <pubDate>Thu, 30 Jan 2025 00:00:00 GMT</pubDate>
+    <author>jayground8@gmail.com (Jay)</author>
+    <category>devsecops</category>
+  </item>
+
   <item>
     <guid>https://jayground8.github.io/blog/20250126-gcp-sql-iam-auth</guid>
     <title>GCP IAM으로 MySQL 접속하기</title>
