@@ -1,5 +1,5 @@
 ---
-title: 'Building Flutter App through Gemini CLI'
+title: 'Building a Flutter App with Gemini CLI'
 date: '2025-07-03'
 tags: ['ai', 'hackathon']
 images: ['/static/images/thumbnail/ai-hackathon.png']
