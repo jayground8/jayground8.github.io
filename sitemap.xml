@@ -249,15 +249,19 @@
   </url>
 
   <url>
+    <loc>https://jayground8.github.io/blog/20250703-ai-hackathon</loc>
+  </url>
+
+  <url>
+    <loc>https://jayground8.github.io/tags/ai</loc>
+  </url>
+
+  <url>
     <loc>https://jayground8.github.io/tags/argocd</loc>
   </url>
 
   <url>
     <loc>https://jayground8.github.io/tags/aws</loc>
-  </url>
-
-  <url>
-    <loc>https://jayground8.github.io/tags/ai</loc>
   </url>
 
   <url>
@@ -306,6 +310,10 @@
 
   <url>
     <loc>https://jayground8.github.io/tags/gptcache</loc>
+  </url>
+
+  <url>
+    <loc>https://jayground8.github.io/tags/hackathon</loc>
   </url>
 
   <url>
