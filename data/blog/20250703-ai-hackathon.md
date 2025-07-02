@@ -1,6 +1,6 @@
 ---
 title: 'Building Flutter App through Gemini CLI'
-date: '2025-07-3'
+date: '2025-07-03'
 tags: ['ai', 'hackathon']
 images: ['/static/images/thumbnail/ai-hackathon.png']
 summary: "I recently had the valuable opportunity to experience building a Flutter application from scratch using Gemini CLI at my company's one-day AI hackathon. It was an insightful experience to understand vibe coding firsthand. This also gave me thoughts on what skills I need to continue developing in the AI era."
