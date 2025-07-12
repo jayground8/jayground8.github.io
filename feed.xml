@@ -7,9 +7,19 @@
       <language>kr</language>
       <managingEditor>jayground8@gmail.com (Jay)</managingEditor>
       <webMaster>jayground8@gmail.com (Jay)</webMaster>
-      <lastBuildDate>Thu, 03 Jul 2025 00:00:00 GMT</lastBuildDate>
+      <lastBuildDate>Sat, 12 Jul 2025 00:00:00 GMT</lastBuildDate>
       <atom:link href="https://jayground8.github.io/feed.xml" rel="self" type="application/rss+xml"/>
       
+  <item>
+    <guid>https://jayground8.github.io/blog/20250712-gitea-action</guid>
+    <title>Gitea Actions</title>
+    <link>https://jayground8.github.io/blog/20250712-gitea-action</link>
+    <description>I needed to set up a self-hosted Git system and was looking for an open-source tool that would fit my requirements. Gitea seemed like a great fit, and I was particularly interested in Gitea Actions, which is compatible with GitHub Actions. However, I struggled to correctly configure a Gitea Actions runner to use a container image from a private repository. Through that process, I gained a much better understanding of how Gitea offers a CI/CD system compatible with GitHub Actions. In this post, I&#39;ll share what I learned.</description>
+    <pubDate>Sat, 12 Jul 2025 00:00:00 GMT</pubDate>
+    <author>jayground8@gmail.com (Jay)</author>
+    <category>gitea</category>
+  </item>
+
   <item>
     <guid>https://jayground8.github.io/blog/20250703-ai-hackathon</guid>
     <title>Building a Flutter App with Gemini CLI</title>
