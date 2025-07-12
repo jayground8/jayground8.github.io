@@ -49,7 +49,13 @@ gcloud projects add-iam-policy-binding my-prj \
 --role=roles/cloudsql.instanceUser
 ```
 
-4. Cloud IAM 인증방식으로 새로운 데이터베이스 User 추가. (IAM principal을 아래와 같이 group으로 설정한다.)
+```bash
+gcloud projects add-iam-policy-binding my-prj \
+--member=group:tutorial@yourdomain.com \
+--role=roles/cloudsql.client
+```
+
+1. Cloud IAM 인증방식으로 새로운 데이터베이스 User 추가. (IAM principal을 아래와 같이 group으로 설정한다.)
 
 <img src="/static/images/sql-add-user.png" alt="add new user with Cloud IAM" />
 
