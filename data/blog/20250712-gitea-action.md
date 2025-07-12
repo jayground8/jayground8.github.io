@@ -250,17 +250,11 @@ spec:
           env:
             - name: DOCKER_TLS_CERTDIR
               value: /certs
-            - name: DOCKER_CONFIG
-              value: /root/.docker/config.json
           securityContext:
             privileged: true
           volumeMounts:
             - name: docker-certs
               mountPath: /certs
-            - name: docker-config
-              mountPath: /root/.docker/config.json
-              subPath: .dockerconfigjson
-              readOnly: true
 ```
 
 When your workflow uses the ubuntu-22.04 label, as shown below, the runner will pull the corresponding container image from the private registry you configured.
