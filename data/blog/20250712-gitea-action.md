@@ -1,5 +1,5 @@
 ---
-title: 'Gitea Actions'
+title: 'Configuring Private Runner Images for Gitea Runner'
 date: '2025-07-12'
 tags: ['gitea']
 images: ['/static/images/thumbnail/gitea.png']
