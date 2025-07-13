@@ -12,7 +12,7 @@
       
   <item>
     <guid>https://jayground8.github.io/blog/20250712-gitea-action</guid>
-    <title>Gitea Actions</title>
+    <title>Configuring Private Runner Images for Gitea Runner</title>
     <link>https://jayground8.github.io/blog/20250712-gitea-action</link>
     <description>I needed to set up a self-hosted Git system and was looking for an open-source tool that would fit my requirements. Gitea seemed like a great fit, and I was particularly interested in Gitea Actions, which is compatible with GitHub Actions. However, I struggled to correctly configure a Gitea Actions runner to use a container image from a private repository. Through that process, I gained a much better understanding of how Gitea offers a CI/CD system compatible with GitHub Actions. In this post, I&#39;ll share what I learned.</description>
     <pubDate>Sat, 12 Jul 2025 00:00:00 GMT</pubDate>
