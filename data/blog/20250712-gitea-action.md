@@ -270,6 +270,141 @@ jobs:
     steps:
 ```
 
+## Try Setting Up With Gemini CLI
+
+I've realized I should be leveraging AI services more to improve my daily work efficiency. I've also learned that I need to experiment to find better ways to prompt LLMs. With that in mind, I tried using Gemini to set up a private container image in Gitea Runner.
+
+My first prompt to the Gemini CLI was to modify the example file to use a private container image.
+
+> This YAML file runs a Gitea Runner on Kubernetes. Gitea Runner is currently set up to run a runner using a public container image by default. Please change it to use a private image instead. The image should be ubuntu:24.04 from the repository example.com. @dind-docker.yaml
+
+However, it tried to solve the problem by adding environment variables that don't exist in the Gitea Runner.
+
+```yaml
+- name: RUNNER_CONTAINER_IMAGE
+	value: example.com/ubuntu:24.04
+- name: RUNNER_CONTAINER_USERNAME
+	valueFrom:
+		secretKeyRef:
+			name: runner-secret
+			key: username
+- name: RUNNER_CONTAINER_PASSWORD
+	valueFrom:
+		secretKeyRef:
+			name: runner-secret
+			key: password
+```
+
+Next, I asked it to create a new Kubernetes manifest from scratch without providing an example, but it generated the same incorrect response.
+
+I noticed some strange behavior. I confirmed that both the Gemini CLI and the gemini.google.com web console were set to use Gemini 2.5 Pro. However, when I submitted the same prompt to the web console, it produced a different result.🤔 It correctly added a label for the private image in the runner's configuration and mounted the Docker config file for authentication.
+
+```yaml
+# -------------------
+# 1. Secret for Private Repository Authentication
+# -------------------
+# Remember to create this with your actual credentials using kubectl:
+# kubectl create secret docker-registry regcred \
+#   --docker-server=example.com \
+#   --docker-username=<your-username> \
+#   --docker-password=<your-password>
+#
+# This is a placeholder manifest for reference.
+apiVersion: v1
+kind: Secret
+metadata:
+  name: regcred
+type: kubernetes.io/dockerconfigjson
+data:
+  .dockerconfigjson: eyJhdXRocyI6eyJleGFtcGxlLmNvbSI6eyJhdXRoIjoiWVdSdGFXNDZNVEE1T1RrNU9USXpPRGsyIn19fQ== # This is a placeholder for your encoded credentials
+
+---
+# -------------------
+# 2. ConfigMap for Gitea Runner Configuration
+# -------------------
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: gitea-runner-config
+data:
+  config.yaml: |
+    # Gitea server connection details
+    gitea:
+      instance: "https://your-gitea-instance.com"
+      token: "YOUR_RUNNER_TOKEN" # Replace with your Gitea runner token
+      insecure: false
+
+    runner:
+      # The name of the runner
+      name: "k8s-runner"
+      # This section maps a friendly name to a container image for jobs
+      labels:
+        # This is the new label for your private image
+        - "ubuntu-24.04:docker://example.com/ubuntu:24.04"
+        # You can keep other labels for public images
+        - "ubuntu-latest:docker://gitea/runner-images/ubuntu-latest"
+
+    # Settings for the container runner
+    container:
+      # Use docker-in-docker sidecar
+      docker_host: "tcp://localhost:2375"
+
+---
+# -------------------
+# 3. Deployment for the Gitea Runner
+# -------------------
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gitea-runner-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gitea-runner
+  template:
+    metadata:
+      labels:
+        app: gitea-runner
+    spec:
+      containers:
+        # Main Gitea Runner container
+        - name: runner
+          image: gitea/act_runner:latest
+          env:
+            - name: CONFIG_FILE
+              value: /config/config.yaml
+          volumeMounts:
+            # Mount the ConfigMap containing config.yaml
+            - name: config-volume
+              mountPath: /config
+            # Mount the Docker credentials into the runner's home directory
+            # This allows the runner to authenticate when pulling job images
+            - name: docker-config
+              mountPath: /root/.docker
+              readOnly: true
+        # Docker-in-Docker sidecar container
+        - name: dind
+          image: docker:dind
+          securityContext:
+            privileged: true
+          volumeMounts:
+            - name: docker-graph-storage
+              mountPath: /var/lib/docker
+      volumes:
+        # Volume for the ConfigMap
+        - name: config-volume
+          configMap:
+            name: gitea-runner-config
+        # Volume for the Docker credentials Secret
+        - name: docker-config
+          secret:
+            secretName: regcred
+        # EmptyDir volume for Docker-in-Docker storage
+        - name: docker-graph-storage
+          emptyDir: {}
+```
+
 ## Conclusion
 
 In the end, I chose Gitea for my self-hosted Git system. Although I initially struggled to set up the Docker credentials correctly, the process led me to discover the fascinating open-source project, Act.
