@@ -68,7 +68,7 @@ My first prompt was:
 
 Claude generated a nice bash script. However, instead of first requesting a token from the realm URL, the script attempted to use basic authentication for every API call.
 
-```sh
+```bash
 get_repositories() {
     local auth_header
     auth_header=$(echo -n "$REGISTRY_USERNAME:$REGISTRY_PASSWORD" | base64)
@@ -89,7 +89,7 @@ After I gave it additional guidance, it generated the code I was expecting.
 
 > basic authentication is not working. You should issue a authentication token to authenticate to API.
 
-```sh
+```bash
 get_auth_token() {
     local service="$1"
     local scope="$2"
