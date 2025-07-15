@@ -1,0 +1,24 @@
+
+  <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+      <title>Jayground8</title>
+      <link>https://jayground8.github.io/blog</link>
+      <description>like playing in the playground</description>
+      <language>kr</language>
+      <managingEditor>jayground8@gmail.com (Jay)</managingEditor>
+      <webMaster>jayground8@gmail.com (Jay)</webMaster>
+      <lastBuildDate>Wed, 16 Jul 2025 00:00:00 GMT</lastBuildDate>
+      <atom:link href="https://jayground8.github.io/tags/llm/feed.xml" rel="self" type="application/rss+xml"/>
+      
+  <item>
+    <guid>https://jayground8.github.io/blog/20250716-docker-v2-api</guid>
+    <title>How To Authenticate With Docker API</title>
+    <link>https://jayground8.github.io/blog/20250716-docker-v2-api</link>
+    <description>I needed to iterate through all image repositories in my private container registry, find the latest build for each, and save them as individual tar files. Although an LLM can generate code for this task quickly, it&#39;s worth knowing how to issue an authentication token for the Docker API. This could be important for guiding the LLM to produce a correct final version.</description>
+    <pubDate>Wed, 16 Jul 2025 00:00:00 GMT</pubDate>
+    <author>jayground8@gmail.com (Jay)</author>
+    <category>docker</category><category>LLM</category>
+  </item>
+
+    </channel>
+  </rss>

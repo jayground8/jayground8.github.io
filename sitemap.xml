@@ -257,11 +257,15 @@
   </url>
 
   <url>
-    <loc>https://jayground8.github.io/tags/argocd</loc>
+    <loc>https://jayground8.github.io/blog/20250716-docker-v2-api</loc>
   </url>
 
   <url>
     <loc>https://jayground8.github.io/tags/ai</loc>
+  </url>
+
+  <url>
+    <loc>https://jayground8.github.io/tags/argocd</loc>
   </url>
 
   <url>
@@ -305,6 +309,10 @@
   </url>
 
   <url>
+    <loc>https://jayground8.github.io/tags/docker</loc>
+  </url>
+
+  <url>
     <loc>https://jayground8.github.io/tags/falco</loc>
   </url>
 
@@ -330,6 +338,10 @@
 
   <url>
     <loc>https://jayground8.github.io/tags/kubernetes</loc>
+  </url>
+
+  <url>
+    <loc>https://jayground8.github.io/tags/llm</loc>
   </url>
 
   <url>
