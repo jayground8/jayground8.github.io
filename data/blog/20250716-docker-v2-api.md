@@ -1,7 +1,7 @@
 ---
 title: 'How To Authenticate With Docker API'
 date: '2025-07-16'
-tags: ['docker', 'LLM']
+tags: ['docker', 'Gemini', 'Claude']
 images: ['/static/images/thumbnail/write-bash-script.png']
 summary: "I needed to iterate through all image repositories in my private container registry, find the latest build for each, and save them as individual tar files. Although an LLM can generate code for this task quickly, it's worth knowing how to issue an authentication token for the Docker API. This could be important for guiding the LLM to produce a correct final version."
 ---
