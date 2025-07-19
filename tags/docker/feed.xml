@@ -17,7 +17,7 @@
     <description>I needed to iterate through all image repositories in my private container registry, find the latest build for each, and save them as individual tar files. Although an LLM can generate code for this task quickly, it&#39;s worth knowing how to issue an authentication token for the Docker API. This could be important for guiding the LLM to produce a correct final version.</description>
     <pubDate>Wed, 16 Jul 2025 00:00:00 GMT</pubDate>
     <author>jayground8@gmail.com (Jay)</author>
-    <category>docker</category><category>LLM</category>
+    <category>docker</category><category>Gemini</category><category>Claude</category>
   </item>
 
     </channel>

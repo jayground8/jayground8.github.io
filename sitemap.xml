@@ -261,15 +261,19 @@
   </url>
 
   <url>
+    <loc>https://jayground8.github.io/blog/20250719-writing-helm-values-with-gemini</loc>
+  </url>
+
+  <url>
     <loc>https://jayground8.github.io/tags/argocd</loc>
   </url>
 
   <url>
-    <loc>https://jayground8.github.io/tags/ai</loc>
+    <loc>https://jayground8.github.io/tags/aws</loc>
   </url>
 
   <url>
-    <loc>https://jayground8.github.io/tags/aws</loc>
+    <loc>https://jayground8.github.io/tags/ai</loc>
   </url>
 
   <url>
@@ -286,6 +290,10 @@
 
   <url>
     <loc>https://jayground8.github.io/tags/cilium</loc>
+  </url>
+
+  <url>
+    <loc>https://jayground8.github.io/tags/claude</loc>
   </url>
 
   <url>
@@ -321,6 +329,10 @@
   </url>
 
   <url>
+    <loc>https://jayground8.github.io/tags/gemini</loc>
+  </url>
+
+  <url>
     <loc>https://jayground8.github.io/tags/gitea</loc>
   </url>
 
@@ -333,15 +345,15 @@
   </url>
 
   <url>
+    <loc>https://jayground8.github.io/tags/heml</loc>
+  </url>
+
+  <url>
     <loc>https://jayground8.github.io/tags/idea</loc>
   </url>
 
   <url>
     <loc>https://jayground8.github.io/tags/kubernetes</loc>
-  </url>
-
-  <url>
-    <loc>https://jayground8.github.io/tags/llm</loc>
   </url>
 
   <url>
