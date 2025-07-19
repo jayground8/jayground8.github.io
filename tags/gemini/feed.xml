@@ -7,9 +7,19 @@
       <language>kr</language>
       <managingEditor>jayground8@gmail.com (Jay)</managingEditor>
       <webMaster>jayground8@gmail.com (Jay)</webMaster>
-      <lastBuildDate>Wed, 16 Jul 2025 00:00:00 GMT</lastBuildDate>
+      <lastBuildDate>Sat, 19 Jul 2025 00:00:00 GMT</lastBuildDate>
       <atom:link href="https://jayground8.github.io/tags/gemini/feed.xml" rel="self" type="application/rss+xml"/>
       
+  <item>
+    <guid>https://jayground8.github.io/blog/20250719-writing-helm-values-with-gemini</guid>
+    <title>Writing Helm Values With Gemini</title>
+    <link>https://jayground8.github.io/blog/20250719-writing-helm-values-with-gemini</link>
+    <description>I often write values.yaml files to install open-source projects on Kubernetes clusters. This time, I needed to add tolerations to ensure all components of Sentry would run on specific nodes. Since Sentry has quite a few components, I decided to leverage Gemini to generate the values.yaml file more quickly.</description>
+    <pubDate>Sat, 19 Jul 2025 00:00:00 GMT</pubDate>
+    <author>jayground8@gmail.com (Jay)</author>
+    <category>kubernetes</category><category>heml</category><category>Gemini</category>
+  </item>
+
   <item>
     <guid>https://jayground8.github.io/blog/20250716-docker-v2-api</guid>
     <title>How To Authenticate With Docker API</title>
@@ -18,16 +28,6 @@
     <pubDate>Wed, 16 Jul 2025 00:00:00 GMT</pubDate>
     <author>jayground8@gmail.com (Jay)</author>
     <category>docker</category><category>Gemini</category><category>Claude</category>
-  </item>
-
-  <item>
-    <guid>https://jayground8.github.io/blog/20250719-writing-helm-values-with-gemini</guid>
-    <title>Writing Helm Values With Gemini</title>
-    <link>https://jayground8.github.io/blog/20250719-writing-helm-values-with-gemini</link>
-    <description>I often write values.yaml files to install open-source projects on Kubernetes clusters. This time, I needed to add tolerations to ensure all components of Sentry would run on specific nodes. Since Sentry has quite a few components, I decided to leverage Gemini to generate the values.yaml file more quickly.</description>
-    <pubDate>Wed, 16 Jul 2025 00:00:00 GMT</pubDate>
-    <author>jayground8@gmail.com (Jay)</author>
-    <category>kubernetes</category><category>heml</category><category>Gemini</category>
   </item>
 
     </channel>
