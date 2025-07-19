@@ -1,6 +1,6 @@
 ---
 title: 'Writing Helm Values With Gemini'
-date: '2025-07-16'
+date: '2025-07-19'
 tags: ['kubernetes', 'heml', 'Gemini']
 images: ['/static/images/thumbnail/writing-helm-values-with-gemini.png']
 summary: 'I often write values.yaml files to install open-source projects on Kubernetes clusters. This time, I needed to add tolerations to ensure all components of Sentry would run on specific nodes. Since Sentry has quite a few components, I decided to leverage Gemini to generate the values.yaml file more quickly.'
