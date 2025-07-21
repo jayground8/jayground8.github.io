@@ -1,5 +1,5 @@
 ---
-title: 'Configuring Sentry SAML2 Provider with Keycloak'
+title: "Configuring Sentry's SAML2 Provider with Keycloak"
 date: '2025-07-22'
 tags: ['sentry', 'keycloak', 'saml2']
 images: ['/static/images/thumbnail/sentry-saml2-keycloak.png']
@@ -26,7 +26,7 @@ https://sentry.jayground8.com/saml/metadata/sentry/
 
 <img src="/static/images/sentry-saml2-keycloak-client.png" alt="creating a client on Keycloak" />
 
-why? when Sentry redirect to Keycloak, it provide SAMLRequest Information with query params. <saml:Issuer> should match with Sentry Metadata(Entity ID). The client ID of SAML2 in Keycloak is used in <saml:Issuer>. You will receive an “invalid request” error from Keycloak if this value is not set correctly.
+why? when Sentry redirect to Keycloak, it provide SAMLRequest Information with query params. `<saml:Issuer>` should match with Sentry Metadata(Entity ID). The client ID of SAML2 in Keycloak is used in `<saml:Issuer>`. You will receive an “invalid request” error from Keycloak if this value is not set correctly.
 
 ```xml
 <samlp:AuthnRequest ...>
