@@ -265,7 +265,7 @@
   </url>
 
   <url>
-    <loc>https://jayground8.github.io/tags/ai</loc>
+    <loc>https://jayground8.github.io/blog/20250722-sentry-saml2</loc>
   </url>
 
   <url>
@@ -274,6 +274,10 @@
 
   <url>
     <loc>https://jayground8.github.io/tags/aws</loc>
+  </url>
+
+  <url>
+    <loc>https://jayground8.github.io/tags/ai</loc>
   </url>
 
   <url>
@@ -353,6 +357,10 @@
   </url>
 
   <url>
+    <loc>https://jayground8.github.io/tags/keycloak</loc>
+  </url>
+
+  <url>
     <loc>https://jayground8.github.io/tags/kubernetes</loc>
   </url>
 
@@ -393,11 +401,19 @@
   </url>
 
   <url>
+    <loc>https://jayground8.github.io/tags/saml2</loc>
+  </url>
+
+  <url>
     <loc>https://jayground8.github.io/tags/security</loc>
   </url>
 
   <url>
     <loc>https://jayground8.github.io/tags/self-evalutaion</loc>
+  </url>
+
+  <url>
+    <loc>https://jayground8.github.io/tags/sentry</loc>
   </url>
 
   <url>

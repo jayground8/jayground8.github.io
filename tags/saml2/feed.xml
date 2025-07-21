@@ -1,0 +1,24 @@
+
+  <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+      <title>Jayground8</title>
+      <link>https://jayground8.github.io/blog</link>
+      <description>like playing in the playground</description>
+      <language>kr</language>
+      <managingEditor>jayground8@gmail.com (Jay)</managingEditor>
+      <webMaster>jayground8@gmail.com (Jay)</webMaster>
+      <lastBuildDate>Tue, 22 Jul 2025 00:00:00 GMT</lastBuildDate>
+      <atom:link href="https://jayground8.github.io/tags/saml2/feed.xml" rel="self" type="application/rss+xml"/>
+      
+  <item>
+    <guid>https://jayground8.github.io/blog/20250722-sentry-saml2</guid>
+    <title>Configuring Sentry&#39;s SAML2 Provider with Keycloak</title>
+    <link>https://jayground8.github.io/blog/20250722-sentry-saml2</link>
+    <description>This time, I integrated Sentry with Keycloak. There are several helpful blog posts available that make the process easy to follow. However, out of curiosity, I wanted to understand exactly what was happening behind the scenes—and clarify which steps are truly necessary.</description>
+    <pubDate>Tue, 22 Jul 2025 00:00:00 GMT</pubDate>
+    <author>jayground8@gmail.com (Jay)</author>
+    <category>sentry</category><category>keycloak</category><category>saml2</category>
+  </item>
+
+    </channel>
+  </rss>
