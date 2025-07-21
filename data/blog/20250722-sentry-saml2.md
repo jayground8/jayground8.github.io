@@ -8,9 +8,11 @@ summary: 'This time, I integrated Sentry with Keycloak. There are several helpfu
 
 When using Keycloak as your Identity Provider, you can configure SAML2 to authenticate Sentry. The official Sentry documentation provides detailed instructions on how to set up a custom SAML provider. You can find the URL formats for the Assertion Consumer Service (ACS), Single Logout Service (SLS), and metadata endpoints in the documentation, such as:
 
+```bash
 ACS: https://sentry.io/saml/acs/YOUR_ORG_SLUG/
 SLS: https://sentry.io/saml/sls/YOUR_ORG_SLUG/
 Metadata: https://sentry.io/saml/metadata/YOUR_ORG_SLUG/
+```
 
 To fill in your organization slug, you can find the value on the Sentry Settings page.
 
@@ -39,9 +41,13 @@ why? when Sentry redirect to Keycloak, it provide SAMLRequest Information with q
 
 Some blogs suggest manually setting the ACS and SLS URLs in the Keycloak client’s advanced settings. However, this is not necessary, as the metadata (Entity ID) already provides those URLs.
 
-<img src="/static/images/sentry-saml2-advanced-settings" alt="Keycloak client's advanced settings" />
+<img src="/static/images/sentry-saml2-advanced-settings.png" alt="Keycloak client's advanced settings" />
 
-Next, add https://sentry.jayground8.com/* to the Valid Redirect URIs, and complete the client creation by clicking the Save button.
+Next, add the Valid Redirect URIs, and complete the client creation by clicking the Save button.
+
+```bash
+https://sentry.jayground8.com/*
+```
 
 Now, you need to configure a few more settings. First, create a Client Scope to pass the user’s email information to Sentry.
 
