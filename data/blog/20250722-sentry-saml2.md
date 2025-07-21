@@ -1,5 +1,5 @@
 ---
-title: 'Configuring Sentry SAML2 Provider with Keycloak
+title: 'Configuring Sentry SAML2 Provider with Keycloak'
 date: '2025-07-22'
 tags: ['sentry', 'keycloak', 'saml2']
 images: ['/static/images/thumbnail/sentry-saml2-keycloak.png']
