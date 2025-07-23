@@ -7,9 +7,19 @@
       <language>kr</language>
       <managingEditor>jayground8@gmail.com (Jay)</managingEditor>
       <webMaster>jayground8@gmail.com (Jay)</webMaster>
-      <lastBuildDate>Tue, 22 Jul 2025 00:00:00 GMT</lastBuildDate>
+      <lastBuildDate>Thu, 24 Jul 2025 00:00:00 GMT</lastBuildDate>
       <atom:link href="https://jayground8.github.io/feed.xml" rel="self" type="application/rss+xml"/>
       
+  <item>
+    <guid>https://jayground8.github.io/blog/20250724-nodejs-trace-database-data</guid>
+    <title>Unexpected Trace Data Behavior in Google Cloud Trace with OpenTelemetry</title>
+    <link>https://jayground8.github.io/blog/20250724-nodejs-trace-database-data</link>
+    <description>My system exports telemetry data from a Node.js application using OpenTelemetry. I configured the OpenTelemetry Collector to send that data to a GCP-managed service via the Google Cloud Exporter. Later, while reviewing database query information from the application, I noticed something odd in the trace data. As I dug deeper, I discovered some limitations of GCP Cloud Trace and how the mysql2 instrumentation package sets attribute values. That investigation helped explain the strange behavior I was seeing in the trace data.</description>
+    <pubDate>Thu, 24 Jul 2025 00:00:00 GMT</pubDate>
+    <author>jayground8@gmail.com (Jay)</author>
+    <category>opentelemetry</category><category>nodejs</category>
+  </item>
+
   <item>
     <guid>https://jayground8.github.io/blog/20250722-sentry-saml2</guid>
     <title>Configuring Sentry&#39;s SAML2 Provider with Keycloak</title>
