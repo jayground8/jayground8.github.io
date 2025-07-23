@@ -3,7 +3,7 @@ const siteMetadata = {
   author: 'Jay',
   headerTitle: 'Jayground8',
   description: 'like playing in the playground',
-  language: 'kr',
+  language: 'en',
   theme: 'system', // system, dark or light
   siteUrl: 'https://jayground8.github.io',
   siteRepo: 'https://github.com/jayground8/jayground8',
@@ -12,7 +12,7 @@ const siteMetadata = {
   socialBanner: 'social-banner.png',
   email: 'jayground8@gmail.com',
   github: 'https://github.com/jayground8',
-  locale: 'ko-kr',
+  locale: 'en-US',
   wordcloud: 'wordcloud.png',
   analytics: {
     // If you want to use an analytics provider you have to add it to the
