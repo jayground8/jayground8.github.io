@@ -82,7 +82,7 @@ According to [the GCP official documentation](https://cloud.google.com/trace/doc
 
 This explains why the full SQL query wasn’t visible in the trace.
 
-## `db.name Is` Not Following the Spec
+## `db.name` Is Not Following the Spec
 
 Since I couldn’t always determine which database a client was querying based solely on the (truncated) `db.statement`, I started paying more attention to the `db.name` attribute.
 
