@@ -1,8 +1,8 @@
 ---
-title: ''
+title: 'Adding OIDC Authentication to OpenVPN Community Server'
 date: '2025-07-26'
 tags: ['openvpn', 'oauth2']
-images: ['/static/images/thumbnail/openvpn-oidc.png']
+images: ['/static/images/thumbnail/openvpn.png']
 summary: ''
 ---
 
@@ -152,3 +152,5 @@ def clientReauth(self, cid, kid):
         self.conn.write(reply.encode())
     return
 ```
+
+## Authorization
