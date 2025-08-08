@@ -1,0 +1,24 @@
+
+  <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+      <title>Jayground8</title>
+      <link>https://jayground8.github.io/blog</link>
+      <description>like playing in the playground</description>
+      <language>en</language>
+      <managingEditor>jayground8@gmail.com (Jay)</managingEditor>
+      <webMaster>jayground8@gmail.com (Jay)</webMaster>
+      <lastBuildDate>Sat, 09 Aug 2025 00:00:00 GMT</lastBuildDate>
+      <atom:link href="https://jayground8.github.io/tags/paseto/feed.xml" rel="self" type="application/rss+xml"/>
+      
+  <item>
+    <guid>https://jayground8.github.io/blog/20250809-paseto</guid>
+    <title>What is PASETO?</title>
+    <link>https://jayground8.github.io/blog/20250809-paseto</link>
+    <description>I stumbled upon the PASETO specification. At first glance, it offers better security for a system. I researched it to figure out if it could bring any advantages to my system, which is built with Node.js and authenticates using bearer tokens.</description>
+    <pubDate>Sat, 09 Aug 2025 00:00:00 GMT</pubDate>
+    <author>jayground8@gmail.com (Jay)</author>
+    <category>paseto</category><category>security</category>
+  </item>
+
+    </channel>
+  </rss>
