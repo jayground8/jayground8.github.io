@@ -1,0 +1,24 @@
+
+  <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+      <title>Jayground8</title>
+      <link>https://jayground8.github.io/blog</link>
+      <description>like playing in the playground</description>
+      <language>en</language>
+      <managingEditor>jayground8@gmail.com (Jay)</managingEditor>
+      <webMaster>jayground8@gmail.com (Jay)</webMaster>
+      <lastBuildDate>Sat, 26 Jul 2025 00:00:00 GMT</lastBuildDate>
+      <atom:link href="https://jayground8.github.io/tags/oauth2/feed.xml" rel="self" type="application/rss+xml"/>
+      
+  <item>
+    <guid>https://jayground8.github.io/blog/20250726-openvpn-oidc</guid>
+    <title>Adding OIDC Authentication to OpenVPN Community Server</title>
+    <link>https://jayground8.github.io/blog/20250726-openvpn-oidc</link>
+    
+    <pubDate>Sat, 26 Jul 2025 00:00:00 GMT</pubDate>
+    <author>jayground8@gmail.com (Jay)</author>
+    <category>openvpn</category><category>oauth2</category>
+  </item>
+
+    </channel>
+  </rss>

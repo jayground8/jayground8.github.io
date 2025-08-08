@@ -273,11 +273,15 @@
   </url>
 
   <url>
-    <loc>https://jayground8.github.io/tags/ai</loc>
+    <loc>https://jayground8.github.io/blog/20250726-openvpn-oidc</loc>
   </url>
 
   <url>
     <loc>https://jayground8.github.io/tags/argocd</loc>
+  </url>
+
+  <url>
+    <loc>https://jayground8.github.io/tags/ai</loc>
   </url>
 
   <url>
@@ -393,6 +397,10 @@
   </url>
 
   <url>
+    <loc>https://jayground8.github.io/tags/oauth2</loc>
+  </url>
+
+  <url>
     <loc>https://jayground8.github.io/tags/oidc</loc>
   </url>
 
@@ -402,6 +410,10 @@
 
   <url>
     <loc>https://jayground8.github.io/tags/opentofu</loc>
+  </url>
+
+  <url>
+    <loc>https://jayground8.github.io/tags/openvpn</loc>
   </url>
 
   <url>

@@ -7,9 +7,19 @@
       <language>en</language>
       <managingEditor>jayground8@gmail.com (Jay)</managingEditor>
       <webMaster>jayground8@gmail.com (Jay)</webMaster>
-      <lastBuildDate>Thu, 24 Jul 2025 00:00:00 GMT</lastBuildDate>
+      <lastBuildDate>Sat, 26 Jul 2025 00:00:00 GMT</lastBuildDate>
       <atom:link href="https://jayground8.github.io/feed.xml" rel="self" type="application/rss+xml"/>
       
+  <item>
+    <guid>https://jayground8.github.io/blog/20250726-openvpn-oidc</guid>
+    <title>Adding OIDC Authentication to OpenVPN Community Server</title>
+    <link>https://jayground8.github.io/blog/20250726-openvpn-oidc</link>
+    
+    <pubDate>Sat, 26 Jul 2025 00:00:00 GMT</pubDate>
+    <author>jayground8@gmail.com (Jay)</author>
+    <category>openvpn</category><category>oauth2</category>
+  </item>
+
   <item>
     <guid>https://jayground8.github.io/blog/20250724-nodejs-trace-database-data</guid>
     <title>Unexpected Trace Data Behavior in Google Cloud Trace with OpenTelemetry</title>
