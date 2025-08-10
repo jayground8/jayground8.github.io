@@ -7,9 +7,19 @@
       <language>en</language>
       <managingEditor>jayground8@gmail.com (Jay)</managingEditor>
       <webMaster>jayground8@gmail.com (Jay)</webMaster>
-      <lastBuildDate>Sat, 09 Aug 2025 00:00:00 GMT</lastBuildDate>
+      <lastBuildDate>Sun, 10 Aug 2025 00:00:00 GMT</lastBuildDate>
       <atom:link href="https://jayground8.github.io/feed.xml" rel="self" type="application/rss+xml"/>
       
+  <item>
+    <guid>https://jayground8.github.io/blog/20250810-conventional-commits</guid>
+    <title>Automating Semantic Versioning and Releases in Node.js with Conventional Commits</title>
+    <link>https://jayground8.github.io/blog/20250810-conventional-commits</link>
+    <description>I introduced several open-source tools that help ensure everyone follows the same commit message conventions and make it easy to manage versions and release notes based on those consistent messages.</description>
+    <pubDate>Sun, 10 Aug 2025 00:00:00 GMT</pubDate>
+    <author>jayground8@gmail.com (Jay)</author>
+    <category>nodejs</category><category>dev</category>
+  </item>
+
   <item>
     <guid>https://jayground8.github.io/blog/20250809-paseto</guid>
     <title>What is PASETO?</title>

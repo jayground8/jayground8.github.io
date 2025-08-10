@@ -1,0 +1,24 @@
+
+  <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+      <title>Jayground8</title>
+      <link>https://jayground8.github.io/blog</link>
+      <description>like playing in the playground</description>
+      <language>en</language>
+      <managingEditor>jayground8@gmail.com (Jay)</managingEditor>
+      <webMaster>jayground8@gmail.com (Jay)</webMaster>
+      <lastBuildDate>Sun, 10 Aug 2025 00:00:00 GMT</lastBuildDate>
+      <atom:link href="https://jayground8.github.io/tags/dev/feed.xml" rel="self" type="application/rss+xml"/>
+      
+  <item>
+    <guid>https://jayground8.github.io/blog/20250810-conventional-commits</guid>
+    <title>Automating Semantic Versioning and Releases in Node.js with Conventional Commits</title>
+    <link>https://jayground8.github.io/blog/20250810-conventional-commits</link>
+    <description>I introduced several open-source tools that help ensure everyone follows the same commit message conventions and make it easy to manage versions and release notes based on those consistent messages.</description>
+    <pubDate>Sun, 10 Aug 2025 00:00:00 GMT</pubDate>
+    <author>jayground8@gmail.com (Jay)</author>
+    <category>nodejs</category><category>dev</category>
+  </item>
+
+    </channel>
+  </rss>
