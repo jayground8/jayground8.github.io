@@ -254,6 +254,12 @@ jobs:
           tags: ${{ vars.DOCKER_REGISTRY}}/jayground8/tutorial:${{ steps.version.outputs.VERSION}}
 ```
 
+⚠️ Because of the prepare script, the husky package is required when running pnpm install -P during the image build process. You can skip this by using the `--ignore-scripts` flag.
+
+```sh
+pnpm install -P --ignore-scripts
+```
+
 ## lint-staged
 
 You can also run ESLint and Prettier on the files staged for commit. This ensures that your code is linted and formatted before it’s committed.
