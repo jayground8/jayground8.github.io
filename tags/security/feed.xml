@@ -7,9 +7,19 @@
       <language>en</language>
       <managingEditor>jayground8@gmail.com (Jay)</managingEditor>
       <webMaster>jayground8@gmail.com (Jay)</webMaster>
-      <lastBuildDate>Sat, 09 Aug 2025 00:00:00 GMT</lastBuildDate>
+      <lastBuildDate>Sun, 24 Aug 2025 00:00:00 GMT</lastBuildDate>
       <atom:link href="https://jayground8.github.io/tags/security/feed.xml" rel="self" type="application/rss+xml"/>
       
+  <item>
+    <guid>https://jayground8.github.io/blog/20250824-bazel</guid>
+    <title>Understanding how to build Bitnami Mindeb image and Google Distroless image</title>
+    <link>https://jayground8.github.io/blog/20250824-bazel</link>
+    <description>Recently, Bitnami announced that secure container images would only be available under a paid plan, and that they would stop maintaining most of their previous images, except for a few open-source projects. Bitnami container images are based on the minideb image, which includes fewer packages than a standard Debian image. I started wondering whether I could replace this with a Distroless image built using Bazel and maintain it myself.This blog explains how minideb and Distroless images are built.</description>
+    <pubDate>Sun, 24 Aug 2025 00:00:00 GMT</pubDate>
+    <author>jayground8@gmail.com (Jay)</author>
+    <category>bazel</category><category>security</category>
+  </item>
+
   <item>
     <guid>https://jayground8.github.io/blog/20250809-paseto</guid>
     <title>What is PASETO?</title>
